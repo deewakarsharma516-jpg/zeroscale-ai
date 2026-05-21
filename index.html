@@ -16,17 +16,18 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .mode-btn.business{border-color:#6c63ff;color:#6c63ff;background:#ede9ff}
 .mode-btn.health{border-color:#e91e8c;color:#e91e8c}
 .mode-label{text-align:center;padding:6px;background:#ede9ff;font-size:12px;color:#6c63ff;font-weight:600}
-.chat-area{flex:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding-bottom:110px;background:#f0f4f8}
-.msg{padding:12px 16px;border-radius:18px;max-width:80%;font-size:14px;line-height:1.6;white-space:pre-wrap;box-shadow:0 1px 4px rgba(0,0,0,0.08)}
+.chat-area{flex:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding-bottom:130px;background:#f0f4f8}
+.msg{padding:12px 16px;border-radius:18px;max-width:82%;font-size:14px;line-height:1.6;white-space:pre-wrap;box-shadow:0 1px 4px rgba(0,0,0,0.08)}
 .user-msg{background:linear-gradient(135deg,#6c63ff,#3ecfcf);align-self:flex-end;color:#fff;border-bottom-right-radius:4px}
 .ai-msg{background:#fff;align-self:flex-start;color:#1a1a2e;border-bottom-left-radius:4px;border:1px solid #e0e0e0}
 .ai-msg img{max-width:100%;border-radius:10px;margin-top:8px;display:block}
-.input-area{padding:10px 12px;background:#fff;position:fixed;bottom:0;width:100%;box-shadow:0 -2px 10px rgba(0,0,0,0.08)}
+.user-img{max-width:100%;border-radius:10px;margin-top:5px;display:block}
+.input-area{padding:8px 12px;background:#fff;position:fixed;bottom:0;width:100%;box-shadow:0 -2px 10px rgba(0,0,0,0.08)}
 .input-row{display:flex;gap:8px;align-items:center}
-.input-area input{flex:1;padding:12px 16px;border-radius:25px;border:2px solid #e0e0e0;background:#f8f9fa;color:#1a1a2e;font-size:14px;outline:none}
-.input-area input:focus{border-color:#6c63ff}
-.btn-row{display:flex;gap:6px;margin-top:8px;justify-content:center;flex-wrap:wrap}
-.btn{padding:10px 14px;border:none;border-radius:25px;cursor:pointer;font-size:12px;font-weight:700;display:flex;align-items:center;gap:4px;transition:.3s}
+.input-area input[type=text]{flex:1;padding:11px 16px;border-radius:25px;border:2px solid #e0e0e0;background:#f8f9fa;color:#1a1a2e;font-size:14px;outline:none}
+.input-area input[type=text]:focus{border-color:#6c63ff}
+.btn-row{display:flex;gap:5px;margin-top:7px;justify-content:center;flex-wrap:wrap}
+.btn{padding:9px 12px;border:none;border-radius:20px;cursor:pointer;font-size:11px;font-weight:700;display:flex;align-items:center;gap:3px;transition:.3s;white-space:nowrap}
 .btn:hover{transform:scale(1.05)}
 .send-btn{background:linear-gradient(135deg,#6c63ff,#3ecfcf);color:#fff}
 .voice-btn{background:#ff6b9d;color:#fff}
@@ -34,9 +35,12 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .img-btn{background:#4CAF50;color:#fff}
 .speak-btn{background:#ff9800;color:#fff}
 .speak-btn.on{background:#6c63ff;color:#fff}
+.cam-btn{background:#00bcd4;color:#fff}
+.photo-btn{background:#9c27b0;color:#fff}
+.file-btn{background:#795548;color:#fff}
 @keyframes pulse{0%{opacity:1}50%{opacity:0.5}100%{opacity:1}}
 .typing{display:inline-flex;gap:4px;padding:4px 0}
-.typing span{width:8px;height:8px;background:#6c63ff;border-radius:50%;animation:bounce 1.2s infinite}
+.typing span{width:7px;height:7px;background:#6c63ff;border-radius:50%;animation:bounce 1.2s infinite}
 .typing span:nth-child(2){animation-delay:.2s}
 .typing span:nth-child(3){animation-delay:.4s}
 @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-8px)}}
@@ -54,7 +58,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 </div>
 <div class="mode-label" id="modeLabel">💼 Business Mode — GST, Email, Social Media</div>
 <div class="chat-area" id="chatArea">
-<div class="msg ai-msg">Namaste! 🙏 Main ZeroScale AI hoon.<br><br>✍️ <b>Likho</b> — kuch bhi poochho<br>🎤 <b>Bolo</b> — voice mein baat karo<br>🖼️ <b>Image</b> — koi bhi image banao<br>🔊 <b>Sunao</b> — AI ka jawab sunne ke liye on karo</div>
+<div class="msg ai-msg">Namaste! 🙏 Main ZeroScale AI hoon.<br><br>✍️ <b>Likho</b> — kuch bhi poochho<br>🎤 <b>Bolo</b> — voice mein baat karo<br>🖼️ <b>Image Banao</b> — description likho<br>📷 <b>Camera</b> — photo khicho aur poochho<br>🖼 <b>Photos</b> — gallery se image lo<br>📎 <b>File</b> — document bhejo<br>🔊 <b>Sunao</b> — AI ka jawab sunne ke liye</div>
 </div>
 <div class="input-area">
 <div class="input-row">
@@ -63,18 +67,28 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 <div class="btn-row">
 <button class="btn voice-btn" id="voiceBtn" onclick="toggleVoice()">🎤 Bolo</button>
 <button class="btn img-btn" onclick="generateImage()">🖼️ Image</button>
+<button class="btn cam-btn" onclick="openCamera()">📷 Camera</button>
+<button class="btn photo-btn" onclick="openGallery()">🖼 Photos</button>
+<button class="btn file-btn" onclick="openFile()">📎 File</button>
 <button class="btn speak-btn" id="speakBtn" onclick="toggleSpeak()">🔊 Sunao</button>
 <button class="btn send-btn" onclick="sendMsg()">➤ Bhejo</button>
 </div>
 </div>
+
+<!-- Hidden inputs -->
+<input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleImageUpload(this)">
+<input type="file" id="galleryInput" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
+<input type="file" id="fileInput" accept=".pdf,.doc,.docx,.txt" style="display:none" onchange="handleFileUpload(this)">
+
 <script>
 let mode='business';
 let voiceOutputOn=false;
+let currentImageBase64='';
 const GROQ_KEY='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';
 const prompts={
-student:'Tu ek helpful Indian student assistant hai. Seedhi simple Hindi mein jawab de. Short aur clear rakho.',
-business:'Tu ek helpful Indian business assistant hai. Simple Hindi mein jawab de. GST, email, social media help kar.',
-health:'Tu ek helpful Indian health assistant hai. Simple Hindi mein jawab de. Doctor se milne ki salah do.'
+student:'Tu ek helpful Indian student assistant hai. Seedhi simple Hindi mein jawab de. Short aur clear rakho. Agar image di hai toh uske baare mein batao.',
+business:'Tu ek helpful Indian business assistant hai. Simple Hindi mein jawab de. GST, email, social media help kar. Agar image di hai toh uske baare mein business advice do.',
+health:'Tu ek helpful Indian health assistant hai. Simple Hindi mein jawab de. Doctor se milne ki salah do. Agar image di hai toh symptoms dekh ke salah do.'
 };
 let recognition=null;
 let isListening=false;
@@ -91,6 +105,41 @@ health:'🏥 Health Mode — Symptoms, Doctor Tips'
 document.getElementById('modeLabel').textContent=labels[m];
 }
 
+function openCamera(){document.getElementById('cameraInput').click();}
+function openGallery(){document.getElementById('galleryInput').click();}
+function openFile(){document.getElementById('fileInput').click();}
+
+function handleImageUpload(input){
+const file=input.files[0];
+if(!file)return;
+const reader=new FileReader();
+reader.onload=function(e){
+currentImageBase64=e.target.result;
+const chat=document.getElementById('chatArea');
+chat.innerHTML+=`<div class="msg user-msg">📷 Image upload ki:<br><img src="${currentImageBase64}" class="user-img" style="max-width:200px"></div>`;
+chat.scrollTop=chat.scrollHeight;
+document.getElementById('userInput').placeholder='Is image ke baare mein poochho...';
+document.getElementById('userInput').focus();
+};
+reader.readAsDataURL(file);
+input.value='';
+}
+
+function handleFileUpload(input){
+const file=input.files[0];
+if(!file)return;
+const reader=new FileReader();
+reader.onload=function(e){
+const text=e.target.result;
+const chat=document.getElementById('chatArea');
+chat.innerHTML+=`<div class="msg user-msg">📎 File: ${file.name}</div>`;
+chat.scrollTop=chat.scrollHeight;
+document.getElementById('userInput').value=`Is file ke baare mein batao: ${text.substring(0,500)}`;
+};
+reader.readAsText(file);
+input.value='';
+}
+
 function toggleSpeak(){
 voiceOutputOn=!voiceOutputOn;
 const btn=document.getElementById('speakBtn');
@@ -103,19 +152,19 @@ function speakText(text){
 if(!voiceOutputOn)return;
 speechSynthesis.cancel();
 const clean=text.replace(/[*#_\n]/g,' ').substring(0,300);
+setTimeout(()=>{
+const voices=speechSynthesis.getVoices();
 const utt=new SpeechSynthesisUtterance(clean);
+const hindiVoice=voices.find(v=>v.lang&&v.lang.includes('hi'));
+const indianVoice=voices.find(v=>v.lang&&v.lang.includes('IN'));
+if(hindiVoice)utt.voice=hindiVoice;
+else if(indianVoice)utt.voice=indianVoice;
 utt.lang='hi-IN';
 utt.rate=0.85;
 utt.pitch=1;
 utt.volume=1;
-setTimeout(()=>{
-const voices=speechSynthesis.getVoices();
-const hindiVoice=voices.find(v=>v.lang.includes('hi'));
-const indianVoice=voices.find(v=>v.lang.includes('IN'));
-if(hindiVoice)utt.voice=hindiVoice;
-else if(indianVoice)utt.voice=indianVoice;
 speechSynthesis.speak(utt);
-},100);
+},200);
 }
 
 function toggleVoice(){
@@ -143,10 +192,11 @@ isListening=false;
 document.getElementById('voiceBtn').classList.remove('listening');
 document.getElementById('voiceBtn').textContent='🎤 Bolo';
 };
-recognition.onerror=function(){
+recognition.onerror=function(e){
 isListening=false;
 document.getElementById('voiceBtn').classList.remove('listening');
 document.getElementById('voiceBtn').textContent='🎤 Bolo';
+if(e.error==='not-allowed')alert('Microphone permission do — browser settings mein!');
 };
 recognition.start();
 }
@@ -159,10 +209,10 @@ headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
 body:JSON.stringify({
 model:'llama-3.3-70b-versatile',
 messages:[
-{role:'system',content:'Translate to English for image generation. Return ONLY English text. Make it descriptive.'},
+{role:'system',content:'You are a translator. Translate the given text to detailed English for AI image generation. Include visual details, style, lighting, colors. Return ONLY the English description.'},
 {role:'user',content:text}
 ],
-max_tokens:100
+max_tokens:150
 })
 });
 const d=await r.json();
@@ -173,38 +223,45 @@ return d.choices[0].message.content.trim();
 async function generateImage(){
 const inp=document.getElementById('userInput');
 const txt=inp.value.trim();
-if(!txt){alert('Pehle image ka description likho!');return;}
+if(!txt){alert('Pehle image ka description likho!\nExample: "garam garmi mein ek aadmi paani pi raha hai"');return;}
 const chat=document.getElementById('chatArea');
 chat.innerHTML+=`<div class="msg user-msg">🖼️ ${txt}</div>`;
 inp.value='';
 const loadId='load'+Date.now();
-chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}">⏳ Image ban rahi hai... thoda wait karo!</div>`;
+chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}">⏳ Image ban rahi hai... (20-30 second)</div>`;
 chat.scrollTop=chat.scrollHeight;
 const englishPrompt=await translateToEnglish(txt);
-const seed=Math.floor(Math.random()*99999);
-const imgUrl=`https://image.pollinations.ai/prompt/${encodeURIComponent(englishPrompt+', professional, high quality, detailed')}?seed=${seed}&width=512&height=512&nologo=true`;
-document.getElementById(loadId).innerHTML=`Image ready! 🎨<br><img src="${imgUrl}" style="max-width:100%;border-radius:12px;margin-top:8px" onload="document.getElementById('chatArea').scrollTop=99999" onerror="this.parentElement.textContent='❌ Dobara try karo!'">`;
+const seed=Math.floor(Math.random()*999999);
+const imgUrl=`https://image.pollinations.ai/prompt/${encodeURIComponent(englishPrompt)}?seed=${seed}&width=768&height=512&nologo=true&enhance=true&model=flux`;
+document.getElementById(loadId).innerHTML=`✅ Image ready! 🎨<br><img src="${imgUrl}" style="max-width:100%;border-radius:12px;margin-top:8px" onload="document.getElementById('chatArea').scrollTop=99999" onerror="this.parentElement.textContent='❌ Dobara try karo!'">`;
 chat.scrollTop=chat.scrollHeight;
 }
 
 async function sendMsg(){
 const inp=document.getElementById('userInput');
 const txt=inp.value.trim();
-if(!txt)return;
+if(!txt&&!currentImageBase64)return;
 const chat=document.getElementById('chatArea');
-chat.innerHTML+=`<div class="msg user-msg">${txt}</div>`;
+if(txt)chat.innerHTML+=`<div class="msg user-msg">${txt}</div>`;
 inp.value='';
 const loadId='load'+Date.now();
 chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}"><div class="typing"><span></span><span></span><span></span></div></div>`;
 chat.scrollTop=chat.scrollHeight;
 try{
+let userContent=txt||'Is image ke baare mein batao';
+if(currentImageBase64){
+userContent+=' [Note: User ne ek image share ki hai, uske baare mein helpful jawab do]';
+}
 const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
 method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
 body:JSON.stringify({
 model:'llama-3.3-70b-versatile',
-messages:[{role:'system',content:prompts[mode]},{role:'user',content:txt}],
-max_tokens:500
+messages:[
+{role:'system',content:prompts[mode]},
+{role:'user',content:userContent}
+],
+max_tokens:600
 })
 });
 const d=await r.json();
@@ -212,14 +269,16 @@ if(d.choices&&d.choices[0]){
 const reply=d.choices[0].message.content;
 document.getElementById(loadId).textContent=reply;
 speakText(reply);
+currentImageBase64='';
+document.getElementById('userInput').placeholder='Yahan likho...';
 }else{
 document.getElementById(loadId).textContent='❌ Dobara try karo!';
 }
 }catch(e){
-document.getElementById(loadId).textContent='❌ Network Error!';
+document.getElementById(loadId).textContent='❌ Network Error — Internet check karo!';
 }
 chat.scrollTop=chat.scrollHeight;
 }
 </script>
 </body>
-</html>se
+</html>

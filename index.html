@@ -207,22 +207,67 @@ if(!voiceOutputOn)speechSynthesis.cancel();
 function speakText(text){
 if(!voiceOutputOn)return;
 speechSynthesis.cancel();
-const clean=text.replace(/[*#_\n]/g,' ').substring(0,300);
-setTimeout(()=>{
+const clean=text.replace(/[*#_\-]/g,' ').replace(/\n/g,' ').trim();
+const words=clean.split(' ').filter(w=>w.length>0);
+const chunks=[];
+let chunk=[];
+let len=0;
+for(let w of words){
+chunk.push(w);
+len+=w.length+1;
+if(len>=120){
+chunks.push(chunk.join(' '));
+chunk=[];
+len=0;
+}
+}
+if(chunk.length)chunks.push(chunk.join(' '));
+let i=0;
+let speaking=true;
+document.getElementById('speakBtn').textContent='🔇 Band Karo';
+
+function readNext(){
+if(!speaking||!voiceOutputOn||i>=chunks.length){
+if(i>=chunks.length){
+document.getElementById('speakBtn').textContent='🔊 Sunao';
+}
+return;
+}
+const utt=new SpeechSynthesisUtterance(chunks[i]);
 const voices=speechSynthesis.getVoices();
-const utt=new SpeechSynthesisUtterance(clean);
 const hindiVoice=voices.find(v=>v.lang&&v.lang.includes('hi'));
 const indianVoice=voices.find(v=>v.lang&&v.lang.includes('IN'));
 if(hindiVoice)utt.voice=hindiVoice;
 else if(indianVoice)utt.voice=indianVoice;
 utt.lang='hi-IN';
-utt.rate=0.85;
+utt.rate=0.82;
 utt.pitch=1;
 utt.volume=1;
+utt.onend=function(){
+i++;
+setTimeout(readNext,50);
+};
+utt.onerror=function(){
+i++;
+setTimeout(readNext,50);
+};
 speechSynthesis.speak(utt);
-},200);
+i++;
 }
 
+document.getElementById('speakBtn').onclick=function(){
+if(speaking){
+speaking=false;
+voiceOutputOn=false;
+speechSynthesis.cancel();
+document.getElementById('speakBtn').classList.remove('on');
+document.getElementById('speakBtn').textContent='🔊 Sunao';
+}else{
+toggleSpeak();
+}
+};
+setTimeout(readNext,300);
+}
 function toggleVoice(){
 if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){
 alert('Chrome browser use karo voice ke liye!');return;

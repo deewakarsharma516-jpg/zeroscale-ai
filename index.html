@@ -16,28 +16,36 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .mode-btn.business{border-color:#6c63ff;color:#6c63ff;background:#ede9ff}
 .mode-btn.health{border-color:#e91e8c;color:#e91e8c}
 .mode-label{text-align:center;padding:6px;background:#ede9ff;font-size:12px;color:#6c63ff;font-weight:600}
-.chat-area{flex:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding-bottom:130px;background:#f0f4f8}
+.chat-area{flex:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding-bottom:160px;background:#f0f4f8}
 .msg{padding:12px 16px;border-radius:18px;max-width:82%;font-size:14px;line-height:1.6;white-space:pre-wrap;box-shadow:0 1px 4px rgba(0,0,0,0.08)}
 .user-msg{background:linear-gradient(135deg,#6c63ff,#3ecfcf);align-self:flex-end;color:#fff;border-bottom-right-radius:4px}
 .ai-msg{background:#fff;align-self:flex-start;color:#1a1a2e;border-bottom-left-radius:4px;border:1px solid #e0e0e0}
 .ai-msg img{max-width:100%;border-radius:10px;margin-top:8px;display:block}
-.user-img{max-width:100%;border-radius:10px;margin-top:5px;display:block}
+.preview-area{display:none;background:#fff;border:2px solid #6c63ff;border-radius:12px;padding:10px;margin:0 12px 6px;position:fixed;bottom:95px;left:0;right:0;z-index:10}
+.preview-area.show{display:flex;align-items:center;gap:10px}
+.preview-img{width:60px;height:60px;object-fit:cover;border-radius:8px}
+.preview-info{flex:1;font-size:12px;color:#666}
+.preview-name{font-weight:700;color:#1a1a2e;font-size:13px}
+.preview-remove{background:#ff4444;color:#fff;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
 .input-area{padding:8px 12px;background:#fff;position:fixed;bottom:0;width:100%;box-shadow:0 -2px 10px rgba(0,0,0,0.08)}
-.input-row{display:flex;gap:8px;align-items:center}
+.input-row{display:flex;gap:6px;align-items:center}
+.attach-btn{padding:10px;background:#f0f4f8;border:2px solid #e0e0e0;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;min-width:44px;height:44px}
+.attach-btn:hover{background:#ede9ff;border-color:#6c63ff}
 .input-area input[type=text]{flex:1;padding:11px 16px;border-radius:25px;border:2px solid #e0e0e0;background:#f8f9fa;color:#1a1a2e;font-size:14px;outline:none}
 .input-area input[type=text]:focus{border-color:#6c63ff}
+.send-btn{padding:10px 16px;background:linear-gradient(135deg,#6c63ff,#3ecfcf);border:none;border-radius:25px;color:#fff;font-weight:700;cursor:pointer;font-size:13px;white-space:nowrap}
 .btn-row{display:flex;gap:5px;margin-top:7px;justify-content:center;flex-wrap:wrap}
-.btn{padding:9px 12px;border:none;border-radius:20px;cursor:pointer;font-size:11px;font-weight:700;display:flex;align-items:center;gap:3px;transition:.3s;white-space:nowrap}
+.btn{padding:8px 12px;border:none;border-radius:20px;cursor:pointer;font-size:11px;font-weight:700;display:flex;align-items:center;gap:3px;transition:.3s}
 .btn:hover{transform:scale(1.05)}
-.send-btn{background:linear-gradient(135deg,#6c63ff,#3ecfcf);color:#fff}
 .voice-btn{background:#ff6b9d;color:#fff}
 .voice-btn.listening{background:#ff4444;animation:pulse 1s infinite}
 .img-btn{background:#4CAF50;color:#fff}
 .speak-btn{background:#ff9800;color:#fff}
 .speak-btn.on{background:#6c63ff;color:#fff}
-.cam-btn{background:#00bcd4;color:#fff}
-.photo-btn{background:#9c27b0;color:#fff}
-.file-btn{background:#795548;color:#fff}
+.attach-menu{display:none;position:fixed;bottom:130px;left:12px;background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.15);padding:10px;z-index:20;flex-direction:column;gap:8px}
+.attach-menu.show{display:flex}
+.attach-option{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;cursor:pointer;font-size:14px;font-weight:600;border:none;background:#f8f9fa;width:100%;text-align:left}
+.attach-option:hover{background:#ede9ff}
 @keyframes pulse{0%{opacity:1}50%{opacity:0.5}100%{opacity:1}}
 .typing{display:inline-flex;gap:4px;padding:4px 0}
 .typing span{width:7px;height:7px;background:#6c63ff;border-radius:50%;animation:bounce 1.2s infinite}
@@ -58,37 +66,52 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 </div>
 <div class="mode-label" id="modeLabel">💼 Business Mode — GST, Email, Social Media</div>
 <div class="chat-area" id="chatArea">
-<div class="msg ai-msg">Namaste! 🙏 Main ZeroScale AI hoon.<br><br>✍️ <b>Likho</b> — kuch bhi poochho<br>🎤 <b>Bolo</b> — voice mein baat karo<br>🖼️ <b>Image Banao</b> — description likho<br>📷 <b>Camera</b> — photo khicho aur poochho<br>🖼 <b>Photos</b> — gallery se image lo<br>📎 <b>File</b> — document bhejo<br>🔊 <b>Sunao</b> — AI ka jawab sunne ke liye</div>
+<div class="msg ai-msg">Namaste! 🙏 Main ZeroScale AI hoon.<br><br>📎 <b>Attach</b> — Camera, Photos ya File lagao<br>✍️ <b>Likho</b> — Comment ya sawaal likho<br>🎤 <b>Bolo</b> — Voice mein baat karo<br>🖼️ <b>Image Banao</b> — AI se image banwao<br>🔊 <b>Sunao</b> — AI ka jawab sunne ke liye</div>
 </div>
+
+<!-- Preview Area -->
+<div class="preview-area" id="previewArea">
+<img class="preview-img" id="previewImg" src="" alt="">
+<div class="preview-info">
+<div class="preview-name" id="previewName"></div>
+<div id="previewType"></div>
+</div>
+<button class="preview-remove" onclick="removeAttachment()">✕</button>
+</div>
+
+<!-- Attach Menu -->
+<div class="attach-menu" id="attachMenu">
+<button class="attach-option" onclick="openCamera()">📷 Camera se photo lo</button>
+<button class="attach-option" onclick="openGallery()">🖼 Gallery se photo lo</button>
+<button class="attach-option" onclick="openFile()">📎 File upload karo</button>
+</div>
+
 <div class="input-area">
 <div class="input-row">
-<input type="text" id="userInput" placeholder="Yahan likho..." onkeypress="if(event.key==='Enter')sendMsg()">
+<button class="attach-btn" onclick="toggleAttachMenu()">📎</button>
+<input type="text" id="userInput" placeholder="Likho ya voice use karo..." onkeypress="if(event.key==='Enter')sendMsg()">
+<button class="send-btn" onclick="sendMsg()">➤ Bhejo</button>
 </div>
 <div class="btn-row">
 <button class="btn voice-btn" id="voiceBtn" onclick="toggleVoice()">🎤 Bolo</button>
-<button class="btn img-btn" onclick="generateImage()">🖼️ Image</button>
-<button class="btn cam-btn" onclick="openCamera()">📷 Camera</button>
-<button class="btn photo-btn" onclick="openGallery()">🖼 Photos</button>
-<button class="btn file-btn" onclick="openFile()">📎 File</button>
+<button class="btn img-btn" onclick="generateImage()">🖼️ Image Banao</button>
 <button class="btn speak-btn" id="speakBtn" onclick="toggleSpeak()">🔊 Sunao</button>
-<button class="btn send-btn" onclick="sendMsg()">➤ Bhejo</button>
 </div>
 </div>
 
-<!-- Hidden inputs -->
-<input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleImageUpload(this)">
-<input type="file" id="galleryInput" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
-<input type="file" id="fileInput" accept=".pdf,.doc,.docx,.txt" style="display:none" onchange="handleFileUpload(this)">
+<input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleImageUpload(this,'camera')">
+<input type="file" id="galleryInput" accept="image/*" style="display:none" onchange="handleImageUpload(this,'gallery')">
+<input type="file" id="fileInput" accept=".pdf,.doc,.docx,.txt,.csv" style="display:none" onchange="handleFileUpload(this)">
 
 <script>
 let mode='business';
 let voiceOutputOn=false;
-let currentImageBase64='';
+let attachedData={type:'',content:'',name:''};
 const GROQ_KEY='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';
 const prompts={
-student:'Tu ek helpful Indian student assistant hai. Seedhi simple Hindi mein jawab de. Short aur clear rakho. Agar image di hai toh uske baare mein batao.',
-business:'Tu ek helpful Indian business assistant hai. Simple Hindi mein jawab de. GST, email, social media help kar. Agar image di hai toh uske baare mein business advice do.',
-health:'Tu ek helpful Indian health assistant hai. Simple Hindi mein jawab de. Doctor se milne ki salah do. Agar image di hai toh symptoms dekh ke salah do.'
+student:'Tu ek helpful Indian student assistant hai. Seedhi simple Hindi mein jawab de. Short aur clear rakho.',
+business:'Tu ek helpful Indian business assistant hai. Simple Hindi mein jawab de. GST, email, social media help kar.',
+health:'Tu ek helpful Indian health assistant hai. Simple Hindi mein jawab de. Doctor se milne ki salah do.'
 };
 let recognition=null;
 let isListening=false;
@@ -105,20 +128,44 @@ health:'🏥 Health Mode — Symptoms, Doctor Tips'
 document.getElementById('modeLabel').textContent=labels[m];
 }
 
-function openCamera(){document.getElementById('cameraInput').click();}
-function openGallery(){document.getElementById('galleryInput').click();}
-function openFile(){document.getElementById('fileInput').click();}
+function toggleAttachMenu(){
+const menu=document.getElementById('attachMenu');
+menu.classList.toggle('show');
+}
 
-function handleImageUpload(input){
+document.addEventListener('click',function(e){
+const menu=document.getElementById('attachMenu');
+if(!e.target.closest('.attach-btn')&&!e.target.closest('.attach-menu')){
+menu.classList.remove('show');
+}
+});
+
+function openCamera(){
+document.getElementById('attachMenu').classList.remove('show');
+document.getElementById('cameraInput').click();
+}
+function openGallery(){
+document.getElementById('attachMenu').classList.remove('show');
+document.getElementById('galleryInput').click();
+}
+function openFile(){
+document.getElementById('attachMenu').classList.remove('show');
+document.getElementById('fileInput').click();
+}
+
+function handleImageUpload(input,source){
 const file=input.files[0];
 if(!file)return;
 const reader=new FileReader();
 reader.onload=function(e){
-currentImageBase64=e.target.result;
-const chat=document.getElementById('chatArea');
-chat.innerHTML+=`<div class="msg user-msg">📷 Image upload ki:<br><img src="${currentImageBase64}" class="user-img" style="max-width:200px"></div>`;
-chat.scrollTop=chat.scrollHeight;
-document.getElementById('userInput').placeholder='Is image ke baare mein poochho...';
+attachedData={type:'image',content:e.target.result,name:file.name};
+const preview=document.getElementById('previewArea');
+document.getElementById('previewImg').src=e.target.result;
+document.getElementById('previewImg').style.display='block';
+document.getElementById('previewName').textContent=file.name;
+document.getElementById('previewType').textContent=source==='camera'?'📷 Camera photo':'🖼 Gallery photo';
+preview.classList.add('show');
+document.getElementById('userInput').placeholder='Is photo ke baare mein kuch poochho...';
 document.getElementById('userInput').focus();
 };
 reader.readAsDataURL(file);
@@ -130,14 +177,23 @@ const file=input.files[0];
 if(!file)return;
 const reader=new FileReader();
 reader.onload=function(e){
-const text=e.target.result;
-const chat=document.getElementById('chatArea');
-chat.innerHTML+=`<div class="msg user-msg">📎 File: ${file.name}</div>`;
-chat.scrollTop=chat.scrollHeight;
-document.getElementById('userInput').value=`Is file ke baare mein batao: ${text.substring(0,500)}`;
+attachedData={type:'file',content:e.target.result,name:file.name};
+const preview=document.getElementById('previewArea');
+document.getElementById('previewImg').style.display='none';
+document.getElementById('previewName').textContent=file.name;
+document.getElementById('previewType').textContent='📎 File attached';
+preview.classList.add('show');
+document.getElementById('userInput').placeholder='Is file ke baare mein kuch poochho...';
+document.getElementById('userInput').focus();
 };
 reader.readAsText(file);
 input.value='';
+}
+
+function removeAttachment(){
+attachedData={type:'',content:'',name:''};
+document.getElementById('previewArea').classList.remove('show');
+document.getElementById('userInput').placeholder='Likho ya voice use karo...';
 }
 
 function toggleSpeak(){
@@ -196,7 +252,7 @@ recognition.onerror=function(e){
 isListening=false;
 document.getElementById('voiceBtn').classList.remove('listening');
 document.getElementById('voiceBtn').textContent='🎤 Bolo';
-if(e.error==='not-allowed')alert('Microphone permission do — browser settings mein!');
+if(e.error==='not-allowed')alert('Microphone permission do!');
 };
 recognition.start();
 }
@@ -209,7 +265,7 @@ headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
 body:JSON.stringify({
 model:'llama-3.3-70b-versatile',
 messages:[
-{role:'system',content:'You are a translator. Translate the given text to detailed English for AI image generation. Include visual details, style, lighting, colors. Return ONLY the English description.'},
+{role:'system',content:'Translate to detailed English for AI image generation. Include visual details, colors, lighting, style. Return ONLY English text.'},
 {role:'user',content:text}
 ],
 max_tokens:150
@@ -223,12 +279,12 @@ return d.choices[0].message.content.trim();
 async function generateImage(){
 const inp=document.getElementById('userInput');
 const txt=inp.value.trim();
-if(!txt){alert('Pehle image ka description likho!\nExample: "garam garmi mein ek aadmi paani pi raha hai"');return;}
+if(!txt){alert('Pehle image ka description likho!\nExample: "garmi mein paani peeta hua aadmi"');return;}
 const chat=document.getElementById('chatArea');
 chat.innerHTML+=`<div class="msg user-msg">🖼️ ${txt}</div>`;
 inp.value='';
 const loadId='load'+Date.now();
-chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}">⏳ Image ban rahi hai... (20-30 second)</div>`;
+chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}">⏳ Image ban rahi hai... (20-30 sec)</div>`;
 chat.scrollTop=chat.scrollHeight;
 const englishPrompt=await translateToEnglish(txt);
 const seed=Math.floor(Math.random()*999999);
@@ -240,18 +296,31 @@ chat.scrollTop=chat.scrollHeight;
 async function sendMsg(){
 const inp=document.getElementById('userInput');
 const txt=inp.value.trim();
-if(!txt&&!currentImageBase64)return;
+if(!txt&&!attachedData.content)return;
 const chat=document.getElementById('chatArea');
-if(txt)chat.innerHTML+=`<div class="msg user-msg">${txt}</div>`;
+
+if(attachedData.type==='image'){
+chat.innerHTML+=`<div class="msg user-msg"><img src="${attachedData.content}" style="max-width:200px;border-radius:10px;display:block;margin-bottom:6px">${txt||'Is image ke baare mein batao'}</div>`;
+}else if(attachedData.type==='file'){
+chat.innerHTML+=`<div class="msg user-msg">📎 ${attachedData.name}<br>${txt||'Is file ka summary do'}</div>`;
+}else{
+chat.innerHTML+=`<div class="msg user-msg">${txt}</div>`;
+}
+
 inp.value='';
+removeAttachment();
 const loadId='load'+Date.now();
 chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}"><div class="typing"><span></span><span></span><span></span></div></div>`;
 chat.scrollTop=chat.scrollHeight;
+
 try{
-let userContent=txt||'Is image ke baare mein batao';
-if(currentImageBase64){
-userContent+=' [Note: User ne ek image share ki hai, uske baare mein helpful jawab do]';
+let userContent=txt||'Is content ke baare mein helpful jawab do';
+if(attachedData.type==='image'){
+userContent=`[User ne ek image share ki hai] ${txt||'Is image ke baare mein detail mein batao'}`;
+}else if(attachedData.type==='file'){
+userContent=`File name: ${attachedData.name}\nContent: ${attachedData.content.substring(0,1000)}\n\nUser ka sawaal: ${txt||'Is file ka summary do'}`;
 }
+
 const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
 method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
@@ -269,13 +338,11 @@ if(d.choices&&d.choices[0]){
 const reply=d.choices[0].message.content;
 document.getElementById(loadId).textContent=reply;
 speakText(reply);
-currentImageBase64='';
-document.getElementById('userInput').placeholder='Yahan likho...';
 }else{
 document.getElementById(loadId).textContent='❌ Dobara try karo!';
 }
 }catch(e){
-document.getElementById(loadId).textContent='❌ Network Error — Internet check karo!';
+document.getElementById(loadId).textContent='❌ Network Error!';
 }
 chat.scrollTop=chat.scrollHeight;
 }

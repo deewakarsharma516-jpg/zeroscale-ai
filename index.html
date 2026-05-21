@@ -106,7 +106,10 @@ if(!voiceOutputOn)return;
 speechSynthesis.cancel();
 const clean=text.replace(/[*#_]/g,'').substring(0,400);
 const utt=new SpeechSynthesisUtterance(clean);
-utt.lang='hi-IN';
+const voices=speechSynthesis.getVoices();
+const hindiVoice=voices.find(v=>v.lang.includes('hi'));
+if(hindiVoice)utt.voice=hindiVoice;
+utt.lang=hindiVoice?'hi-IN':'en-IN';
 utt.rate=0.85;
 utt.pitch=1.1;
 speechSynthesis.speak(utt);
@@ -164,6 +167,7 @@ return d.choices[0].message.content.trim();
 }
 
 async function generateImage(){
+async function generateImage(){
 const inp=document.getElementById('userInput');
 const txt=inp.value.trim();
 if(!txt){alert('Pehle image ka description likho!');return;}
@@ -171,21 +175,12 @@ const chat=document.getElementById('chatArea');
 chat.innerHTML+=`<div class="msg user-msg">🖼️ ${txt}</div>`;
 inp.value='';
 const loadId='load'+Date.now();
-chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}"><div class="typing"><span></span><span></span><span></span></div> Image ban rahi hai...</div>`;
+chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}">⏳ Image ban rahi hai...</div>`;
 chat.scrollTop=chat.scrollHeight;
-try{
 const englishPrompt=await translateToEnglish(txt);
-const r=await fetch('https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0',{
-method:'POST',
-headers:{'Authorization':'Bearer '+HF_TOKEN,'Content-Type':'application/json'},
-body:JSON.stringify({inputs:englishPrompt+', professional, high quality, detailed, 4k'})
-});
-const blob=await r.blob();
-const imgUrl=URL.createObjectURL(blob);
-document.getElementById(loadId).innerHTML=`Image ready! 🎨<br><img src="${imgUrl}" style="max-width:100%;border-radius:12px;margin-top:8px">`;
-}catch(e){
-document.getElementById(loadId).textContent='❌ Image nahi bani — dobara try karo!';
-}
+const seed=Math.floor(Math.random()*99999);
+const imgUrl=`https://image.pollinations.ai/prompt/${encodeURIComponent(englishPrompt+', professional, high quality, detailed')}?seed=${seed}&width=512&height=512&nologo=true`;
+document.getElementById(loadId).innerHTML=`Image ready! 🎨<br><img src="${imgUrl}" style="max-width:100%;border-radius:12px;margin-top:8px" onload="document.getElementById('chatArea').scrollTop=document.getElementById('chatArea').scrollHeight" onerror="this.parentElement.textContent='❌ Dobara try karo!'">`;
 chat.scrollTop=chat.scrollHeight;
 }
 

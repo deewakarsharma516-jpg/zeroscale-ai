@@ -6,99 +6,115 @@
 <title>ZeroScale AI</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;display:flex;flex-direction:column}
-.header{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:20px;text-align:center}
-.header h1{font-size:28px;font-weight:900}
-.header p{opacity:.8;font-size:14px}
-.modes{display:flex;gap:8px;padding:12px}
-.mode-btn{flex:1;padding:10px;border:none;border-radius:12px;cursor:pointer;font-size:12px;font-weight:700;opacity:0.7}
-.mode-btn.student{background:#4CAF50;color:#fff}
-.mode-btn.business{background:#6c63ff;color:#fff;opacity:1}
-.mode-btn.health{background:#e91e8c;color:#fff}
-.mode-label{text-align:center;padding:8px;background:#1e1e2e;font-size:12px;color:#aaa}
-.chat-area{flex:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-bottom:90px}
-.msg{padding:12px 16px;border-radius:16px;max-width:85%;font-size:14px;line-height:1.5;white-space:pre-wrap}
-.user-msg{background:#6c63ff;align-self:flex-end;color:#fff}
-.ai-msg{background:#1e1e2e;border:1px solid #333;align-self:flex-start}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;min-height:100vh;display:flex;flex-direction:column}
+.header{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:18px 20px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+.header h1{font-size:26px;font-weight:900;color:#fff}
+.header p{opacity:.9;font-size:13px;color:#fff}
+.modes{display:flex;gap:8px;padding:12px 15px;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,0.08)}
+.mode-btn{flex:1;padding:10px 5px;border:2px solid transparent;border-radius:12px;cursor:pointer;font-size:12px;font-weight:700;background:#f0f4f8;color:#555;transition:.3s}
+.mode-btn.student{border-color:#4CAF50;color:#4CAF50}
+.mode-btn.business{border-color:#6c63ff;color:#6c63ff;background:#ede9ff}
+.mode-btn.health{border-color:#e91e8c;color:#e91e8c}
+.mode-btn:hover{transform:scale(1.03)}
+.mode-label{text-align:center;padding:6px;background:#ede9ff;font-size:12px;color:#6c63ff;font-weight:600}
+.chat-area{flex:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding-bottom:110px;background:#f0f4f8}
+.msg{padding:12px 16px;border-radius:18px;max-width:80%;font-size:14px;line-height:1.6;white-space:pre-wrap;box-shadow:0 1px 4px rgba(0,0,0,0.08)}
+.user-msg{background:linear-gradient(135deg,#6c63ff,#3ecfcf);align-self:flex-end;color:#fff;border-bottom-right-radius:4px}
+.ai-msg{background:#fff;align-self:flex-start;color:#1a1a2e;border-bottom-left-radius:4px;border:1px solid #e0e0e0}
 .ai-msg img{max-width:100%;border-radius:10px;margin-top:8px;display:block}
-.input-area{display:flex;padding:12px;gap:6px;background:#111;position:fixed;bottom:0;width:100%;flex-wrap:wrap}
-.input-area input{flex:1;min-width:120px;padding:12px;border-radius:25px;border:1px solid #333;background:#1e1e2e;color:#fff;font-size:14px}
-.btn-row{display:flex;gap:6px;width:100%;justify-content:flex-end}
-.send-btn{padding:10px 16px;background:linear-gradient(135deg,#6c63ff,#3ecfcf);border:none;border-radius:25px;color:#fff;font-weight:700;cursor:pointer;font-size:13px}
-.voice-btn{padding:10px 14px;background:#e91e8c;border:none;border-radius:25px;color:#fff;font-size:16px;cursor:pointer}
+.input-area{padding:10px 12px;background:#fff;position:fixed;bottom:0;width:100%;box-shadow:0 -2px 10px rgba(0,0,0,0.08)}
+.input-row{display:flex;gap:8px;align-items:center}
+.input-area input{flex:1;padding:12px 16px;border-radius:25px;border:2px solid #e0e0e0;background:#f8f9fa;color:#1a1a2e;font-size:14px;outline:none}
+.input-area input:focus{border-color:#6c63ff}
+.btn-row{display:flex;gap:8px;margin-top:8px;justify-content:center}
+.btn{padding:10px 18px;border:none;border-radius:25px;cursor:pointer;font-size:13px;font-weight:700;display:flex;align-items:center;gap:5px;transition:.3s}
+.btn:hover{transform:scale(1.05)}
+.send-btn{background:linear-gradient(135deg,#6c63ff,#3ecfcf);color:#fff}
+.voice-btn{background:#ff6b9d;color:#fff}
 .voice-btn.listening{background:#ff4444;animation:pulse 1s infinite}
-.img-btn{padding:10px 14px;background:#4CAF50;border:none;border-radius:25px;color:#fff;font-size:16px;cursor:pointer}
-.speak-btn{padding:10px 14px;background:#ff9800;border:none;border-radius:25px;color:#fff;font-size:16px;cursor:pointer}
+.img-btn{background:#4CAF50;color:#fff}
+.speak-btn{background:#ff9800;color:#fff}
+.speak-btn.on{background:#6c63ff;color:#fff}
 @keyframes pulse{0%{opacity:1}50%{opacity:0.5}100%{opacity:1}}
+.typing{display:flex;gap:4px;padding:8px}
+.typing span{width:8px;height:8px;background:#6c63ff;border-radius:50%;animation:bounce 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-8px)}}
 </style>
 </head>
 <body>
 <div class="header">
 <h1>⚡ ZeroScale AI</h1>
-<p>India ka AI Assistant — Hindi & English</p>
+<p>🇮🇳 India ka Smart AI Assistant</p>
 </div>
 <div class="modes">
 <button class="mode-btn student" onclick="setMode('student',this)">🎓 Student</button>
 <button class="mode-btn business" onclick="setMode('business',this)">💼 Business</button>
 <button class="mode-btn health" onclick="setMode('health',this)">🏥 Health</button>
 </div>
-<div class="mode-label" id="modeLabel">💼 Business Mode</div>
+<div class="mode-label" id="modeLabel">💼 Business Mode — GST, Email, Social Media</div>
 <div class="chat-area" id="chatArea">
-<div class="msg ai-msg">Namaste! 🙏 Main ZeroScale AI hoon. Text likho, 🎤 bolo, 🖼️ image banao, ya 🔊 jawab suno!</div>
+<div class="msg ai-msg">Namaste! 🙏 Main ZeroScale AI hoon.<br><br>✍️ <b>Likho</b> — kuch bhi poochho<br>🎤 <b>Bolo</b> — voice mein baat karo<br>🖼️ <b>Image</b> — koi bhi image banao<br>🔊 <b>Sunao</b> — AI ka jawab sunne ke liye on karo</div>
 </div>
 <div class="input-area">
-<input type="text" id="userInput" placeholder="Likho ya voice use karo..." onkeypress="if(event.key==='Enter')sendMsg()">
+<div class="input-row">
+<input type="text" id="userInput" placeholder="Yahan likho..." onkeypress="if(event.key==='Enter')sendMsg()">
+</div>
 <div class="btn-row">
-<button class="voice-btn" id="voiceBtn" onclick="toggleVoice()" title="Voice Input">🎤</button>
-<button class="img-btn" onclick="generateImage()" title="Image Banao">🖼️</button>
-<button class="speak-btn" id="speakBtn" onclick="toggleSpeak()" title="Voice Output On/Off">🔊</button>
-<button class="send-btn" onclick="sendMsg()">Send</button>
+<button class="btn voice-btn" id="voiceBtn" onclick="toggleVoice()">🎤 Bolo</button>
+<button class="btn img-btn" onclick="generateImage()">🖼️ Image</button>
+<button class="btn speak-btn" id="speakBtn" onclick="toggleSpeak()">🔊 Sunao</button>
+<button class="btn send-btn" onclick="sendMsg()">➤ Bhejo</button>
 </div>
 </div>
 <script>
 let mode='business';
 let voiceOutputOn=false;
-let lastAIResponse='';
 const GROQ_KEY='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';
+const HF_TOKEN='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';
 const prompts={
-student:'Tu ek helpful Indian student assistant hai. Hindi aur English dono mein jawab de.',
-business:'Tu ek helpful Indian business assistant hai. Hindi aur English dono mein jawab de. GST, emails, social media help kar.',
-health:'Tu ek helpful Indian health assistant hai. Hindi aur English dono mein jawab de. Doctor se milne ki salah do.'
+student:'Tu ek helpful Indian student assistant hai. Seedhi, simple aur short Hindi mein jawab de. Agar English mein poochha toh English mein jawab de. Simple words use kar jo kam padhe likhe log bhi samjhein.',
+business:'Tu ek helpful Indian business assistant hai. Seedhi, simple Hindi mein jawab de. GST, email, social media, dukan ke baare mein help kar. Simple words use kar.',
+health:'Tu ek helpful Indian health assistant hai. Seedhi, simple Hindi mein jawab de. Symptoms sunkar salah de aur doctor se milne ko kaho. Simple words use kar.'
 };
 let recognition=null;
 let isListening=false;
 
 function setMode(m,btn){
 mode=m;
-document.querySelectorAll('.mode-btn').forEach(b=>b.style.opacity='0.7');
-btn.style.opacity='1';
-const labels={student:'🎓 Student Mode',business:'💼 Business Mode',health:'🏥 Health Mode'};
+document.querySelectorAll('.mode-btn').forEach(b=>{b.style.background='#f0f4f8';b.style.fontWeight='700'});
+btn.style.background=m==='student'?'#e8f5e9':m==='business'?'#ede9ff':'#fce4ec';
+const labels={
+student:'🎓 Student Mode — Homework, Exam, Notes',
+business:'💼 Business Mode — GST, Email, Social Media',
+health:'🏥 Health Mode — Symptoms, Doctor Tips'
+};
 document.getElementById('modeLabel').textContent=labels[m];
 }
 
 function toggleSpeak(){
 voiceOutputOn=!voiceOutputOn;
 const btn=document.getElementById('speakBtn');
-btn.style.background=voiceOutputOn?'#6c63ff':'#ff9800';
-btn.textContent=voiceOutputOn?'🔇':'🔊';
+btn.classList.toggle('on',voiceOutputOn);
+btn.textContent=voiceOutputOn?'🔇 Band Karo':'🔊 Sunao';
 if(!voiceOutputOn)speechSynthesis.cancel();
 }
 
 function speakText(text){
 if(!voiceOutputOn)return;
 speechSynthesis.cancel();
-const clean=text.replace(/[*#]/g,'').substring(0,300);
+const clean=text.replace(/[*#_]/g,'').substring(0,400);
 const utt=new SpeechSynthesisUtterance(clean);
 utt.lang='hi-IN';
-utt.rate=0.9;
-utt.pitch=1;
+utt.rate=0.85;
+utt.pitch=1.1;
 speechSynthesis.speak(utt);
 }
 
 function toggleVoice(){
 if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){
-alert('Chrome browser use karo voice ke liye!');
-return;
+alert('Chrome browser use karo voice ke liye!');return;
 }
 if(isListening){recognition.stop();return;}
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
@@ -109,8 +125,7 @@ recognition.interimResults=false;
 recognition.onstart=function(){
 isListening=true;
 document.getElementById('voiceBtn').classList.add('listening');
-document.getElementById('voiceBtn').textContent='🔴';
-document.getElementById('userInput').placeholder='Sun raha hoon...';
+document.getElementById('voiceBtn').textContent='🔴 Sun raha hoon...';
 };
 recognition.onresult=function(e){
 const text=e.results[0][0].transcript;
@@ -120,13 +135,12 @@ sendMsg();
 recognition.onend=function(){
 isListening=false;
 document.getElementById('voiceBtn').classList.remove('listening');
-document.getElementById('voiceBtn').textContent='🎤';
-document.getElementById('userInput').placeholder='Likho ya voice use karo...';
+document.getElementById('voiceBtn').textContent='🎤 Bolo';
 };
 recognition.onerror=function(){
 isListening=false;
 document.getElementById('voiceBtn').classList.remove('listening');
-document.getElementById('voiceBtn').textContent='🎤';
+document.getElementById('voiceBtn').textContent='🎤 Bolo';
 };
 recognition.start();
 }
@@ -139,39 +153,40 @@ headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
 body:JSON.stringify({
 model:'llama-3.3-70b-versatile',
 messages:[
-{role:'system',content:'Translate the following text to English. Return ONLY the translated text, nothing else.'},
+{role:'system',content:'Translate to English for image generation. Return ONLY the translated English text, nothing else. Make it descriptive for better image quality.'},
 {role:'user',content:text}
 ]
 })
 });
 const d=await r.json();
 return d.choices[0].message.content.trim();
-}catch(e){
-return text;
-}
+}catch(e){return text;}
 }
 
 async function generateImage(){
 const inp=document.getElementById('userInput');
 const txt=inp.value.trim();
-if(!txt){alert('Pehle kuch likho — jaise "water softener ki image"');return;}
+if(!txt){alert('Pehle image ka description likho!');return;}
 const chat=document.getElementById('chatArea');
-chat.innerHTML+=`<div class="msg user-msg">🖼️ Image: ${txt}</div>`;
+chat.innerHTML+=`<div class="msg user-msg">🖼️ ${txt}</div>`;
 inp.value='';
 const loadId='load'+Date.now();
-chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}">⏳ Image ban rahi hai...</div>`;
+chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}"><div class="typing"><span></span><span></span><span></span></div> Image ban rahi hai...</div>`;
 chat.scrollTop=chat.scrollHeight;
+try{
 const englishPrompt=await translateToEnglish(txt);
-const imgUrl=`https://image.pollinations.ai/prompt/${encodeURIComponent(englishPrompt+', professional, high quality')}?width=512&height=512&nologo=true`;
-const img=new Image();
-img.onload=function(){
-document.getElementById(loadId).innerHTML=`Image ready hai! 🎨<br><img src="${imgUrl}" alt="${txt}">`;
-chat.scrollTop=chat.scrollHeight;
-};
-img.onerror=function(){
+const r=await fetch('https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0',{
+method:'POST',
+headers:{'Authorization':'Bearer '+HF_TOKEN,'Content-Type':'application/json'},
+body:JSON.stringify({inputs:englishPrompt+', professional, high quality, detailed, 4k'})
+});
+const blob=await r.blob();
+const imgUrl=URL.createObjectURL(blob);
+document.getElementById(loadId).innerHTML=`Image ready! 🎨<br><img src="${imgUrl}" style="max-width:100%;border-radius:12px;margin-top:8px">`;
+}catch(e){
 document.getElementById(loadId).textContent='❌ Image nahi bani — dobara try karo!';
-};
-img.src=imgUrl;
+}
+chat.scrollTop=chat.scrollHeight;
 }
 
 async function sendMsg(){
@@ -182,7 +197,7 @@ const chat=document.getElementById('chatArea');
 chat.innerHTML+=`<div class="msg user-msg">${txt}</div>`;
 inp.value='';
 const loadId='load'+Date.now();
-chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}">⏳ Soch raha hoon...</div>`;
+chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}"><div class="typing"><span></span><span></span><span></span></div></div>`;
 chat.scrollTop=chat.scrollHeight;
 try{
 const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
@@ -190,7 +205,8 @@ method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
 body:JSON.stringify({
 model:'llama-3.3-70b-versatile',
-messages:[{role:'system',content:prompts[mode]},{role:'user',content:txt}]
+messages:[{role:'system',content:prompts[mode]},{role:'user',content:txt}],
+max_tokens:500
 })
 });
 const d=await r.json();
@@ -199,10 +215,10 @@ const reply=d.choices[0].message.content;
 document.getElementById(loadId).textContent=reply;
 speakText(reply);
 }else{
-document.getElementById(loadId).textContent='❌ Error: '+JSON.stringify(d);
+document.getElementById(loadId).textContent='❌ Error — dobara try karo!';
 }
 }catch(e){
-document.getElementById(loadId).textContent='❌ Network Error: '+e.message;
+document.getElementById(loadId).textContent='❌ Network Error!';
 }
 chat.scrollTop=chat.scrollHeight;
 }

@@ -15,7 +15,6 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .mode-btn.student{border-color:#4CAF50;color:#4CAF50}
 .mode-btn.business{border-color:#6c63ff;color:#6c63ff;background:#ede9ff}
 .mode-btn.health{border-color:#e91e8c;color:#e91e8c}
-.mode-btn:hover{transform:scale(1.03)}
 .mode-label{text-align:center;padding:6px;background:#ede9ff;font-size:12px;color:#6c63ff;font-weight:600}
 .chat-area{flex:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding-bottom:110px;background:#f0f4f8}
 .msg{padding:12px 16px;border-radius:18px;max-width:80%;font-size:14px;line-height:1.6;white-space:pre-wrap;box-shadow:0 1px 4px rgba(0,0,0,0.08)}
@@ -26,8 +25,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .input-row{display:flex;gap:8px;align-items:center}
 .input-area input{flex:1;padding:12px 16px;border-radius:25px;border:2px solid #e0e0e0;background:#f8f9fa;color:#1a1a2e;font-size:14px;outline:none}
 .input-area input:focus{border-color:#6c63ff}
-.btn-row{display:flex;gap:8px;margin-top:8px;justify-content:center}
-.btn{padding:10px 18px;border:none;border-radius:25px;cursor:pointer;font-size:13px;font-weight:700;display:flex;align-items:center;gap:5px;transition:.3s}
+.btn-row{display:flex;gap:6px;margin-top:8px;justify-content:center;flex-wrap:wrap}
+.btn{padding:10px 14px;border:none;border-radius:25px;cursor:pointer;font-size:12px;font-weight:700;display:flex;align-items:center;gap:4px;transition:.3s}
 .btn:hover{transform:scale(1.05)}
 .send-btn{background:linear-gradient(135deg,#6c63ff,#3ecfcf);color:#fff}
 .voice-btn{background:#ff6b9d;color:#fff}
@@ -36,7 +35,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .speak-btn{background:#ff9800;color:#fff}
 .speak-btn.on{background:#6c63ff;color:#fff}
 @keyframes pulse{0%{opacity:1}50%{opacity:0.5}100%{opacity:1}}
-.typing{display:flex;gap:4px;padding:8px}
+.typing{display:inline-flex;gap:4px;padding:4px 0}
 .typing span{width:8px;height:8px;background:#6c63ff;border-radius:50%;animation:bounce 1.2s infinite}
 .typing span:nth-child(2){animation-delay:.2s}
 .typing span:nth-child(3){animation-delay:.4s}
@@ -72,18 +71,17 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 let mode='business';
 let voiceOutputOn=false;
 const GROQ_KEY='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';
-const HF_TOKEN='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';
 const prompts={
-student:'Tu ek helpful Indian student assistant hai. Seedhi, simple aur short Hindi mein jawab de. Agar English mein poochha toh English mein jawab de. Simple words use kar jo kam padhe likhe log bhi samjhein.',
-business:'Tu ek helpful Indian business assistant hai. Seedhi, simple Hindi mein jawab de. GST, email, social media, dukan ke baare mein help kar. Simple words use kar.',
-health:'Tu ek helpful Indian health assistant hai. Seedhi, simple Hindi mein jawab de. Symptoms sunkar salah de aur doctor se milne ko kaho. Simple words use kar.'
+student:'Tu ek helpful Indian student assistant hai. Seedhi simple Hindi mein jawab de. Short aur clear rakho.',
+business:'Tu ek helpful Indian business assistant hai. Simple Hindi mein jawab de. GST, email, social media help kar.',
+health:'Tu ek helpful Indian health assistant hai. Simple Hindi mein jawab de. Doctor se milne ki salah do.'
 };
 let recognition=null;
 let isListening=false;
 
 function setMode(m,btn){
 mode=m;
-document.querySelectorAll('.mode-btn').forEach(b=>{b.style.background='#f0f4f8';b.style.fontWeight='700'});
+document.querySelectorAll('.mode-btn').forEach(b=>{b.style.background='#f0f4f8'});
 btn.style.background=m==='student'?'#e8f5e9':m==='business'?'#ede9ff':'#fce4ec';
 const labels={
 student:'🎓 Student Mode — Homework, Exam, Notes',
@@ -106,10 +104,15 @@ if(!voiceOutputOn)return;
 speechSynthesis.cancel();
 const clean=text.replace(/[*#_]/g,'').substring(0,400);
 const utt=new SpeechSynthesisUtterance(clean);
+speechSynthesis.onvoiceschanged=function(){
 const voices=speechSynthesis.getVoices();
-const hindiVoice=voices.find(v=>v.lang.includes('hi'));
+const hindiVoice=voices.find(v=>v.lang&&v.lang.includes('hi'));
 if(hindiVoice)utt.voice=hindiVoice;
-utt.lang=hindiVoice?'hi-IN':'en-IN';
+};
+const voices=speechSynthesis.getVoices();
+const hindiVoice=voices.find(v=>v.lang&&v.lang.includes('hi'));
+if(hindiVoice)utt.voice=hindiVoice;
+utt.lang='hi-IN';
 utt.rate=0.85;
 utt.pitch=1.1;
 speechSynthesis.speak(utt);
@@ -156,9 +159,10 @@ headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
 body:JSON.stringify({
 model:'llama-3.3-70b-versatile',
 messages:[
-{role:'system',content:'Translate to English for image generation. Return ONLY the translated English text, nothing else. Make it descriptive for better image quality.'},
+{role:'system',content:'Translate to English for image generation. Return ONLY English text. Make it descriptive.'},
 {role:'user',content:text}
-]
+],
+max_tokens:100
 })
 });
 const d=await r.json();
@@ -167,7 +171,6 @@ return d.choices[0].message.content.trim();
 }
 
 async function generateImage(){
-async function generateImage(){
 const inp=document.getElementById('userInput');
 const txt=inp.value.trim();
 if(!txt){alert('Pehle image ka description likho!');return;}
@@ -175,12 +178,12 @@ const chat=document.getElementById('chatArea');
 chat.innerHTML+=`<div class="msg user-msg">🖼️ ${txt}</div>`;
 inp.value='';
 const loadId='load'+Date.now();
-chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}">⏳ Image ban rahi hai...</div>`;
+chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}">⏳ Image ban rahi hai... thoda wait karo!</div>`;
 chat.scrollTop=chat.scrollHeight;
 const englishPrompt=await translateToEnglish(txt);
 const seed=Math.floor(Math.random()*99999);
 const imgUrl=`https://image.pollinations.ai/prompt/${encodeURIComponent(englishPrompt+', professional, high quality, detailed')}?seed=${seed}&width=512&height=512&nologo=true`;
-document.getElementById(loadId).innerHTML=`Image ready! 🎨<br><img src="${imgUrl}" style="max-width:100%;border-radius:12px;margin-top:8px" onload="document.getElementById('chatArea').scrollTop=document.getElementById('chatArea').scrollHeight" onerror="this.parentElement.textContent='❌ Dobara try karo!'">`;
+document.getElementById(loadId).innerHTML=`Image ready! 🎨<br><img src="${imgUrl}" style="max-width:100%;border-radius:12px;margin-top:8px" onload="document.getElementById('chatArea').scrollTop=99999" onerror="this.parentElement.textContent='❌ Dobara try karo!'">`;
 chat.scrollTop=chat.scrollHeight;
 }
 
@@ -210,7 +213,7 @@ const reply=d.choices[0].message.content;
 document.getElementById(loadId).textContent=reply;
 speakText(reply);
 }else{
-document.getElementById(loadId).textContent='❌ Error — dobara try karo!';
+document.getElementById(loadId).textContent='❌ Dobara try karo!';
 }
 }catch(e){
 document.getElementById(loadId).textContent='❌ Network Error!';
@@ -219,4 +222,4 @@ chat.scrollTop=chat.scrollHeight;
 }
 </script>
 </body>
-</html>
+</html>se

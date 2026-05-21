@@ -45,11 +45,11 @@ body{font-family:Arial,sans-serif;background:#0a0a0a;color:#fff;min-height:100vh
 </div>
 <script>
 let mode='business';
-const KEY='AIzaSyBFoX9gUTax2d2Y2bNNYQEB6ju0KWO0ajA';
+const KEY='AIzaSyDC-J0B-WtVivWiqFc6g5tN1Rj2S0D3nfo';
 const prompts={
-student:'Tu ek helpful Indian student assistant hai. Hindi aur English dono mein jawab de. Students ko homework, exam prep aur notes mein help kar.',
-business:'Tu ek helpful Indian business assistant hai. Hindi aur English dono mein jawab de. Small businesses ko GST, emails, social media posts aur business advice de.',
-health:'Tu ek helpful Indian health assistant hai. Hindi aur English dono mein jawab de. Log symptoms share karein toh unhe samjhao aur doctor se milne ki salah do.'
+student:'Tu ek helpful Indian student assistant hai. Hindi aur English dono mein jawab de.',
+business:'Tu ek helpful Indian business assistant hai. Hindi aur English dono mein jawab de. GST, emails, social media help kar.',
+health:'Tu ek helpful Indian health assistant hai. Hindi aur English dono mein jawab de. Doctor se milne ki salah do.'
 };
 function setMode(m,btn){
 mode=m;
@@ -69,15 +69,14 @@ const loadId='load'+Date.now();
 chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}">⏳ Soch raha hoon...</div>`;
 chat.scrollTop=chat.scrollHeight;
 try{
-const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${KEY}`,{
+const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${KEY}`,{
 method:'POST',
 headers:{'Content-Type':'application/json'},
 body:JSON.stringify({contents:[{parts:[{text:prompts[mode]+'\n\nUser: '+txt}]}]})
 });
 const d=await r.json();
-if(d.candidates && d.candidates[0]){
-const reply=d.candidates[0].content.parts[0].text;
-document.getElementById(loadId).textContent=reply;
+if(d.candidates&&d.candidates[0]){
+document.getElementById(loadId).textContent=d.candidates[0].content.parts[0].text;
 }else{
 document.getElementById(loadId).textContent='❌ Error: '+JSON.stringify(d);
 }

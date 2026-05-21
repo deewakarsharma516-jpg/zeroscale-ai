@@ -102,20 +102,20 @@ if(!voiceOutputOn)speechSynthesis.cancel();
 function speakText(text){
 if(!voiceOutputOn)return;
 speechSynthesis.cancel();
-const clean=text.replace(/[*#_]/g,'').substring(0,400);
+const clean=text.replace(/[*#_\n]/g,' ').substring(0,300);
 const utt=new SpeechSynthesisUtterance(clean);
-speechSynthesis.onvoiceschanged=function(){
-const voices=speechSynthesis.getVoices();
-const hindiVoice=voices.find(v=>v.lang&&v.lang.includes('hi'));
-if(hindiVoice)utt.voice=hindiVoice;
-};
-const voices=speechSynthesis.getVoices();
-const hindiVoice=voices.find(v=>v.lang&&v.lang.includes('hi'));
-if(hindiVoice)utt.voice=hindiVoice;
 utt.lang='hi-IN';
 utt.rate=0.85;
-utt.pitch=1.1;
+utt.pitch=1;
+utt.volume=1;
+setTimeout(()=>{
+const voices=speechSynthesis.getVoices();
+const hindiVoice=voices.find(v=>v.lang.includes('hi'));
+const indianVoice=voices.find(v=>v.lang.includes('IN'));
+if(hindiVoice)utt.voice=hindiVoice;
+else if(indianVoice)utt.voice=indianVoice;
 speechSynthesis.speak(utt);
+},100);
 }
 
 function toggleVoice(){

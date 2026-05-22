@@ -15,10 +15,10 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 /* Header */
 .header{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,0.15)}
 .logo-area{display:flex;align-items:center;gap:10px}
-.logo-svg{width:42px;height:42px;flex-shrink:0}
+.logo-svg{width:65px;height:75px;flex-shrink:0}
 .logo-text h1{font-size:20px;font-weight:900;color:#fff;letter-spacing:0.5px}
 .logo-text p{font-size:11px;color:rgba(255,255,255,0.85)}
-.header-links{display:flex;gap:8px}
+.header-links{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
 .header-link{color:rgba(255,255,255,0.9);font-size:11px;text-decoration:none;background:rgba(255,255,255,0.15);padding:5px 10px;border-radius:20px;font-weight:600}
 .header-link:hover{background:rgba(255,255,255,0.25)}
 
@@ -37,10 +37,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .ai-msg{background:#fff;align-self:flex-start;color:#1a1a2e;border-bottom-left-radius:4px;border:1px solid #e0e0e0}
 .ai-msg img{max-width:100%;border-radius:10px;margin-top:8px;display:block}
 .search-badge{background:#e3f2fd;color:#1976d2;padding:4px 10px;border-radius:20px;font-size:11px;display:inline-block;margin-bottom:6px}
-
-/* Welcome Message */
 .welcome-logo{text-align:center;margin-bottom:8px}
-.welcome-logo svg{width:60px;height:60px}
 
 /* Preview */
 .preview-area{display:none;background:#fff;border:2px solid #6c63ff;border-radius:12px;padding:10px;margin:0 12px 6px;position:fixed;bottom:95px;left:0;right:0;z-index:10}
@@ -65,13 +62,10 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .img-btn{background:#4CAF50;color:#fff}
 .speak-btn{background:#ff9800;color:#fff}
 .speak-btn.on{background:#6c63ff;color:#fff}
-
-/* Attach Menu */
 .attach-menu{display:none;position:fixed;bottom:125px;left:12px;background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.15);padding:10px;z-index:20;flex-direction:column;gap:8px}
 .attach-menu.show{display:flex}
 .attach-option{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;cursor:pointer;font-size:14px;font-weight:600;border:none;background:#f8f9fa;width:100%;text-align:left}
 .attach-option:hover{background:#ede9ff}
-
 @keyframes pulse{0%{opacity:1}50%{opacity:0.5}100%{opacity:1}}
 .typing{display:inline-flex;gap:4px;padding:4px 0}
 .typing span{width:7px;height:7px;background:#6c63ff;border-radius:50%;animation:bounce 1.2s infinite}
@@ -82,20 +76,21 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 </head>
 <body>
 
-<!-- Header with Logo -->
 <div class="header">
 <div class="logo-area">
-<svg class="logo-svg" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="21" cy="21" r="21" fill="white" fill-opacity="0.2"/>
-<circle cx="21" cy="21" r="17" fill="white" fill-opacity="0.15"/>
-<!-- Z letter -->
-<text x="8" y="29" font-family="Arial" font-weight="900" font-size="22" fill="white">Z</text>
-<!-- Lightning bolt -->
-<path d="M28 8 L22 20 L26 20 L20 34 L30 18 L26 18 Z" fill="#FFD700" stroke="white" stroke-width="0.5"/>
-<!-- AI dots -->
-<circle cx="8" cy="35" r="2" fill="rgba(255,255,255,0.8)"/>
-<circle cx="14" cy="37" r="1.5" fill="rgba(255,255,255,0.6)"/>
-<circle cx="19" cy="38" r="1" fill="rgba(255,255,255,0.4)"/>
+<!-- Big Professional Logo -->
+<svg class="logo-svg" viewBox="0 0 65 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Background circle -->
+<circle cx="32" cy="30" r="28" fill="white" fill-opacity="0.2"/>
+<!-- Z letter - Big Bold -->
+<text x="10" y="40" font-family="Arial" font-weight="900" font-size="30" fill="white">Z</text>
+<!-- Lightning bolt - AI Power -->
+<path d="M40 8 L34 22 L39 22 L33 44 L43 23 L38 23 Z" fill="#FFD700" stroke="white" stroke-width="0.5"/>
+<!-- AI Badge - Yellow -->
+<rect x="2" y="44" width="26" height="15" rx="7" fill="#FFD700"/>
+<text x="6" y="55" font-family="Arial" font-weight="900" font-size="12" fill="#6c63ff">AI</text>
+<!-- ZeroScale text neeche -->
+<text x="1" y="70" font-family="Arial" font-weight="800" font-size="9" fill="rgba(255,255,255,0.95)">ZeroScale</text>
 </svg>
 <div class="logo-text">
 <h1>ZeroScale AI</h1>
@@ -103,8 +98,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 </div>
 </div>
 <div class="header-links">
-<a href="/about.html" class="header-link">About</a>
-<a href="/privacy.html" class="header-link">Privacy</a>
+<a href="/about.html" class="header-link">ℹ️ About</a>
+<a href="/privacy.html" class="header-link">🔒 Privacy</a>
 </div>
 </div>
 
@@ -118,16 +113,18 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 <div class="chat-area" id="chatArea">
 <div class="msg ai-msg">
 <div class="welcome-logo">
-<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="30" cy="30" r="30" fill="url(#grad)"/>
+<svg viewBox="0 0 80 80" width="70" height="70">
+<circle cx="40" cy="40" r="40" fill="url(#wg)"/>
 <defs>
-<linearGradient id="grad" x1="0" y1="0" x2="60" y2="60">
+<linearGradient id="wg" x1="0" y1="0" x2="80" y2="80">
 <stop offset="0%" stop-color="#6c63ff"/>
 <stop offset="100%" stop-color="#3ecfcf"/>
 </linearGradient>
 </defs>
-<text x="8" y="42" font-family="Arial" font-weight="900" font-size="32" fill="white">Z</text>
-<path d="M40 10 L32 26 L37 26 L29 50 L44 28 L39 28 Z" fill="#FFD700"/>
+<text x="10" y="52" font-family="Arial" font-weight="900" font-size="38" fill="white">Z</text>
+<path d="M52 12 L44 30 L50 30 L42 58 L55 32 L49 32 Z" fill="#FFD700"/>
+<rect x="5" y="58" width="32" height="17" rx="8" fill="#FFD700"/>
+<text x="9" y="70" font-family="Arial" font-weight="900" font-size="13" fill="#6c63ff">AI</text>
 </svg>
 </div>
 <b>Namaste! 🙏 Main ZeroScale AI hoon.</b><br><br>

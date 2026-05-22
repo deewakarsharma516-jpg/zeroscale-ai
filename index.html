@@ -21,19 +21,19 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .user-msg{background:linear-gradient(135deg,#6c63ff,#3ecfcf);align-self:flex-end;color:#fff;border-bottom-right-radius:4px}
 .ai-msg{background:#fff;align-self:flex-start;color:#1a1a2e;border-bottom-left-radius:4px;border:1px solid #e0e0e0}
 .ai-msg img{max-width:100%;border-radius:10px;margin-top:8px;display:block}
-.preview-area{display:none;background:#fff;border:2px solid #6c63ff;border-radius:12px;padding:10px;margin:0 12px 6px;position:fixed;bottom:95px;left:0;right:0;z-index:10}
+.search-badge{background:#e3f2fd;color:#1976d2;padding:4px 10px;border-radius:20px;font-size:11px;display:inline-block;margin-bottom:6px}
+.preview-area{display:none;background:#fff;border:2px solid #6c63ff;border-radius:12px;padding:10px;margin:0 12px 6px;position:fixed;bottom:100px;left:0;right:0;z-index:10}
 .preview-area.show{display:flex;align-items:center;gap:10px}
 .preview-img{width:60px;height:60px;object-fit:cover;border-radius:8px}
 .preview-info{flex:1;font-size:12px;color:#666}
 .preview-name{font-weight:700;color:#1a1a2e;font-size:13px}
-.preview-remove{background:#ff4444;color:#fff;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+.preview-remove{background:#ff4444;color:#fff;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:14px}
 .input-area{padding:8px 12px;background:#fff;position:fixed;bottom:0;width:100%;box-shadow:0 -2px 10px rgba(0,0,0,0.08)}
 .input-row{display:flex;gap:6px;align-items:center}
-.attach-btn{padding:10px;background:#f0f4f8;border:2px solid #e0e0e0;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;min-width:44px;height:44px}
-.attach-btn:hover{background:#ede9ff;border-color:#6c63ff}
+.attach-btn{padding:10px;background:#f0f4f8;border:2px solid #e0e0e0;border-radius:50%;cursor:pointer;font-size:18px;min-width:44px;height:44px;display:flex;align-items:center;justify-content:center}
 .input-area input[type=text]{flex:1;padding:11px 16px;border-radius:25px;border:2px solid #e0e0e0;background:#f8f9fa;color:#1a1a2e;font-size:14px;outline:none}
 .input-area input[type=text]:focus{border-color:#6c63ff}
-.send-btn{padding:10px 16px;background:linear-gradient(135deg,#6c63ff,#3ecfcf);border:none;border-radius:25px;color:#fff;font-weight:700;cursor:pointer;font-size:13px;white-space:nowrap}
+.send-btn{padding:10px 16px;background:linear-gradient(135deg,#6c63ff,#3ecfcf);border:none;border-radius:25px;color:#fff;font-weight:700;cursor:pointer;font-size:13px}
 .btn-row{display:flex;gap:5px;margin-top:7px;justify-content:center;flex-wrap:wrap}
 .btn{padding:8px 12px;border:none;border-radius:20px;cursor:pointer;font-size:11px;font-weight:700;display:flex;align-items:center;gap:3px;transition:.3s}
 .btn:hover{transform:scale(1.05)}
@@ -66,12 +66,11 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 </div>
 <div class="mode-label" id="modeLabel">💼 Business Mode — GST, Email, Social Media</div>
 <div class="chat-area" id="chatArea">
-<div class="msg ai-msg">Namaste! 🙏 Main ZeroScale AI hoon.<br><br>📎 <b>Attach</b> — Camera, Photos ya File lagao<br>✍️ <b>Likho</b> — Comment ya sawaal likho<br>🎤 <b>Bolo</b> — Voice mein baat karo<br>🖼️ <b>Image Banao</b> — AI se image banwao<br>🔊 <b>Sunao</b> — AI ka jawab sunne ke liye</div>
+<div class="msg ai-msg">Namaste! 🙏 Main ZeroScale AI hoon.<br><br>🔍 <b>Web Search</b> — Real time info milegi<br>📎 <b>Attach</b> — Camera, Photos ya File<br>✍️ <b>Likho</b> — Kuch bhi poochho<br>🎤 <b>Bolo</b> — Voice mein baat karo<br>🖼️ <b>Image</b> — AI se image banwao<br>🔊 <b>Sunao</b> — Jawab sunne ke liye</div>
 </div>
 
-<!-- Preview Area -->
 <div class="preview-area" id="previewArea">
-<img class="preview-img" id="previewImg" src="" alt="">
+<img class="preview-img" id="previewImg" src="" alt="" style="display:none">
 <div class="preview-info">
 <div class="preview-name" id="previewName"></div>
 <div id="previewType"></div>
@@ -79,7 +78,6 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 <button class="preview-remove" onclick="removeAttachment()">✕</button>
 </div>
 
-<!-- Attach Menu -->
 <div class="attach-menu" id="attachMenu">
 <button class="attach-option" onclick="openCamera()">📷 Camera se photo lo</button>
 <button class="attach-option" onclick="openGallery()">🖼 Gallery se photo lo</button>
@@ -94,7 +92,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 </div>
 <div class="btn-row">
 <button class="btn voice-btn" id="voiceBtn" onclick="toggleVoice()">🎤 Bolo</button>
-<button class="btn img-btn" onclick="generateImage()">🖼️ Image Banao</button>
+<button class="btn img-btn" onclick="generateImage()">🖼️ Image</button>
 <button class="btn speak-btn" id="speakBtn" onclick="toggleSpeak()">🔊 Sunao</button>
 </div>
 </div>
@@ -108,6 +106,7 @@ let mode='business';
 let voiceOutputOn=false;
 let attachedData={type:'',content:'',name:''};
 const GROQ_KEY='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';
+const TAVILY_KEY='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';
 const prompts={
 student:'Tu ek helpful Indian student assistant hai. Seedhi simple Hindi mein jawab de. Short aur clear rakho.',
 business:'Tu ek helpful Indian business assistant hai. Simple Hindi mein jawab de. GST, email, social media help kar.',
@@ -134,24 +133,14 @@ menu.classList.toggle('show');
 }
 
 document.addEventListener('click',function(e){
-const menu=document.getElementById('attachMenu');
 if(!e.target.closest('.attach-btn')&&!e.target.closest('.attach-menu')){
-menu.classList.remove('show');
+document.getElementById('attachMenu').classList.remove('show');
 }
 });
 
-function openCamera(){
-document.getElementById('attachMenu').classList.remove('show');
-document.getElementById('cameraInput').click();
-}
-function openGallery(){
-document.getElementById('attachMenu').classList.remove('show');
-document.getElementById('galleryInput').click();
-}
-function openFile(){
-document.getElementById('attachMenu').classList.remove('show');
-document.getElementById('fileInput').click();
-}
+function openCamera(){document.getElementById('attachMenu').classList.remove('show');document.getElementById('cameraInput').click();}
+function openGallery(){document.getElementById('attachMenu').classList.remove('show');document.getElementById('galleryInput').click();}
+function openFile(){document.getElementById('attachMenu').classList.remove('show');document.getElementById('fileInput').click();}
 
 function handleImageUpload(input,source){
 const file=input.files[0];
@@ -159,13 +148,12 @@ if(!file)return;
 const reader=new FileReader();
 reader.onload=function(e){
 attachedData={type:'image',content:e.target.result,name:file.name};
-const preview=document.getElementById('previewArea');
 document.getElementById('previewImg').src=e.target.result;
 document.getElementById('previewImg').style.display='block';
 document.getElementById('previewName').textContent=file.name;
-document.getElementById('previewType').textContent=source==='camera'?'📷 Camera photo':'🖼 Gallery photo';
-preview.classList.add('show');
-document.getElementById('userInput').placeholder='Is photo ke baare mein kuch poochho...';
+document.getElementById('previewType').textContent=source==='camera'?'📷 Camera':'🖼 Gallery';
+document.getElementById('previewArea').classList.add('show');
+document.getElementById('userInput').placeholder='Is photo ke baare mein poochho...';
 document.getElementById('userInput').focus();
 };
 reader.readAsDataURL(file);
@@ -178,12 +166,11 @@ if(!file)return;
 const reader=new FileReader();
 reader.onload=function(e){
 attachedData={type:'file',content:e.target.result,name:file.name};
-const preview=document.getElementById('previewArea');
 document.getElementById('previewImg').style.display='none';
 document.getElementById('previewName').textContent=file.name;
 document.getElementById('previewType').textContent='📎 File attached';
-preview.classList.add('show');
-document.getElementById('userInput').placeholder='Is file ke baare mein kuch poochho...';
+document.getElementById('previewArea').classList.add('show');
+document.getElementById('userInput').placeholder='Is file ke baare mein poochho...';
 document.getElementById('userInput').focus();
 };
 reader.readAsText(file);
@@ -215,91 +202,69 @@ let len=0;
 for(let w of words){
 chunk.push(w);
 len+=w.length+1;
-if(len>=120){
-chunks.push(chunk.join(' '));
-chunk=[];
-len=0;
-}
+if(len>=120){chunks.push(chunk.join(' '));chunk=[];len=0;}
 }
 if(chunk.length)chunks.push(chunk.join(' '));
 let i=0;
 let speaking=true;
-document.getElementById('speakBtn').textContent='🔇 Band Karo';
-
 function readNext(){
-if(!speaking||!voiceOutputOn||i>=chunks.length){
-if(i>=chunks.length){
-document.getElementById('speakBtn').textContent='🔊 Sunao';
-}
-return;
-}
+if(!speaking||!voiceOutputOn||i>=chunks.length)return;
 const utt=new SpeechSynthesisUtterance(chunks[i]);
 const voices=speechSynthesis.getVoices();
 const hindiVoice=voices.find(v=>v.lang&&v.lang.includes('hi'));
 const indianVoice=voices.find(v=>v.lang&&v.lang.includes('IN'));
 if(hindiVoice)utt.voice=hindiVoice;
 else if(indianVoice)utt.voice=indianVoice;
-utt.lang='hi-IN';
-utt.rate=0.82;
-utt.pitch=1;
-utt.volume=1;
-utt.onend=function(){
-i++;
-setTimeout(readNext,50);
-};
-utt.onerror=function(){
-i++;
-setTimeout(readNext,50);
-};
+utt.lang='hi-IN';utt.rate=0.82;utt.pitch=1;utt.volume=1;
+utt.onend=function(){i++;setTimeout(readNext,50);}
+utt.onerror=function(){i++;setTimeout(readNext,50);}
 speechSynthesis.speak(utt);
 i++;
 }
+setTimeout(readNext,200);
+}
 
-document.getElementById('speakBtn').onclick=function(){
-if(speaking){
-speaking=false;
-voiceOutputOn=false;
-speechSynthesis.cancel();
-document.getElementById('speakBtn').classList.remove('on');
-document.getElementById('speakBtn').textContent='🔊 Sunao';
-}else{
-toggleSpeak();
-}
-};
-setTimeout(readNext,300);
-}
 function toggleVoice(){
-if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){
-alert('Chrome browser use karo voice ke liye!');return;
-}
+if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){alert('Chrome use karo!');return;}
 if(isListening){recognition.stop();return;}
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 recognition=new SR();
 recognition.lang='hi-IN';
 recognition.continuous=false;
 recognition.interimResults=false;
-recognition.onstart=function(){
-isListening=true;
-document.getElementById('voiceBtn').classList.add('listening');
-document.getElementById('voiceBtn').textContent='🔴 Sun raha hoon...';
-};
-recognition.onresult=function(e){
-const text=e.results[0][0].transcript;
-document.getElementById('userInput').value=text;
-sendMsg();
-};
-recognition.onend=function(){
-isListening=false;
-document.getElementById('voiceBtn').classList.remove('listening');
-document.getElementById('voiceBtn').textContent='🎤 Bolo';
-};
-recognition.onerror=function(e){
-isListening=false;
-document.getElementById('voiceBtn').classList.remove('listening');
-document.getElementById('voiceBtn').textContent='🎤 Bolo';
-if(e.error==='not-allowed')alert('Microphone permission do!');
-};
+recognition.onstart=function(){isListening=true;document.getElementById('voiceBtn').classList.add('listening');document.getElementById('voiceBtn').textContent='🔴 Sun raha hoon...';};
+recognition.onresult=function(e){document.getElementById('userInput').value=e.results[0][0].transcript;sendMsg();};
+recognition.onend=function(){isListening=false;document.getElementById('voiceBtn').classList.remove('listening');document.getElementById('voiceBtn').textContent='🎤 Bolo';};
+recognition.onerror=function(e){isListening=false;document.getElementById('voiceBtn').classList.remove('listening');document.getElementById('voiceBtn').textContent='🎤 Bolo';if(e.error==='not-allowed')alert('Microphone permission do!');};
 recognition.start();
+}
+
+async function needsWebSearch(query){
+const searchKeywords=['kaun','kya hai','kahan','kab','kitna','price','cost','news','aaj','abhi','latest','new','2024','2025','company','address','phone','contact','near','paas','faridabad','delhi','mumbai','india'];
+const q=query.toLowerCase();
+return searchKeywords.some(k=>q.includes(k));
+}
+
+async function webSearch(query){
+try{
+const r=await fetch('https://api.tavily.com/search',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+api_key:TAVILY_KEY,
+query:query,
+search_depth:'basic',
+max_results:3,
+include_answer:true
+})
+});
+const d=await r.json();
+if(d.answer)return d.answer;
+if(d.results&&d.results.length>0){
+return d.results.map(r=>r.content).join('\n\n').substring(0,1000);
+}
+return null;
+}catch(e){return null;}
 }
 
 async function translateToEnglish(text){
@@ -309,10 +274,7 @@ method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
 body:JSON.stringify({
 model:'llama-3.3-70b-versatile',
-messages:[
-{role:'system',content:'Translate to detailed English for AI image generation. Include visual details, colors, lighting, style. Return ONLY English text.'},
-{role:'user',content:text}
-],
+messages:[{role:'system',content:'Translate to detailed English for image generation. Include visual details. Return ONLY English.'},{role:'user',content:text}],
 max_tokens:150
 })
 });
@@ -324,12 +286,12 @@ return d.choices[0].message.content.trim();
 async function generateImage(){
 const inp=document.getElementById('userInput');
 const txt=inp.value.trim();
-if(!txt){alert('Pehle image ka description likho!\nExample: "garmi mein paani peeta hua aadmi"');return;}
+if(!txt){alert('Pehle image ka description likho!');return;}
 const chat=document.getElementById('chatArea');
 chat.innerHTML+=`<div class="msg user-msg">🖼️ ${txt}</div>`;
 inp.value='';
 const loadId='load'+Date.now();
-chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}">⏳ Image ban rahi hai... (20-30 sec)</div>`;
+chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}">⏳ Image ban rahi hai...</div>`;
 chat.scrollTop=chat.scrollHeight;
 const englishPrompt=await translateToEnglish(txt);
 const seed=Math.floor(Math.random()*999999);
@@ -343,7 +305,6 @@ const inp=document.getElementById('userInput');
 const txt=inp.value.trim();
 if(!txt&&!attachedData.content)return;
 const chat=document.getElementById('chatArea');
-
 if(attachedData.type==='image'){
 chat.innerHTML+=`<div class="msg user-msg"><img src="${attachedData.content}" style="max-width:200px;border-radius:10px;display:block;margin-bottom:6px">${txt||'Is image ke baare mein batao'}</div>`;
 }else if(attachedData.type==='file'){
@@ -351,19 +312,31 @@ chat.innerHTML+=`<div class="msg user-msg">📎 ${attachedData.name}<br>${txt||'
 }else{
 chat.innerHTML+=`<div class="msg user-msg">${txt}</div>`;
 }
-
 inp.value='';
+const savedAttach={...attachedData};
 removeAttachment();
 const loadId='load'+Date.now();
 chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}"><div class="typing"><span></span><span></span><span></span></div></div>`;
 chat.scrollTop=chat.scrollHeight;
-
 try{
-let userContent=txt||'Is content ke baare mein helpful jawab do';
-if(attachedData.type==='image'){
-userContent=`[User ne ek image share ki hai] ${txt||'Is image ke baare mein detail mein batao'}`;
-}else if(attachedData.type==='file'){
-userContent=`File name: ${attachedData.name}\nContent: ${attachedData.content.substring(0,1000)}\n\nUser ka sawaal: ${txt||'Is file ka summary do'}`;
+let userContent=txt||'Is content ke baare mein batao';
+let searchResult=null;
+let searchDone=false;
+
+if(txt&&await needsWebSearch(txt)){
+document.getElementById(loadId).innerHTML='<div class="search-badge">🔍 Web search ho rahi hai...</div>';
+searchResult=await webSearch(txt);
+searchDone=true;
+}
+
+if(savedAttach.type==='file'){
+userContent=`File: ${savedAttach.name}\nContent: ${savedAttach.content.substring(0,1000)}\nSawaal: ${txt||'Summary do'}`;
+}else if(savedAttach.type==='image'){
+userContent=`[User ne image share ki] ${txt||'Is image ke baare mein batao'}`;
+}
+
+if(searchResult){
+userContent=`Web search result: ${searchResult}\n\nUser ka sawaal: ${txt}\n\nIs information ke basis pe simple Hindi mein jawab do.`;
 }
 
 const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
@@ -371,17 +344,14 @@ method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
 body:JSON.stringify({
 model:'llama-3.3-70b-versatile',
-messages:[
-{role:'system',content:prompts[mode]},
-{role:'user',content:userContent}
-],
+messages:[{role:'system',content:prompts[mode]},{role:'user',content:userContent}],
 max_tokens:600
 })
 });
 const d=await r.json();
 if(d.choices&&d.choices[0]){
 const reply=d.choices[0].message.content;
-document.getElementById(loadId).textContent=reply;
+document.getElementById(loadId).innerHTML=(searchDone?'<div class="search-badge">🔍 Web search se mila</div>':'')+reply;
 speakText(reply);
 }else{
 document.getElementById(loadId).textContent='❌ Dobara try karo!';

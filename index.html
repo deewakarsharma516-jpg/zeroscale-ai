@@ -10,32 +10,6 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .header{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:18px 20px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
 .header h1{font-size:26px;font-weight:900;color:#fff}
 .header p{opacity:.9;font-size:13px;color:#fff}
-
-/* Auth Screens */
-.auth-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:#f0f4f8}
-.auth-box{background:#fff;border-radius:20px;padding:30px;width:100%;max-width:400px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
-.auth-box h2{text-align:center;color:#6c63ff;margin-bottom:8px;font-size:22px}
-.auth-box p{text-align:center;color:#888;font-size:13px;margin-bottom:20px}
-.auth-input{width:100%;padding:12px 16px;border:2px solid #e0e0e0;border-radius:12px;font-size:14px;margin-bottom:12px;outline:none;color:#1a1a2e}
-.auth-input:focus{border-color:#6c63ff}
-.auth-btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:10px;transition:.3s}
-.auth-btn:hover{transform:scale(1.02)}
-.btn-google{background:#fff;border:2px solid #e0e0e0;color:#1a1a2e;display:flex;align-items:center;justify-content:center;gap:10px}
-.btn-primary{background:linear-gradient(135deg,#6c63ff,#3ecfcf);color:#fff}
-.btn-secondary{background:#f0f4f8;color:#6c63ff;border:2px solid #6c63ff}
-.auth-divider{text-align:center;color:#aaa;margin:10px 0;font-size:13px}
-.auth-switch{text-align:center;font-size:13px;color:#888;margin-top:10px}
-.auth-switch span{color:#6c63ff;cursor:pointer;font-weight:700}
-.auth-error{background:#ffebee;color:#c62828;padding:10px;border-radius:8px;font-size:13px;margin-bottom:10px;display:none}
-
-/* Main App */
-.main-app{display:none;flex-direction:column;min-height:100vh}
-.user-bar{background:#fff;padding:8px 15px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 5px rgba(0,0,0,0.08)}
-.user-info{display:flex;align-items:center;gap:8px;font-size:13px;color:#555}
-.user-avatar{width:32px;height:32px;border-radius:50%;background:#6c63ff;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
-.logout-btn{background:none;border:1px solid #e0e0e0;border-radius:20px;padding:5px 12px;font-size:12px;cursor:pointer;color:#888}
-.plan-badge{background:#ede9ff;color:#6c63ff;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:700}
-
 .modes{display:flex;gap:8px;padding:12px 15px;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,0.08)}
 .mode-btn{flex:1;padding:10px 5px;border:2px solid transparent;border-radius:12px;cursor:pointer;font-size:12px;font-weight:700;background:#f0f4f8;color:#555;transition:.3s}
 .mode-btn.student{border-color:#4CAF50;color:#4CAF50}
@@ -48,15 +22,12 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .ai-msg{background:#fff;align-self:flex-start;color:#1a1a2e;border-bottom-left-radius:4px;border:1px solid #e0e0e0}
 .ai-msg img{max-width:100%;border-radius:10px;margin-top:8px;display:block}
 .search-badge{background:#e3f2fd;color:#1976d2;padding:4px 10px;border-radius:20px;font-size:11px;display:inline-block;margin-bottom:6px}
-.limit-msg{background:#fff3e0;color:#e65100;padding:10px;border-radius:12px;font-size:13px;text-align:center;margin:10px}
-
 .preview-area{display:none;background:#fff;border:2px solid #6c63ff;border-radius:12px;padding:10px;margin:0 12px 6px;position:fixed;bottom:100px;left:0;right:0;z-index:10}
 .preview-area.show{display:flex;align-items:center;gap:10px}
 .preview-img{width:60px;height:60px;object-fit:cover;border-radius:8px}
 .preview-info{flex:1;font-size:12px;color:#666}
 .preview-name{font-weight:700;color:#1a1a2e;font-size:13px}
 .preview-remove{background:#ff4444;color:#fff;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:14px}
-
 .input-area{padding:8px 12px;background:#fff;position:fixed;bottom:0;width:100%;box-shadow:0 -2px 10px rgba(0,0,0,0.08)}
 .input-row{display:flex;gap:6px;align-items:center}
 .attach-btn{padding:10px;background:#f0f4f8;border:2px solid #e0e0e0;border-radius:50%;cursor:pointer;font-size:18px;min-width:44px;height:44px;display:flex;align-items:center;justify-content:center}
@@ -75,21 +46,6 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .attach-menu.show{display:flex}
 .attach-option{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;cursor:pointer;font-size:14px;font-weight:600;border:none;background:#f8f9fa;width:100%;text-align:left}
 .attach-option:hover{background:#ede9ff}
-
-/* Premium Modal */
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center}
-.modal.show{display:flex}
-.modal-box{background:#fff;border-radius:20px;padding:25px;margin:20px;max-width:400px;width:100%}
-.modal-box h3{color:#6c63ff;font-size:20px;margin-bottom:15px;text-align:center}
-.plan-card{border:2px solid #e0e0e0;border-radius:12px;padding:15px;margin-bottom:10px;cursor:pointer}
-.plan-card.popular{border-color:#6c63ff;background:#ede9ff}
-.plan-card h4{font-size:16px;color:#1a1a2e}
-.plan-card .price{font-size:22px;font-weight:900;color:#6c63ff}
-.plan-card ul{list-style:none;margin-top:8px}
-.plan-card ul li{font-size:12px;color:#555;padding:2px 0}
-.plan-card ul li:before{content:'✅ ';font-size:10px}
-.close-modal{width:100%;padding:12px;background:#f0f4f8;border:none;border-radius:12px;cursor:pointer;font-size:14px;font-weight:700;margin-top:10px}
-
 @keyframes pulse{0%{opacity:1}50%{opacity:0.5}100%{opacity:1}}
 .typing{display:inline-flex;gap:4px;padding:4px 0}
 .typing span{width:7px;height:7px;background:#6c63ff;border-radius:50%;animation:bounce 1.2s infinite}
@@ -99,63 +55,16 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 </style>
 </head>
 <body>
-
-<!-- Login Screen -->
-<div class="auth-screen" id="loginScreen">
-<div class="auth-box">
-<h2>⚡ ZeroScale AI</h2>
-<p>India ka Smart AI Assistant</p>
-<div class="auth-error" id="loginError"></div>
-<button class="auth-btn btn-google" onclick="loginWithGoogle()">
-<img src="https://www.google.com/favicon.ico" width="18"> Google se Login karo
-</button>
-<div class="auth-divider">— ya —</div>
-<input class="auth-input" type="email" id="loginEmail" placeholder="Email address">
-<input class="auth-input" type="password" id="loginPassword" placeholder="Password">
-<button class="auth-btn btn-primary" onclick="loginWithEmail()">Login Karo</button>
-<button class="auth-btn btn-secondary" onclick="showSignup()">Naya Account Banao</button>
-<div class="auth-switch">Account nahi hai? <span onclick="showSignup()">Sign Up karo</span></div>
-</div>
-</div>
-
-<!-- Signup Screen -->
-<div class="auth-screen" id="signupScreen" style="display:none">
-<div class="auth-box">
-<h2>⚡ ZeroScale AI</h2>
-<p>Free account banao!</p>
-<div class="auth-error" id="signupError"></div>
-<button class="auth-btn btn-google" onclick="loginWithGoogle()">
-<img src="https://www.google.com/favicon.ico" width="18"> Google se Sign Up karo
-</button>
-<div class="auth-divider">— ya —</div>
-<input class="auth-input" type="text" id="signupName" placeholder="Aapka naam">
-<input class="auth-input" type="email" id="signupEmail" placeholder="Email address">
-<input class="auth-input" type="password" id="signupPassword" placeholder="Password (min 6 characters)">
-<button class="auth-btn btn-primary" onclick="signupWithEmail()">Account Banao</button>
-<div class="auth-switch">Account hai? <span onclick="showLogin()">Login karo</span></div>
-</div>
-</div>
-
-<!-- Main App -->
-<div class="main-app" id="mainApp">
 <div class="header">
 <h1>⚡ ZeroScale AI</h1>
 <p>🇮🇳 India ka Smart AI Assistant</p>
-</div>
-<div class="user-bar">
-<div class="user-info">
-<div class="user-avatar" id="userAvatar">U</div>
-<span id="userName">User</span>
-<span class="plan-badge" id="planBadge">Free</span>
-</div>
-<button class="logout-btn" onclick="logoutUser()">Logout</button>
 </div>
 <div class="modes">
 <button class="mode-btn student" onclick="setMode('student',this)">🎓 Student</button>
 <button class="mode-btn business" onclick="setMode('business',this)">💼 Business</button>
 <button class="mode-btn health" onclick="setMode('health',this)">🏥 Health</button>
 </div>
-<div class="mode-label" id="modeLabel">💼 Business Mode</div>
+<div class="mode-label" id="modeLabel">💼 Business Mode — GST, Email, Social Media</div>
 <div class="chat-area" id="chatArea">
 <div class="msg ai-msg">Namaste! 🙏 Main ZeroScale AI hoon.<br><br>🔍 <b>Web Search</b> — Real time info<br>📎 <b>Attach</b> — Camera, Photos, File<br>🎤 <b>Bolo</b> — Voice mein baat karo<br>🖼️ <b>Image</b> — AI se image banwao<br>🔊 <b>Sunao</b> — Jawab sunne ke liye</div>
 </div>
@@ -185,47 +94,6 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 <button class="btn voice-btn" id="voiceBtn" onclick="toggleVoice()">🎤 Bolo</button>
 <button class="btn img-btn" onclick="generateImage()">🖼️ Image</button>
 <button class="btn speak-btn" id="speakBtn" onclick="toggleSpeak()">🔊 Sunao</button>
-<button class="btn" style="background:#6c63ff;color:#fff" onclick="showPremium()">⭐ Premium</button>
-</div>
-</div>
-</div>
-
-<!-- Premium Modal -->
-<div class="modal" id="premiumModal">
-<div class="modal-box">
-<h3>⭐ ZeroScale Premium</h3>
-<div class="plan-card">
-<h4>🆓 Free Plan</h4>
-<div class="price">₹0</div>
-<ul>
-<li>10 messages per day</li>
-<li>Basic chat</li>
-<li>Web search</li>
-<li>Image generation</li>
-</ul>
-</div>
-<div class="plan-card popular">
-<h4>⭐ Pro Plan — Most Popular!</h4>
-<div class="price">₹99<span style="font-size:14px;color:#888">/month</span></div>
-<ul>
-<li>Unlimited messages</li>
-<li>Priority response</li>
-<li>All features</li>
-<li>Voice + Image unlimited</li>
-<li>File upload unlimited</li>
-</ul>
-</div>
-<div class="plan-card">
-<h4>💼 Business Plan</h4>
-<div class="price">₹499<span style="font-size:14px;color:#888">/month</span></div>
-<ul>
-<li>Everything in Pro</li>
-<li>Team access (5 users)</li>
-<li>Priority support</li>
-<li>Custom AI training</li>
-</ul>
-</div>
-<button class="close-modal" onclick="closePremium()">Baad Mein</button>
 </div>
 </div>
 
@@ -233,161 +101,33 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 <input type="file" id="galleryInput" accept="image/*" style="display:none" onchange="handleImageUpload(this,'gallery')">
 <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.txt,.csv" style="display:none" onchange="handleFileUpload(this)">
 
-<!-- Firebase -->
-<script type="module">
-import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import{getAuth,signInWithPopup,GoogleAuthProvider,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged,updateProfile}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-import{getFirestore,doc,setDoc,getDoc,updateDoc,increment}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-
-const firebaseConfig={
-apiKey:"AIzaSyBwSiJ0vlmFbt2iUjUIe9kWakLhsdI1P7c",
-authDomain:"zeroscale-9dd26.firebaseapp.com",
-projectId:"zeroscale-9dd26",
-storageBucket:"zeroscale-9dd26.firebasestorage.app",
-messagingSenderId:"498660118458",
-appId:"1:498660118458:web:7baaf20f7a1a8553a3d783"
-};
-
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
-const provider=new GoogleAuthProvider();
-
-let currentUser=null;
-let userPlan='free';
-let dailyMessages=0;
-const FREE_LIMIT=10;
-
-const GROQ_KEY='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';
-const TAVILY_KEY='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';
-
-const prompts={
-student:'Tu ek helpful Indian student assistant hai. Seedhi simple Hindi mein jawab de.',
-business:'Tu ek helpful Indian business assistant hai. Simple Hindi mein jawab de. GST, email, social media help kar.',
-health:'Tu ek helpful Indian health assistant hai. Simple Hindi mein jawab de. Doctor se milne ki salah do.'
-};
-
+<script>
 let mode='business';
 let voiceOutputOn=false;
 let attachedData={type:'',content:'',name:''};
+const GROQ_KEY='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';
+const TAVILY_KEY='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';
+const prompts={
+student:'Tu ek helpful Indian student assistant hai. Seedhi simple Hindi mein jawab de. Short aur clear rakho.',
+business:'Tu ek helpful Indian business assistant hai. Simple Hindi mein jawab de. GST, email, social media help kar.',
+health:'Tu ek helpful Indian health assistant hai. Simple Hindi mein jawab de. Doctor se milne ki salah do.'
+};
 let recognition=null;
 let isListening=false;
 
-// Auth State
-onAuthStateChanged(auth,async(user)=>{
-if(user){
-currentUser=user;
-await loadUserData(user);
-showApp();
-}else{
-showLogin();
-}
-});
-
-async function loadUserData(user){
-const ref=doc(db,'users',user.uid);
-const snap=await getDoc(ref);
-const today=new Date().toDateString();
-if(snap.exists()){
-const data=snap.data();
-userPlan=data.plan||'free';
-dailyMessages=data.lastDate===today?data.dailyCount||0:0;
-if(data.lastDate!==today){
-await updateDoc(ref,{dailyCount:0,lastDate:today});
-}
-}else{
-await setDoc(ref,{
-name:user.displayName||'User',
-email:user.email,
-plan:'free',
-dailyCount:0,
-lastDate:today,
-createdAt:new Date().toISOString()
-});
-}
-document.getElementById('userName').textContent=user.displayName||user.email.split('@')[0];
-document.getElementById('userAvatar').textContent=(user.displayName||'U')[0].toUpperCase();
-document.getElementById('planBadge').textContent=userPlan==='pro'?'⭐ Pro':userPlan==='business'?'💼 Business':'Free';
-}
-
-function showApp(){
-document.getElementById('loginScreen').style.display='none';
-document.getElementById('signupScreen').style.display='none';
-document.getElementById('mainApp').style.display='flex';
-}
-
-function showLogin(){
-document.getElementById('loginScreen').style.display='flex';
-document.getElementById('signupScreen').style.display='none';
-document.getElementById('mainApp').style.display='none';
-}
-
-window.showSignup=function(){
-document.getElementById('loginScreen').style.display='none';
-document.getElementById('signupScreen').style.display='flex';
-}
-
-window.showLogin=function(){
-document.getElementById('signupScreen').style.display='none';
-document.getElementById('loginScreen').style.display='flex';
-}
-
-window.loginWithGoogle=async function(){
-try{
-await signInWithPopup(auth,provider);
-}catch(e){
-showError('loginError','Google login mein problem — dobara try karo!');
-}
-}
-
-window.loginWithEmail=async function(){
-const email=document.getElementById('loginEmail').value;
-const pass=document.getElementById('loginPassword').value;
-if(!email||!pass){showError('loginError','Email aur password daalo!');return;}
-try{
-await signInWithEmailAndPassword(auth,email,pass);
-}catch(e){
-showError('loginError','Email ya password galat hai!');
-}
-}
-
-window.signupWithEmail=async function(){
-const name=document.getElementById('signupName').value;
-const email=document.getElementById('signupEmail').value;
-const pass=document.getElementById('signupPassword').value;
-if(!name||!email||!pass){showError('signupError','Sab fields bharein!');return;}
-if(pass.length<6){showError('signupError','Password 6 characters se zyada hona chahiye!');return;}
-try{
-const cred=await createUserWithEmailAndPassword(auth,email,pass);
-await updateProfile(cred.user,{displayName:name});
-}catch(e){
-showError('signupError','Account nahi bana — email pehle se use ho sakti hai!');
-}
-}
-
-window.logoutUser=async function(){
-await signOut(auth);
-}
-
-function showError(id,msg){
-const el=document.getElementById(id);
-el.textContent=msg;
-el.style.display='block';
-setTimeout(()=>el.style.display='none',3000);
-}
-
-window.showPremium=function(){document.getElementById('premiumModal').classList.add('show');}
-window.closePremium=function(){document.getElementById('premiumModal').classList.remove('show');}
-
-window.setMode=function(m,btn){
+function setMode(m,btn){
 mode=m;
 document.querySelectorAll('.mode-btn').forEach(b=>{b.style.background='#f0f4f8'});
 btn.style.background=m==='student'?'#e8f5e9':m==='business'?'#ede9ff':'#fce4ec';
-const labels={student:'🎓 Student Mode',business:'💼 Business Mode',health:'🏥 Health Mode'};
+const labels={
+student:'🎓 Student Mode — Homework, Exam, Notes',
+business:'💼 Business Mode — GST, Email, Social Media',
+health:'🏥 Health Mode — Symptoms, Doctor Tips'
+};
 document.getElementById('modeLabel').textContent=labels[m];
 }
 
-window.toggleAttachMenu=function(){
+function toggleAttachMenu(){
 document.getElementById('attachMenu').classList.toggle('show');
 }
 
@@ -397,11 +137,11 @@ document.getElementById('attachMenu').classList.remove('show');
 }
 });
 
-window.openCamera=function(){document.getElementById('attachMenu').classList.remove('show');document.getElementById('cameraInput').click();}
-window.openGallery=function(){document.getElementById('attachMenu').classList.remove('show');document.getElementById('galleryInput').click();}
-window.openFile=function(){document.getElementById('attachMenu').classList.remove('show');document.getElementById('fileInput').click();}
+function openCamera(){document.getElementById('attachMenu').classList.remove('show');document.getElementById('cameraInput').click();}
+function openGallery(){document.getElementById('attachMenu').classList.remove('show');document.getElementById('galleryInput').click();}
+function openFile(){document.getElementById('attachMenu').classList.remove('show');document.getElementById('fileInput').click();}
 
-window.handleImageUpload=function(input,source){
+function handleImageUpload(input,source){
 const file=input.files[0];
 if(!file)return;
 const reader=new FileReader();
@@ -413,12 +153,13 @@ document.getElementById('previewName').textContent=file.name;
 document.getElementById('previewType').textContent=source==='camera'?'📷 Camera':'🖼 Gallery';
 document.getElementById('previewArea').classList.add('show');
 document.getElementById('userInput').placeholder='Is photo ke baare mein poochho...';
+document.getElementById('userInput').focus();
 };
 reader.readAsDataURL(file);
 input.value='';
 }
 
-window.handleFileUpload=function(input){
+function handleFileUpload(input){
 const file=input.files[0];
 if(!file)return;
 const reader=new FileReader();
@@ -429,18 +170,19 @@ document.getElementById('previewName').textContent=file.name;
 document.getElementById('previewType').textContent='📎 File';
 document.getElementById('previewArea').classList.add('show');
 document.getElementById('userInput').placeholder='Is file ke baare mein poochho...';
+document.getElementById('userInput').focus();
 };
 reader.readAsText(file);
 input.value='';
 }
 
-window.removeAttachment=function(){
+function removeAttachment(){
 attachedData={type:'',content:'',name:''};
 document.getElementById('previewArea').classList.remove('show');
 document.getElementById('userInput').placeholder='Likho ya voice use karo...';
 }
 
-window.toggleSpeak=function(){
+function toggleSpeak(){
 voiceOutputOn=!voiceOutputOn;
 const btn=document.getElementById('speakBtn');
 btn.classList.toggle('on',voiceOutputOn);
@@ -478,16 +220,16 @@ speechSynthesis.speak(utt);i++;
 setTimeout(readNext,200);
 }
 
-window.toggleVoice=function(){
+function toggleVoice(){
 if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){alert('Chrome use karo!');return;}
 if(isListening){recognition.stop();return;}
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 recognition=new SR();
 recognition.lang='hi-IN';recognition.continuous=false;recognition.interimResults=false;
 recognition.onstart=function(){isListening=true;document.getElementById('voiceBtn').classList.add('listening');document.getElementById('voiceBtn').textContent='🔴 Sun raha hoon...';};
-recognition.onresult=function(e){document.getElementById('userInput').value=e.results[0][0].transcript;window.sendMsg();};
+recognition.onresult=function(e){document.getElementById('userInput').value=e.results[0][0].transcript;sendMsg();};
 recognition.onend=function(){isListening=false;document.getElementById('voiceBtn').classList.remove('listening');document.getElementById('voiceBtn').textContent='🎤 Bolo';};
-recognition.onerror=function(e){isListening=false;document.getElementById('voiceBtn').classList.remove('listening');document.getElementById('voiceBtn').textContent='🎤 Bolo';};
+recognition.onerror=function(e){isListening=false;document.getElementById('voiceBtn').classList.remove('listening');document.getElementById('voiceBtn').textContent='🎤 Bolo';if(e.error==='not-allowed')alert('Microphone permission do!');};
 recognition.start();
 }
 
@@ -526,7 +268,7 @@ return d.choices[0].message.content.trim();
 }catch(e){return text;}
 }
 
-window.generateImage=async function(){
+async function generateImage(){
 const inp=document.getElementById('userInput');
 const txt=inp.value.trim();
 if(!txt){alert('Pehle image ka description likho!');return;}
@@ -543,19 +285,10 @@ document.getElementById(loadId).innerHTML=`✅ Image ready! 🎨<br><img src="${
 chat.scrollTop=chat.scrollHeight;
 }
 
-window.sendMsg=async function(){
-if(!currentUser)return;
+async function sendMsg(){
 const inp=document.getElementById('userInput');
 const txt=inp.value.trim();
 if(!txt&&!attachedData.content)return;
-
-if(userPlan==='free'&&dailyMessages>=FREE_LIMIT){
-const chat=document.getElementById('chatArea');
-chat.innerHTML+=`<div class="limit-msg">⚠️ Aaj ke ${FREE_LIMIT} free messages khatam! ⭐ Premium lo unlimited ke liye! <button onclick="showPremium()" style="background:#6c63ff;color:#fff;border:none;padding:5px 12px;border-radius:20px;cursor:pointer;margin-left:5px">Premium Lo</button></div>`;
-chat.scrollTop=chat.scrollHeight;
-return;
-}
-
 const chat=document.getElementById('chatArea');
 if(attachedData.type==='image'){
 chat.innerHTML+=`<div class="msg user-msg"><img src="${attachedData.content}" style="max-width:200px;border-radius:10px;display:block;margin-bottom:6px">${txt||'Is image ke baare mein batao'}</div>`;
@@ -564,35 +297,29 @@ chat.innerHTML+=`<div class="msg user-msg">📎 ${attachedData.name}<br>${txt||'
 }else{
 chat.innerHTML+=`<div class="msg user-msg">${txt}</div>`;
 }
-
 inp.value='';
 const savedAttach={...attachedData};
-window.removeAttachment();
+removeAttachment();
 const loadId='load'+Date.now();
 chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}"><div class="typing"><span></span><span></span><span></span></div></div>`;
 chat.scrollTop=chat.scrollHeight;
-
 try{
 let userContent=txt||'Batao';
 let searchResult=null;
 let searchDone=false;
-
 if(txt&&await needsWebSearch(txt)){
 document.getElementById(loadId).innerHTML='<div class="search-badge">🔍 Web search ho rahi hai...</div>';
 searchResult=await webSearch(txt);
 searchDone=true;
 }
-
 if(savedAttach.type==='file'){
 userContent=`File: ${savedAttach.name}\n${savedAttach.content.substring(0,800)}\nSawaal: ${txt||'Summary'}`;
 }else if(savedAttach.type==='image'){
 userContent=`[Image share ki] ${txt||'Batao'}`;
 }
-
 if(searchResult){
 userContent=`Search result: ${searchResult}\nSawaal: ${txt}\nSimple Hindi mein jawab do.`;
 }
-
 const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
 method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
@@ -607,11 +334,6 @@ if(d.choices&&d.choices[0]){
 const reply=d.choices[0].message.content;
 document.getElementById(loadId).innerHTML=(searchDone?'<div class="search-badge">🔍 Web search se mila</div>':'')+reply;
 speakText(reply);
-dailyMessages++;
-if(currentUser){
-const ref=doc(db,'users',currentUser.uid);
-await updateDoc(ref,{dailyCount:increment(1),lastDate:new Date().toDateString()});
-}
 }else{
 document.getElementById(loadId).textContent='❌ Dobara try karo!';
 }

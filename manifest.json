@@ -1,22 +1,22 @@
 {
   "name": "ZeroScale AI",
-  "short_name": "ZeroScale",
+  "short_name": "ZeroScale AI",
   "description": "India ka Smart AI Assistant",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f0f4f8",
+  "background_color": "#6c63ff",
   "theme_color": "#6c63ff",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "https://ui-avatars.com/api/?name=Z&background=6c63ff&color=fff&size=192&bold=true&rounded=true",
+      "src": "/icon.svg",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/svg+xml"
     },
     {
-      "src": "https://ui-avatars.com/api/?name=Z&background=6c63ff&color=fff&size=512&bold=true&rounded=true",
+      "src": "/icon.svg",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/svg+xml"
     }
   ]
 }

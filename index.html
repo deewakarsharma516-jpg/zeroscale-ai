@@ -417,7 +417,18 @@ document.getElementById(loadId).textContent='❌ Network Error!';
 }
 chat.scrollTop=chat.scrollHeight;
 }
-
+function shareApp(){
+if(navigator.share){
+navigator.share({
+title:'ZeroScale AI',
+text:'India ka Smart AI Assistant! Hindi + English mein baat karo, images banao, web search karo — bilkul FREE!',
+url:'https://zeroscale.co.in'
+});
+}else{
+navigator.clipboard.writeText('https://zeroscale.co.in');
+alert('Link copy ho gaya! Paste karke share karo 😊');
+}
+}
 if('serviceWorker' in navigator){
 navigator.serviceWorker.register('/sw.js');
 }

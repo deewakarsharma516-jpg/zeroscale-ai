@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZeroScale AI</title>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#6c63ff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ZeroScale AI">
+<link rel="apple-touch-icon" href="https://ui-avatars.com/api/?name=Z&background=6c63ff&color=fff&size=192&bold=true&rounded=true">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;min-height:100vh;display:flex;flex-direction:column}
@@ -46,6 +51,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .attach-menu.show{display:flex}
 .attach-option{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;cursor:pointer;font-size:14px;font-weight:600;border:none;background:#f8f9fa;width:100%;text-align:left}
 .attach-option:hover{background:#ede9ff}
+.footer-links{text-align:center;padding:8px;background:#fff;font-size:11px;color:#888}
+.footer-links a{color:#6c63ff;text-decoration:none;margin:0 8px}
 @keyframes pulse{0%{opacity:1}50%{opacity:0.5}100%{opacity:1}}
 .typing{display:inline-flex;gap:4px;padding:4px 0}
 .typing span{width:7px;height:7px;background:#6c63ff;border-radius:50%;animation:bounce 1.2s infinite}
@@ -95,6 +102,11 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 <button class="btn img-btn" onclick="generateImage()">🖼️ Image</button>
 <button class="btn speak-btn" id="speakBtn" onclick="toggleSpeak()">🔊 Sunao</button>
 </div>
+</div>
+
+<div class="footer-links">
+<a href="/about.html">About Us</a>
+<a href="/privacy.html">Privacy Policy</a>
 </div>
 
 <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleImageUpload(this,'camera')">
@@ -341,6 +353,12 @@ document.getElementById(loadId).textContent='❌ Dobara try karo!';
 document.getElementById(loadId).textContent='❌ Network Error!';
 }
 chat.scrollTop=chat.scrollHeight;
+}
+
+if('serviceWorker' in navigator){
+navigator.serviceWorker.register('/sw.js')
+.then(()=>console.log('PWA Ready!'))
+.catch(e=>console.log('SW Error:',e));
 }
 </script>
 </body>

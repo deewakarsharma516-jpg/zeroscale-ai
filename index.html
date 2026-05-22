@@ -275,18 +275,26 @@ function readNext(){
 if(!voiceOutputOn||i>=chunks.length)return;
 const utt=new SpeechSynthesisUtterance(chunks[i]);
 const voices=speechSynthesis.getVoices();
+const femaleHindi=voices.find(v=>v.lang&&v.lang.includes('hi')&&v.name.toLowerCase().includes('female'));
+const femaleIndian=voices.find(v=>v.lang&&v.lang.includes('IN')&&v.name.toLowerCase().includes('female'));
 const hindiVoice=voices.find(v=>v.lang&&v.lang.includes('hi'));
 const indianVoice=voices.find(v=>v.lang&&v.lang.includes('IN'));
-if(hindiVoice)utt.voice=hindiVoice;
+const googleHindi=voices.find(v=>v.name&&v.name.includes('Google Hindi'));
+if(femaleHindi)utt.voice=femaleHindi;
+else if(femaleIndian)utt.voice=femaleIndian;
+else if(googleHindi)utt.voice=googleHindi;
+else if(hindiVoice)utt.voice=hindiVoice;
 else if(indianVoice)utt.voice=indianVoice;
-utt.lang='hi-IN';utt.rate=0.82;utt.pitch=1;utt.volume=1;
+utt.lang='hi-IN';
+utt.rate=0.82;
+utt.pitch=1.8;
+utt.volume=1;
 utt.onend=function(){i++;setTimeout(readNext,50);}
 utt.onerror=function(){i++;setTimeout(readNext,50);}
 speechSynthesis.speak(utt);i++;
 }
 setTimeout(readNext,200);
 }
-
 function toggleVoice(){
 if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){alert('Chrome use karo!');return;}
 if(isListening){recognition.stop();return;}

@@ -9,8 +9,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;width:100%;overflow:hidden}
-body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:flex;flex-direction:column;height:100vh;height:100dvh}
-
+body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0}
 /* TOPBAR */
 .topbar{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .logo-area{display:flex;align-items:center;gap:8px}
@@ -104,7 +103,7 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 </div>
 </div>
 <div class="btn-area">
-<button class="hbtn gmail-hbtn" id="gmailBtn" onclick="connectGmail()">
+<button style="background:#fff;color:#333;border:none;padding:6px 10px;border-radius:16px;font-size:10px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:3px;flex-shrink:0" id="gmailBtn" onclick="connectGmail()">
 <img src="https://www.google.com/favicon.ico" width="11" alt="G"> Gmail
 </button>
 <button class="hbtn other-hbtn" onclick="shareApp()">📤</button>

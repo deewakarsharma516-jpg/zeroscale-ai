@@ -2,45 +2,38 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>ZeroScale AI — India ka Smart AI Assistant</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#6c63ff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ZeroScale AI">
-<meta name="description" content="India ka Smart AI Assistant — Hindi aur English mein baat karo, images banao, web search karo">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;width:100%;overflow-x:hidden;position:relative}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;min-height:100vh;min-height:-webkit-fill-available;display:flex;flex-direction:column}
+html{height:100%;width:100%}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;height:100%;width:100%;display:flex;flex-direction:column;overflow:hidden;position:fixed;top:0;left:0;right:0;bottom:0}
+
 /* Header */
-.header{background:linear-gradient(135deg,#6c63ff 0%,#4a90d9 50%,#3ecfcf 100%);padding:10px 15px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 3px 15px rgba(108,99,255,0.4)}
-
-/* Logo */
+.header{background:linear-gradient(135deg,#6c63ff 0%,#4a90d9 50%,#3ecfcf 100%);padding:10px 15px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 3px 15px rgba(108,99,255,0.4);flex-shrink:0;z-index:10}
 .logo-area{display:flex;align-items:center;gap:10px}
-.logo-circle{width:52px;height:52px;background:rgba(255,255,255,0.15);border-radius:14px;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.3);backdrop-filter:blur(10px);flex-shrink:0;overflow:hidden}
-.logo-circle svg{width:48px;height:48px}
-.logo-text h1{font-size:18px;font-weight:900;color:#fff;letter-spacing:0.5px;line-height:1.2}
-.logo-text p{font-size:10px;color:rgba(255,255,255,0.85);margin-top:2px}
-.logo-badge{display:inline-block;background:#FFD700;color:#6c63ff;font-size:9px;font-weight:900;padding:2px 6px;border-radius:10px;margin-top:3px}
-
-/* Header Links */
-.header-links{display:flex;gap:6px;align-items:center}
-.header-link{color:rgba(255,255,255,0.95);font-size:10px;text-decoration:none;background:rgba(255,255,255,0.15);padding:6px 10px;border-radius:20px;font-weight:700;border:1px solid rgba(255,255,255,0.2);cursor:pointer;transition:.2s}
-.header-link:hover{background:rgba(255,255,255,0.25)}
-.share-btn{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3)}
+.logo-circle{width:48px;height:48px;background:rgba(255,255,255,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.3);flex-shrink:0}
+.logo-circle svg{width:44px;height:44px}
+.logo-text h1{font-size:17px;font-weight:900;color:#fff;line-height:1.2}
+.logo-text p{font-size:10px;color:rgba(255,255,255,0.85);margin-top:1px}
+.logo-badge{display:inline-block;background:#FFD700;color:#6c63ff;font-size:9px;font-weight:900;padding:2px 6px;border-radius:10px;margin-top:2px}
+.header-links{display:flex;gap:5px;align-items:center}
+.header-link{color:rgba(255,255,255,0.95);font-size:10px;text-decoration:none;background:rgba(255,255,255,0.15);padding:6px 10px;border-radius:20px;font-weight:700;border:1px solid rgba(255,255,255,0.2);cursor:pointer;white-space:nowrap}
 
 /* Modes */
-.modes{display:flex;gap:6px;padding:10px 12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
-.mode-btn{flex:1;padding:9px 5px;border:2px solid transparent;border-radius:12px;cursor:pointer;font-size:11px;font-weight:700;background:#f0f4f8;color:#777;transition:.3s}
+.modes{display:flex;gap:6px;padding:8px 12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.08);flex-shrink:0}
+.mode-btn{flex:1;padding:8px 5px;border:2px solid transparent;border-radius:10px;cursor:pointer;font-size:11px;font-weight:700;background:#f0f4f8;color:#777;transition:.2s}
 .mode-btn.student{border-color:#4CAF50;color:#4CAF50}
 .mode-btn.business{border-color:#6c63ff;color:#6c63ff;background:#ede9ff}
 .mode-btn.health{border-color:#e91e8c;color:#e91e8c}
-.mode-btn:hover{transform:scale(1.03)}
-.mode-label{text-align:center;padding:5px;background:linear-gradient(135deg,#ede9ff,#e0f7fa);font-size:11px;color:#6c63ff;font-weight:700;letter-spacing:0.3px}
+.mode-label{text-align:center;padding:4px;background:linear-gradient(135deg,#ede9ff,#e0f7fa);font-size:11px;color:#6c63ff;font-weight:700;flex-shrink:0}
 
 /* Chat */
-.chat-area{flex:1;padding:12px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-bottom:140px;background:#f0f4f8;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.chat-area{flex:1;padding:12px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:#f0f4f8;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:15px}
 .msg{padding:12px 16px;border-radius:18px;max-width:82%;font-size:14px;line-height:1.6;white-space:pre-wrap;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
 .user-msg{background:linear-gradient(135deg,#6c63ff,#3ecfcf);align-self:flex-end;color:#fff;border-bottom-right-radius:4px}
 .ai-msg{background:#fff;align-self:flex-start;color:#1a1a2e;border-bottom-left-radius:4px;border:1px solid #e8e8e8}
@@ -48,32 +41,30 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .search-badge{background:linear-gradient(135deg,#e3f2fd,#e8f5e9);color:#1565c0;padding:4px 12px;border-radius:20px;font-size:11px;display:inline-block;margin-bottom:6px;font-weight:600}
 
 /* Welcome Card */
-.welcome-card{background:linear-gradient(135deg,#6c63ff,#3ecfcf);border-radius:20px;padding:20px;color:#fff;margin-bottom:5px}
-.welcome-logo-big{text-align:center;margin-bottom:12px}
-.welcome-title{font-size:18px;font-weight:900;text-align:center;margin-bottom:4px}
-.welcome-sub{font-size:12px;text-align:center;opacity:.9;margin-bottom:15px}
-.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.feature-item{background:rgba(255,255,255,0.15);border-radius:10px;padding:8px 10px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px}
+.welcome-card{background:linear-gradient(135deg,#6c63ff,#3ecfcf);border-radius:20px;padding:18px;color:#fff}
+.welcome-logo-big{text-align:center;margin-bottom:10px}
+.welcome-title{font-size:17px;font-weight:900;text-align:center;margin-bottom:4px}
+.welcome-sub{font-size:12px;text-align:center;opacity:.9;margin-bottom:12px}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.feature-item{background:rgba(255,255,255,0.15);border-radius:10px;padding:7px 10px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:5px}
 
 /* Preview */
-.preview-area{display:none;background:#fff;border:2px solid #6c63ff;border-radius:12px;padding:8px 12px;position:fixed;bottom:95px;left:0;right:0;z-index:10;margin:0 8px}
+.preview-area{display:none;background:#fff;border:2px solid #6c63ff;border-radius:12px;padding:8px 12px;flex-shrink:0;margin:0 8px 4px}
 .preview-area.show{display:flex;align-items:center;gap:10px}
-.preview-img{width:50px;height:50px;object-fit:cover;border-radius:8px}
-.preview-info{flex:1;font-size:12px;color:#666}
+.preview-img{width:45px;height:45px;object-fit:cover;border-radius:8px}
+.preview-info{flex:1;font-size:11px;color:#666}
 .preview-name{font-weight:700;color:#1a1a2e;font-size:12px}
-.preview-remove{background:#ff4444;color:#fff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+.preview-remove{background:#ff4444;color:#fff;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 
-/* Input Area */
-.input-area{padding:8px 12px;background:#fff;position:fixed;bottom:0;width:100%;box-shadow:0 -3px 15px rgba(0,0,0,0.1)}
+/* Input */
+.input-area{padding:8px 12px;background:#fff;flex-shrink:0;box-shadow:0 -3px 15px rgba(0,0,0,0.1)}
 .input-row{display:flex;gap:6px;align-items:center}
-.attach-btn{padding:10px;background:#f0f4f8;border:2px solid #e0e0e0;border-radius:50%;cursor:pointer;font-size:16px;min-width:42px;height:42px;display:flex;align-items:center;justify-content:center;transition:.2s}
-.attach-btn:hover{background:#ede9ff;border-color:#6c63ff}
-.input-area input[type=text]{flex:1;padding:10px 16px;border-radius:25px;border:2px solid #e0e0e0;background:#f8f9fa;color:#1a1a2e;font-size:14px;outline:none;transition:.2s}
-.input-area input[type=text]:focus{border-color:#6c63ff;background:#fff}
-.send-btn{padding:11px 16px;background:linear-gradient(135deg,#6c63ff,#3ecfcf);border:none;border-radius:25px;color:#fff;font-weight:900;cursor:pointer;font-size:16px;box-shadow:0 3px 10px rgba(108,99,255,0.4)}
+.attach-btn{padding:9px;background:#f0f4f8;border:2px solid #e0e0e0;border-radius:50%;cursor:pointer;font-size:16px;min-width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.input-area input[type=text]{flex:1;padding:10px 14px;border-radius:25px;border:2px solid #e0e0e0;background:#f8f9fa;color:#1a1a2e;font-size:14px;outline:none;min-width:0}
+.input-area input[type=text]:focus{border-color:#6c63ff}
+.send-btn{padding:10px 14px;background:linear-gradient(135deg,#6c63ff,#3ecfcf);border:none;border-radius:25px;color:#fff;font-weight:900;cursor:pointer;font-size:16px;flex-shrink:0}
 .btn-row{display:flex;gap:5px;margin-top:6px;justify-content:center;flex-wrap:wrap}
-.btn{padding:7px 12px;border:none;border-radius:20px;cursor:pointer;font-size:11px;font-weight:700;display:flex;align-items:center;gap:3px;transition:.3s;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
-.btn:hover{transform:scale(1.05)}
+.btn{padding:7px 11px;border:none;border-radius:20px;cursor:pointer;font-size:11px;font-weight:700;display:flex;align-items:center;gap:3px;transition:.2s}
 .voice-btn{background:linear-gradient(135deg,#ff6b9d,#ff4081);color:#fff}
 .voice-btn.listening{background:#ff4444;animation:pulse 1s infinite}
 .img-btn{background:linear-gradient(135deg,#4CAF50,#2e7d32);color:#fff}
@@ -81,10 +72,10 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 .speak-btn.on{background:linear-gradient(135deg,#6c63ff,#3ecfcf);color:#fff}
 
 /* Attach Menu */
-.attach-menu{display:none;position:fixed;bottom:125px;left:12px;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.15);padding:10px;z-index:20;flex-direction:column;gap:6px;border:1px solid #e8e8e8}
+.attach-menu{display:none;position:fixed;bottom:90px;left:12px;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.15);padding:10px;z-index:200;flex-direction:column;gap:6px;border:1px solid #e8e8e8}
 .attach-menu.show{display:flex}
-.attach-option{display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:12px;cursor:pointer;font-size:13px;font-weight:600;border:none;background:#f8f9fa;width:180px;text-align:left;transition:.2s}
-.attach-option:hover{background:#ede9ff;color:#6c63ff}
+.attach-option{display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:12px;cursor:pointer;font-size:13px;font-weight:600;border:none;background:#f8f9fa;width:180px;text-align:left}
+.attach-option:hover{background:#ede9ff}
 
 @keyframes pulse{0%{opacity:1}50%{opacity:0.5}100%{opacity:1}}
 .typing{display:inline-flex;gap:4px;padding:4px 0}
@@ -96,7 +87,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 </head>
 <body>
 
-<!-- Professional Header -->
+<!-- Header -->
 <div class="header">
 <div class="logo-area">
 <div class="logo-circle">
@@ -108,13 +99,10 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 <stop offset="100%" stop-color="#3ecfcf"/>
 </linearGradient>
 </defs>
-<!-- Z Letter -->
-<text x="6" y="32" font-family="Arial" font-weight="900" font-size="24" fill="white">Z</text>
-<!-- Lightning -->
+<text x="5" y="32" font-family="Arial" font-weight="900" font-size="26" fill="white">Z</text>
 <path d="M30 6 L25 18 L29 18 L24 32 L34 17 L30 17 Z" fill="#FFD700"/>
-<!-- AI Badge -->
-<rect x="5" y="35" width="18" height="10" rx="5" fill="#FFD700"/>
-<text x="8" y="43" font-family="Arial" font-weight="900" font-size="8" fill="#6c63ff">AI</text>
+<rect x="4" y="35" width="18" height="10" rx="5" fill="#FFD700"/>
+<text x="7" y="43" font-family="Arial" font-weight="900" font-size="8" fill="#6c63ff">AI</text>
 </svg>
 </div>
 <div class="logo-text">
@@ -124,7 +112,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 </div>
 </div>
 <div class="header-links">
-<button onclick="shareApp()" class="header-link share-btn">📤 Share</button>
+<button onclick="shareApp()" class="header-link" style="border:none">📤 Share</button>
 <a href="/about.html" class="header-link">ℹ️</a>
 <a href="/privacy.html" class="header-link">🔒</a>
 </div>
@@ -138,11 +126,11 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 </div>
 <div class="mode-label" id="modeLabel">💼 Business Mode — GST, Email, Social Media</div>
 
-<!-- Chat Area -->
+<!-- Chat -->
 <div class="chat-area" id="chatArea">
 <div class="welcome-card">
 <div class="welcome-logo-big">
-<svg viewBox="0 0 80 80" width="70" height="70">
+<svg viewBox="0 0 80 80" width="65" height="65">
 <rect width="80" height="80" rx="20" fill="rgba(255,255,255,0.2)"/>
 <text x="8" y="54" font-family="Arial" font-weight="900" font-size="46" fill="white">Z</text>
 <path d="M52 10 L44 28 L50 28 L42 55 L55 30 L49 30 Z" fill="#FFD700"/>
@@ -163,7 +151,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 </div>
 </div>
 
-<!-- Preview Area -->
+<!-- Preview -->
 <div class="preview-area" id="previewArea">
 <img class="preview-img" id="previewImg" src="" alt="" style="display:none">
 <div class="preview-info">
@@ -180,7 +168,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;mi
 <button class="attach-option" onclick="openFile()">📎 File upload karo</button>
 </div>
 
-<!-- Input Area -->
+<!-- Input -->
 <div class="input-area">
 <div class="input-row">
 <button class="attach-btn" onclick="toggleAttachMenu()">📎</button>
@@ -205,9 +193,9 @@ let attachedData={type:'',content:'',name:''};
 const GROQ_KEY='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';
 const TAVILY_KEY='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';
 const prompts={
-student:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein baat karo toh feminine Hindi use kar jaise kar sakti hoon, bata sakti hoon, samjha sakti hoon. English mein baat karo toh feminine English use kar jaise I can help you, I will tell you. Seedhi simple language mein jawab de. Short aur clear rakho.',
-business:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein baat karo toh feminine Hindi use kar jaise kar sakti hoon, help kar sakti hoon, bata sakti hoon. English mein baat karo toh I can help you, I will assist you. GST email social media help kar.',
-health:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein baat karo toh feminine Hindi use kar jaise kar sakti hoon, bata sakti hoon, samjha sakti hoon. English mein I can help you, I will guide you. Doctor se milne ki salah de.'
+student:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein baat karo toh feminine Hindi use kar jaise kar sakti hoon, bata sakti hoon. English mein I can help you, I will tell you. Seedhi simple language mein jawab de.',
+business:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein feminine Hindi use kar jaise kar sakti hoon, help kar sakti hoon. English mein I can help you, I will assist you. GST email social media help kar.',
+health:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein feminine Hindi use kar jaise kar sakti hoon, bata sakti hoon. English mein I can help you, I will guide you. Doctor se milne ki salah de.'
 };
 let recognition=null;
 let isListening=false;
@@ -320,17 +308,12 @@ if(!voiceOutputOn||i>=chunks.length)return;
 const utt=new SpeechSynthesisUtterance(chunks[i]);
 const voices=speechSynthesis.getVoices();
 const femaleHindi=voices.find(v=>v.lang&&v.lang.includes('hi')&&v.name.toLowerCase().includes('female'));
-const femaleIndian=voices.find(v=>v.lang&&v.lang.includes('IN')&&v.name.toLowerCase().includes('female'));
 const hindiVoice=voices.find(v=>v.lang&&v.lang.includes('hi'));
 const indianVoice=voices.find(v=>v.lang&&v.lang.includes('IN'));
 if(femaleHindi)utt.voice=femaleHindi;
-else if(femaleIndian)utt.voice=femaleIndian;
 else if(hindiVoice)utt.voice=hindiVoice;
 else if(indianVoice)utt.voice=indianVoice;
-utt.lang='hi-IN';
-utt.rate=0.85;
-utt.pitch=1.8;
-utt.volume=1;
+utt.lang='hi-IN';utt.rate=0.85;utt.pitch=1.8;utt.volume=1;
 utt.onend=function(){i++;setTimeout(readNext,50);}
 utt.onerror=function(){i++;setTimeout(readNext,50);}
 speechSynthesis.speak(utt);i++;
@@ -377,7 +360,7 @@ method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
 body:JSON.stringify({
 model:'llama-3.3-70b-versatile',
-messages:[{role:'system',content:'Translate to detailed English for image generation. Include visual details. Return ONLY English.'},{role:'user',content:text}],
+messages:[{role:'system',content:'Translate to detailed English for image generation. Return ONLY English.'},{role:'user',content:text}],
 max_tokens:150
 })
 });

@@ -3,81 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ZeroScale AI — India ka Smart AI Assistant</title>
+<title>ZeroScale AI</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#6c63ff">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="ZeroScale AI">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{height:100%;width:100%}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;height:100%;width:100%;display:flex;flex-direction:column;overflow:hidden;position:fixed;top:0;left:0;right:0;bottom:0}
+html,body{height:100%;width:100%;overflow:hidden}
+body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:flex;flex-direction:column;height:100dvh}
 
-/* Header */
-.header{background:linear-gradient(135deg,#6c63ff 0%,#4a90d9 50%,#3ecfcf 100%);padding:10px 15px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 3px 15px rgba(108,99,255,0.4);flex-shrink:0;z-index:10}
-.logo-area{display:flex;align-items:center;gap:10px}
-.logo-circle{width:48px;height:48px;background:rgba(255,255,255,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.3);flex-shrink:0}
-.logo-circle svg{width:44px;height:44px}
-.logo-text h1{font-size:17px;font-weight:900;color:#fff;line-height:1.2}
-.logo-text p{font-size:10px;color:rgba(255,255,255,0.85);margin-top:1px}
-.logo-badge{display:inline-block;background:#FFD700;color:#6c63ff;font-size:9px;font-weight:900;padding:2px 6px;border-radius:10px;margin-top:2px}
-.header-links{display:flex;gap:5px;align-items:center}
-.header-link{color:rgba(255,255,255,0.95);font-size:10px;text-decoration:none;background:rgba(255,255,255,0.15);padding:6px 10px;border-radius:20px;font-weight:700;border:1px solid rgba(255,255,255,0.2);cursor:pointer;white-space:nowrap}
+/* TOP BAR */
+.topbar{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.tb-left{display:flex;align-items:center;gap:10px}
+.tb-logo{width:42px;height:42px;background:rgba(255,255,255,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.3)}
+.tb-logo svg{width:38px;height:38px}
+.tb-title{color:#fff}
+.tb-title h1{font-size:17px;font-weight:900;line-height:1.2}
+.tb-title p{font-size:10px;opacity:.85}
+.tb-badge{background:#FFD700;color:#6c63ff;font-size:8px;font-weight:900;padding:2px 7px;border-radius:10px;margin-top:2px;display:inline-block}
+.tb-right{display:flex;gap:6px}
+.tb-btn{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:11px;font-weight:700;padding:6px 10px;border-radius:20px;cursor:pointer;white-space:nowrap}
 
-/* Modes */
-.modes{display:flex;gap:6px;padding:8px 12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.08);flex-shrink:0}
-.mode-btn{flex:1;padding:8px 5px;border:2px solid transparent;border-radius:10px;cursor:pointer;font-size:11px;font-weight:700;background:#f0f4f8;color:#777;transition:.2s}
-.mode-btn.student{border-color:#4CAF50;color:#4CAF50}
-.mode-btn.business{border-color:#6c63ff;color:#6c63ff;background:#ede9ff}
-.mode-btn.health{border-color:#e91e8c;color:#e91e8c}
-.mode-label{text-align:center;padding:4px;background:linear-gradient(135deg,#ede9ff,#e0f7fa);font-size:11px;color:#6c63ff;font-weight:700;flex-shrink:0}
+/* MODE TABS */
+.mode-tabs{background:#fff;padding:10px 16px;display:flex;gap:8px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.mode-tab{flex:1;text-align:center;padding:9px 5px;border-radius:12px;font-size:11px;font-weight:700;cursor:pointer;border:2px solid #e0e0e0;background:#f8f9fa;color:#999;transition:.2s}
+.mode-tab.active-student{border-color:#4CAF50;background:#e8f5e9;color:#2e7d32}
+.mode-tab.active-business{border-color:#6c63ff;background:#ede9ff;color:#6c63ff}
+.mode-tab.active-health{border-color:#e91e8c;background:#fce4ec;color:#c2185b}
+.mode-info{text-align:center;padding:5px 16px;font-size:11px;font-weight:700;color:#6c63ff;background:linear-gradient(135deg,#ede9ff,#e0f7fa);flex-shrink:0}
 
-/* Chat */
-.chat-area{flex:1;padding:12px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:#f0f4f8;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:15px}
-.msg{padding:12px 16px;border-radius:18px;max-width:82%;font-size:14px;line-height:1.6;white-space:pre-wrap;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
-.user-msg{background:linear-gradient(135deg,#6c63ff,#3ecfcf);align-self:flex-end;color:#fff;border-bottom-right-radius:4px}
-.ai-msg{background:#fff;align-self:flex-start;color:#1a1a2e;border-bottom-left-radius:4px;border:1px solid #e8e8e8}
+/* FEATURE CHIPS */
+.chips{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;flex-shrink:0;background:#fff;border-bottom:1px solid #f0f0f0}
+.chips::-webkit-scrollbar{display:none}
+.chip{background:#f0f4f8;border:1px solid #e0e0e0;border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;color:#555;white-space:nowrap;cursor:pointer;transition:.2s}
+.chip:hover{background:#ede9ff;border-color:#6c63ff;color:#6c63ff}
+
+/* CHAT */
+.chat-area{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;background:#f5f6fa}
+.msg{padding:12px 16px;border-radius:18px;max-width:80%;font-size:14px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.user-msg{background:linear-gradient(135deg,#6c63ff,#3ecfcf);align-self:flex-end;color:#fff;border-bottom-right-radius:4px;box-shadow:0 3px 10px rgba(108,99,255,0.3)}
+.ai-msg{background:#fff;align-self:flex-start;color:#1a1a2e;border-bottom-left-radius:4px;border:1px solid #e8e8e8;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
 .ai-msg img{max-width:100%;border-radius:10px;margin-top:8px;display:block}
 .search-badge{background:linear-gradient(135deg,#e3f2fd,#e8f5e9);color:#1565c0;padding:4px 12px;border-radius:20px;font-size:11px;display:inline-block;margin-bottom:6px;font-weight:600}
 
-/* Welcome Card */
-.welcome-card{background:linear-gradient(135deg,#6c63ff,#3ecfcf);border-radius:20px;padding:18px;color:#fff}
-.welcome-logo-big{text-align:center;margin-bottom:10px}
-.welcome-title{font-size:17px;font-weight:900;text-align:center;margin-bottom:4px}
-.welcome-sub{font-size:12px;text-align:center;opacity:.9;margin-bottom:12px}
-.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.feature-item{background:rgba(255,255,255,0.15);border-radius:10px;padding:7px 10px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:5px}
+/* WELCOME */
+.welcome{background:linear-gradient(135deg,#6c63ff,#3ecfcf);border-radius:20px;padding:20px;color:#fff;text-align:center}
+.welcome svg{margin-bottom:10px}
+.welcome h2{font-size:18px;font-weight:900;margin-bottom:4px}
+.welcome p{font-size:12px;opacity:.9;margin-bottom:14px}
+.w-features{display:grid;grid-template-columns:1fr 1fr;gap:6px;text-align:left}
+.w-feat{background:rgba(255,255,255,0.15);border-radius:10px;padding:7px 10px;font-size:11px;font-weight:600}
 
-/* Preview */
-.preview-area{display:none;background:#fff;border:2px solid #6c63ff;border-radius:12px;padding:8px 12px;flex-shrink:0;margin:0 8px 4px}
-.preview-area.show{display:flex;align-items:center;gap:10px}
-.preview-img{width:45px;height:45px;object-fit:cover;border-radius:8px}
-.preview-info{flex:1;font-size:11px;color:#666}
-.preview-name{font-weight:700;color:#1a1a2e;font-size:12px}
-.preview-remove{background:#ff4444;color:#fff;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+/* PREVIEW */
+.preview-bar{display:none;background:#fff;border-top:2px solid #6c63ff;padding:8px 16px;flex-shrink:0;align-items:center;gap:10px}
+.preview-bar.show{display:flex}
+.prev-img{width:45px;height:45px;object-fit:cover;border-radius:8px;display:none}
+.prev-info{flex:1;font-size:12px}
+.prev-name{font-weight:700;font-size:13px}
+.prev-remove{background:#ff4444;color:#fff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:14px}
 
-/* Input */
-.input-area{padding:8px 12px;background:#fff;flex-shrink:0;box-shadow:0 -3px 15px rgba(0,0,0,0.1)}
-.input-row{display:flex;gap:6px;align-items:center}
-.attach-btn{padding:9px;background:#f0f4f8;border:2px solid #e0e0e0;border-radius:50%;cursor:pointer;font-size:16px;min-width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.input-area input[type=text]{flex:1;padding:10px 14px;border-radius:25px;border:2px solid #e0e0e0;background:#f8f9fa;color:#1a1a2e;font-size:14px;outline:none;min-width:0}
-.input-area input[type=text]:focus{border-color:#6c63ff}
-.send-btn{padding:10px 14px;background:linear-gradient(135deg,#6c63ff,#3ecfcf);border:none;border-radius:25px;color:#fff;font-weight:900;cursor:pointer;font-size:16px;flex-shrink:0}
-.btn-row{display:flex;gap:5px;margin-top:6px;justify-content:center;flex-wrap:wrap}
-.btn{padding:7px 11px;border:none;border-radius:20px;cursor:pointer;font-size:11px;font-weight:700;display:flex;align-items:center;gap:3px;transition:.2s}
+/* INPUT BAR */
+.input-bar{background:#fff;padding:8px 16px 10px;flex-shrink:0;box-shadow:0 -3px 15px rgba(0,0,0,0.08)}
+.input-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.attach-btn{width:42px;height:42px;background:#f0f4f8;border:2px solid #e0e0e0;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.txt-input{flex:1;padding:11px 16px;border-radius:25px;border:2px solid #e0e0e0;background:#f8f9fa;font-size:14px;color:#1a1a2e;outline:none;min-width:0}
+.txt-input:focus{border-color:#6c63ff;background:#fff}
+.send-btn{width:44px;height:44px;background:linear-gradient(135deg,#6c63ff,#3ecfcf);border:none;border-radius:50%;color:#fff;font-size:20px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(108,99,255,0.4)}
+.action-btns{display:flex;gap:6px;justify-content:center}
+.act-btn{flex:1;padding:8px 10px;border:none;border-radius:20px;cursor:pointer;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:4px;max-width:120px}
 .voice-btn{background:linear-gradient(135deg,#ff6b9d,#ff4081);color:#fff}
 .voice-btn.listening{background:#ff4444;animation:pulse 1s infinite}
 .img-btn{background:linear-gradient(135deg,#4CAF50,#2e7d32);color:#fff}
 .speak-btn{background:linear-gradient(135deg,#ff9800,#f57c00);color:#fff}
-.speak-btn.on{background:linear-gradient(135deg,#6c63ff,#3ecfcf);color:#fff}
+.speak-btn.on{background:linear-gradient(135deg,#6c63ff,#3ecfcf)}
 
-/* Attach Menu */
-.attach-menu{display:none;position:fixed;bottom:90px;left:12px;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.15);padding:10px;z-index:200;flex-direction:column;gap:6px;border:1px solid #e8e8e8}
+/* ATTACH MENU */
+.attach-menu{display:none;position:fixed;bottom:110px;left:16px;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.15);padding:8px;z-index:999;flex-direction:column;gap:4px;border:1px solid #eee}
 .attach-menu.show{display:flex}
-.attach-option{display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:12px;cursor:pointer;font-size:13px;font-weight:600;border:none;background:#f8f9fa;width:180px;text-align:left}
-.attach-option:hover{background:#ede9ff}
+.att-opt{display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:12px;cursor:pointer;font-size:13px;font-weight:600;border:none;background:transparent;width:190px;text-align:left}
+.att-opt:hover{background:#ede9ff;color:#6c63ff}
 
-@keyframes pulse{0%{opacity:1}50%{opacity:0.5}100%{opacity:1}}
+@keyframes pulse{0%{opacity:1}50%{opacity:.5}100%{opacity:1}}
 .typing{display:inline-flex;gap:4px;padding:4px 0}
 .typing span{width:7px;height:7px;background:#6c63ff;border-radius:50%;animation:bounce 1.2s infinite}
 .typing span:nth-child(2){animation-delay:.2s}
@@ -87,98 +92,99 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a1a2e;he
 </head>
 <body>
 
-<!-- Header -->
-<div class="header">
-<div class="logo-area">
-<div class="logo-circle">
-<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="48" height="48" rx="12" fill="url(#lg)"/>
-<defs>
-<linearGradient id="lg" x1="0" y1="0" x2="48" y2="48">
-<stop offset="0%" stop-color="#6c63ff"/>
-<stop offset="100%" stop-color="#3ecfcf"/>
-</linearGradient>
-</defs>
-<text x="5" y="32" font-family="Arial" font-weight="900" font-size="26" fill="white">Z</text>
-<path d="M30 6 L25 18 L29 18 L24 32 L34 17 L30 17 Z" fill="#FFD700"/>
-<rect x="4" y="35" width="18" height="10" rx="5" fill="#FFD700"/>
-<text x="7" y="43" font-family="Arial" font-weight="900" font-size="8" fill="#6c63ff">AI</text>
+<!-- TOP BAR -->
+<div class="topbar">
+<div class="tb-left">
+<div class="tb-logo">
+<svg viewBox="0 0 38 38" fill="none">
+<rect width="38" height="38" rx="10" fill="rgba(255,255,255,0.2)"/>
+<text x="3" y="26" font-family="Arial" font-weight="900" font-size="20" fill="white">Z</text>
+<path d="M24 4 L20 13 L23 13 L19 24 L27 13 L24 13 Z" fill="#FFD700"/>
+<rect x="2" y="27" width="14" height="9" rx="4" fill="#FFD700"/>
+<text x="4" y="34" font-family="Arial" font-weight="900" font-size="7" fill="#6c63ff">AI</text>
 </svg>
 </div>
-<div class="logo-text">
+<div class="tb-title">
 <h1>ZeroScale AI</h1>
 <p>🇮🇳 India ka Smart Assistant</p>
-<span class="logo-badge">⚡ Powered by AI</span>
+<span class="tb-badge">⚡ Powered by AI</span>
 </div>
 </div>
-<div class="header-links">
-<button onclick="shareApp()" class="header-link" style="border:none">📤 Share</button>
-<a href="/about.html" class="header-link">ℹ️</a>
-<a href="/privacy.html" class="header-link">🔒</a>
+<div class="tb-right">
+<button class="tb-btn" onclick="shareApp()">📤 Share</button>
+<a href="/about.html" class="tb-btn" style="text-decoration:none">ℹ️</a>
+<a href="/privacy.html" class="tb-btn" style="text-decoration:none">🔒</a>
 </div>
 </div>
 
-<!-- Modes -->
-<div class="modes">
-<button class="mode-btn student" onclick="setMode('student',this)">🎓 Student</button>
-<button class="mode-btn business" onclick="setMode('business',this)">💼 Business</button>
-<button class="mode-btn health" onclick="setMode('health',this)">🏥 Health</button>
+<!-- MODE TABS -->
+<div class="mode-tabs">
+<div class="mode-tab active-business" id="tab-student" onclick="setMode('student',this)">🎓 Student</div>
+<div class="mode-tab active-business" id="tab-business" onclick="setMode('business',this)" style="border-color:#6c63ff;background:#ede9ff;color:#6c63ff">💼 Business</div>
+<div class="mode-tab" id="tab-health" onclick="setMode('health',this)">🏥 Health</div>
 </div>
-<div class="mode-label" id="modeLabel">💼 Business Mode — GST, Email, Social Media</div>
+<div class="mode-info" id="modeInfo">💼 Business Mode — GST, Email, Social Media</div>
 
-<!-- Chat -->
+<!-- FEATURE CHIPS -->
+<div class="chips" id="chipsRow">
+<div class="chip" onclick="useChip(this)">📊 GST Help</div>
+<div class="chip" onclick="useChip(this)">📧 Email Likho</div>
+<div class="chip" onclick="useChip(this)">📱 Social Media Post</div>
+<div class="chip" onclick="useChip(this)">💰 Business Advice</div>
+<div class="chip" onclick="useChip(this)">📦 Inventory</div>
+</div>
+
+<!-- CHAT -->
 <div class="chat-area" id="chatArea">
-<div class="welcome-card">
-<div class="welcome-logo-big">
-<svg viewBox="0 0 80 80" width="65" height="65">
-<rect width="80" height="80" rx="20" fill="rgba(255,255,255,0.2)"/>
-<text x="8" y="54" font-family="Arial" font-weight="900" font-size="46" fill="white">Z</text>
-<path d="M52 10 L44 28 L50 28 L42 55 L55 30 L49 30 Z" fill="#FFD700"/>
-<rect x="5" y="60" width="32" height="17" rx="8" fill="#FFD700"/>
-<text x="9" y="72" font-family="Arial" font-weight="900" font-size="13" fill="#6c63ff">AI</text>
+<div class="ai-msg welcome">
+<svg viewBox="0 0 70 70" width="60" height="60">
+<rect width="70" height="70" rx="18" fill="rgba(255,255,255,0.2)"/>
+<text x="7" y="48" font-family="Arial" font-weight="900" font-size="40" fill="white">Z</text>
+<path d="M46 8 L39 24 L44 24 L37 48 L49 26 L44 26 Z" fill="#FFD700"/>
+<rect x="4" y="52" width="28" height="15" rx="7" fill="#FFD700"/>
+<text x="8" y="63" font-family="Arial" font-weight="900" font-size="11" fill="#6c63ff">AI</text>
 </svg>
-</div>
-<div class="welcome-title">Namaste! Main Zara hoon 🙏</div>
-<div class="welcome-sub">ZeroScale AI — Aapki Smart Assistant</div>
-<div class="feature-grid">
-<div class="feature-item">🔍 Web Search</div>
-<div class="feature-item">🎤 Voice Input</div>
-<div class="feature-item">🖼️ Image Banao</div>
-<div class="feature-item">🔊 Sunao</div>
-<div class="feature-item">📷 Camera</div>
-<div class="feature-item">📎 File Upload</div>
-</div>
+<h2>Namaste! Main Zara hoon 🙏</h2>
+<p>ZeroScale AI — Aapki Smart Assistant</p>
+<div class="w-features">
+<div class="w-feat">🔍 Web Search</div>
+<div class="w-feat">🎤 Voice Input</div>
+<div class="w-feat">🖼️ Image Banao</div>
+<div class="w-feat">🔊 Jawab Suno</div>
+<div class="w-feat">📷 Camera</div>
+<div class="w-feat">📎 File Upload</div>
 </div>
 </div>
-
-<!-- Preview -->
-<div class="preview-area" id="previewArea">
-<img class="preview-img" id="previewImg" src="" alt="" style="display:none">
-<div class="preview-info">
-<div class="preview-name" id="previewName"></div>
-<div id="previewType"></div>
-</div>
-<button class="preview-remove" onclick="removeAttachment()">✕</button>
 </div>
 
-<!-- Attach Menu -->
+<!-- PREVIEW -->
+<div class="preview-bar" id="previewBar">
+<img class="prev-img" id="prevImg" src="" alt="">
+<div class="prev-info">
+<div class="prev-name" id="prevName"></div>
+<div id="prevType" style="font-size:11px;color:#888"></div>
+</div>
+<button class="prev-remove" onclick="removeAttachment()">✕</button>
+</div>
+
+<!-- ATTACH MENU -->
 <div class="attach-menu" id="attachMenu">
-<button class="attach-option" onclick="openCamera()">📷 Camera se photo lo</button>
-<button class="attach-option" onclick="openGallery()">🖼 Gallery se photo lo</button>
-<button class="attach-option" onclick="openFile()">📎 File upload karo</button>
+<button class="att-opt" onclick="openCamera()">📷 Camera se photo lo</button>
+<button class="att-opt" onclick="openGallery()">🖼️ Gallery se photo lo</button>
+<button class="att-opt" onclick="openFile()">📎 File upload karo</button>
 </div>
 
-<!-- Input -->
-<div class="input-area">
+<!-- INPUT BAR -->
+<div class="input-bar">
 <div class="input-row">
 <button class="attach-btn" onclick="toggleAttachMenu()">📎</button>
-<input type="text" id="userInput" placeholder="Zara se kuch bhi poochho..." onkeypress="if(event.key==='Enter')sendMsg()">
+<input type="text" class="txt-input" id="userInput" placeholder="Zara se kuch bhi poochho..." onkeypress="if(event.key==='Enter')sendMsg()">
 <button class="send-btn" onclick="sendMsg()">➤</button>
 </div>
-<div class="btn-row">
-<button class="btn voice-btn" id="voiceBtn" onclick="toggleVoice()">🎤 Bolo</button>
-<button class="btn img-btn" onclick="generateImage()">🖼️ Image</button>
-<button class="btn speak-btn" id="speakBtn" onclick="toggleSpeak()">🔊 Sunao</button>
+<div class="action-btns">
+<button class="act-btn voice-btn" id="voiceBtn" onclick="toggleVoice()">🎤 Bolo</button>
+<button class="act-btn img-btn" onclick="generateImage()">🖼️ Image</button>
+<button class="act-btn speak-btn" id="speakBtn" onclick="toggleSpeak()">🔊 Sunao</button>
 </div>
 </div>
 
@@ -192,45 +198,57 @@ let voiceOutputOn=false;
 let attachedData={type:'',content:'',name:''};
 const GROQ_KEY='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';
 const TAVILY_KEY='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';
-const prompts={
-student:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein baat karo toh feminine Hindi use kar jaise kar sakti hoon, bata sakti hoon. English mein I can help you, I will tell you. Seedhi simple language mein jawab de.',
-business:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein feminine Hindi use kar jaise kar sakti hoon, help kar sakti hoon. English mein I can help you, I will assist you. GST email social media help kar.',
-health:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein feminine Hindi use kar jaise kar sakti hoon, bata sakti hoon. English mein I can help you, I will guide you. Doctor se milne ki salah de.'
+
+const modeData={
+student:{
+info:'🎓 Student Mode — Homework, Exam, Notes',
+chips:['📚 Homework Help','📝 Notes Banao','🧮 Math Solve','📖 Essay Likho','🎯 Exam Tips'],
+prompt:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein feminine Hindi use kar jaise kar sakti hoon, bata sakti hoon. English mein I can help you, I will tell you. Student ko padhai mein help kar.'
+},
+business:{
+info:'💼 Business Mode — GST, Email, Social Media',
+chips:['📊 GST Help','📧 Email Likho','📱 Social Media Post','💰 Business Advice','📦 Inventory'],
+prompt:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein feminine Hindi use kar jaise kar sakti hoon, help kar sakti hoon. English mein I can help you, I will assist you. Business mein help kar.'
+},
+health:{
+info:'🏥 Health Mode — Symptoms, Doctor Tips',
+chips:['🤒 Symptoms Check','💊 Medicine Info','🏃 Exercise Tips','🥗 Diet Plan','😴 Sleep Tips'],
+prompt:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein feminine Hindi use kar jaise kar sakti hoon, bata sakti hoon. English mein I can help you, I will guide you. Health mein help kar.'
+}
 };
+
 let recognition=null;
 let isListening=false;
 
 function setMode(m,btn){
 mode=m;
-document.querySelectorAll('.mode-btn').forEach(b=>{b.style.background='#f0f4f8';b.style.color='#777'});
-btn.style.background=m==='student'?'#e8f5e9':m==='business'?'#ede9ff':'#fce4ec';
-btn.style.color=m==='student'?'#2e7d32':m==='business'?'#6c63ff':'#c2185b';
-const labels={
-student:'🎓 Student Mode — Homework, Exam, Notes',
-business:'💼 Business Mode — GST, Email, Social Media',
-health:'🏥 Health Mode — Symptoms, Doctor Tips'
-};
-document.getElementById('modeLabel').textContent=labels[m];
+document.querySelectorAll('.mode-tab').forEach(t=>{
+t.className='mode-tab';
+});
+btn.className=`mode-tab active-${m}`;
+document.getElementById('modeInfo').textContent=modeData[m].info;
+const chips=document.getElementById('chipsRow');
+chips.innerHTML=modeData[m].chips.map(c=>`<div class="chip" onclick="useChip(this)">${c}</div>`).join('');
+}
+
+function useChip(el){
+document.getElementById('userInput').value=el.textContent.trim();
+document.getElementById('userInput').focus();
 }
 
 function shareApp(){
 if(navigator.share){
-navigator.share({
-title:'ZeroScale AI — India ka Smart AI Assistant',
-text:'🤖 ZeroScale AI — India ka apna AI Assistant! Hindi + English mein baat karo, images banao, web search karo — bilkul FREE! 🇮🇳',
-url:'https://zeroscale.co.in'
-});
+navigator.share({title:'ZeroScale AI',text:'🤖 India ka Smart AI Assistant! FREE mein use karo!',url:'https://zeroscale.co.in'});
 }else{
 navigator.clipboard.writeText('https://zeroscale.co.in');
-alert('✅ Link copy ho gaya!\nPaste karke share karo 😊');
+alert('✅ Link copy ho gaya!');
 }
 }
 
 function toggleAttachMenu(){
 document.getElementById('attachMenu').classList.toggle('show');
 }
-
-document.addEventListener('click',function(e){
+document.addEventListener('click',e=>{
 if(!e.target.closest('.attach-btn')&&!e.target.closest('.attach-menu')){
 document.getElementById('attachMenu').classList.remove('show');
 }
@@ -241,43 +259,37 @@ function openGallery(){document.getElementById('attachMenu').classList.remove('s
 function openFile(){document.getElementById('attachMenu').classList.remove('show');document.getElementById('fileInput').click();}
 
 function handleImageUpload(input,source){
-const file=input.files[0];
-if(!file)return;
+const file=input.files[0];if(!file)return;
 const reader=new FileReader();
-reader.onload=function(e){
+reader.onload=e=>{
 attachedData={type:'image',content:e.target.result,name:file.name};
-document.getElementById('previewImg').src=e.target.result;
-document.getElementById('previewImg').style.display='block';
-document.getElementById('previewName').textContent=file.name;
-document.getElementById('previewType').textContent=source==='camera'?'📷 Camera':'🖼 Gallery';
-document.getElementById('previewArea').classList.add('show');
+document.getElementById('prevImg').src=e.target.result;
+document.getElementById('prevImg').style.display='block';
+document.getElementById('prevName').textContent=file.name;
+document.getElementById('prevType').textContent=source==='camera'?'📷 Camera':'🖼️ Gallery';
+document.getElementById('previewBar').classList.add('show');
 document.getElementById('userInput').placeholder='Is photo ke baare mein poochho...';
-document.getElementById('userInput').focus();
 };
-reader.readAsDataURL(file);
-input.value='';
+reader.readAsDataURL(file);input.value='';
 }
 
 function handleFileUpload(input){
-const file=input.files[0];
-if(!file)return;
+const file=input.files[0];if(!file)return;
 const reader=new FileReader();
-reader.onload=function(e){
+reader.onload=e=>{
 attachedData={type:'file',content:e.target.result,name:file.name};
-document.getElementById('previewImg').style.display='none';
-document.getElementById('previewName').textContent=file.name;
-document.getElementById('previewType').textContent='📎 File';
-document.getElementById('previewArea').classList.add('show');
+document.getElementById('prevImg').style.display='none';
+document.getElementById('prevName').textContent=file.name;
+document.getElementById('prevType').textContent='📎 File attached';
+document.getElementById('previewBar').classList.add('show');
 document.getElementById('userInput').placeholder='Is file ke baare mein poochho...';
-document.getElementById('userInput').focus();
 };
-reader.readAsText(file);
-input.value='';
+reader.readAsText(file);input.value='';
 }
 
 function removeAttachment(){
 attachedData={type:'',content:'',name:''};
-document.getElementById('previewArea').classList.remove('show');
+document.getElementById('previewBar').classList.remove('show');
 document.getElementById('userInput').placeholder='Zara se kuch bhi poochho...';
 }
 
@@ -294,58 +306,47 @@ if(!voiceOutputOn)return;
 speechSynthesis.cancel();
 const clean=text.replace(/[*#_\-]/g,' ').replace(/\n/g,' ').trim();
 const words=clean.split(' ').filter(w=>w.length>0);
-const chunks=[];
-let chunk=[];
-let len=0;
-for(let w of words){
-chunk.push(w);len+=w.length+1;
-if(len>=120){chunks.push(chunk.join(' '));chunk=[];len=0;}
-}
+const chunks=[];let chunk=[];let len=0;
+for(let w of words){chunk.push(w);len+=w.length+1;if(len>=120){chunks.push(chunk.join(' '));chunk=[];len=0;}}
 if(chunk.length)chunks.push(chunk.join(' '));
 let i=0;
 function readNext(){
 if(!voiceOutputOn||i>=chunks.length)return;
 const utt=new SpeechSynthesisUtterance(chunks[i]);
 const voices=speechSynthesis.getVoices();
-const femaleHindi=voices.find(v=>v.lang&&v.lang.includes('hi')&&v.name.toLowerCase().includes('female'));
-const hindiVoice=voices.find(v=>v.lang&&v.lang.includes('hi'));
-const indianVoice=voices.find(v=>v.lang&&v.lang.includes('IN'));
-if(femaleHindi)utt.voice=femaleHindi;
-else if(hindiVoice)utt.voice=hindiVoice;
-else if(indianVoice)utt.voice=indianVoice;
+const fHindi=voices.find(v=>v.lang?.includes('hi')&&v.name.toLowerCase().includes('female'));
+const hindi=voices.find(v=>v.lang?.includes('hi'));
+const indian=voices.find(v=>v.lang?.includes('IN'));
+if(fHindi)utt.voice=fHindi;else if(hindi)utt.voice=hindi;else if(indian)utt.voice=indian;
 utt.lang='hi-IN';utt.rate=0.85;utt.pitch=1.8;utt.volume=1;
-utt.onend=function(){i++;setTimeout(readNext,50);}
-utt.onerror=function(){i++;setTimeout(readNext,50);}
+utt.onend=()=>{i++;setTimeout(readNext,50);}
+utt.onerror=()=>{i++;setTimeout(readNext,50);}
 speechSynthesis.speak(utt);i++;
 }
 setTimeout(readNext,200);
 }
 
 function toggleVoice(){
-if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){alert('Chrome use karo!');return;}
+if(!('webkitSpeechRecognition'in window)&&!('SpeechRecognition'in window)){alert('Chrome use karo!');return;}
 if(isListening){recognition.stop();return;}
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 recognition=new SR();
 recognition.lang='hi-IN';recognition.continuous=false;recognition.interimResults=false;
-recognition.onstart=function(){isListening=true;document.getElementById('voiceBtn').classList.add('listening');document.getElementById('voiceBtn').textContent='🔴 Sun rahi hoon...';};
-recognition.onresult=function(e){document.getElementById('userInput').value=e.results[0][0].transcript;sendMsg();};
-recognition.onend=function(){isListening=false;document.getElementById('voiceBtn').classList.remove('listening');document.getElementById('voiceBtn').textContent='🎤 Bolo';};
-recognition.onerror=function(e){isListening=false;document.getElementById('voiceBtn').classList.remove('listening');document.getElementById('voiceBtn').textContent='🎤 Bolo';if(e.error==='not-allowed')alert('Microphone permission do!');};
+recognition.onstart=()=>{isListening=true;document.getElementById('voiceBtn').classList.add('listening');document.getElementById('voiceBtn').textContent='🔴 Sun rahi hoon...';};
+recognition.onresult=e=>{document.getElementById('userInput').value=e.results[0][0].transcript;sendMsg();};
+recognition.onend=()=>{isListening=false;document.getElementById('voiceBtn').classList.remove('listening');document.getElementById('voiceBtn').textContent='🎤 Bolo';};
+recognition.onerror=e=>{isListening=false;document.getElementById('voiceBtn').classList.remove('listening');document.getElementById('voiceBtn').textContent='🎤 Bolo';if(e.error==='not-allowed')alert('Microphone permission do!');};
 recognition.start();
 }
 
-async function needsWebSearch(query){
-const keywords=['kaun','kya hai','kahan','kab','kitna','price','news','aaj','latest','company','address','contact','near','faridabad','delhi','mumbai','2024','2025'];
-return keywords.some(k=>query.toLowerCase().includes(k));
+async function needsWebSearch(q){
+const kw=['kaun','kya hai','kahan','kab','kitna','price','news','aaj','latest','company','address','contact','near','faridabad','delhi','mumbai','2024','2025'];
+return kw.some(k=>q.toLowerCase().includes(k));
 }
 
 async function webSearch(query){
 try{
-const r=await fetch('https://api.tavily.com/search',{
-method:'POST',
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify({api_key:TAVILY_KEY,query,search_depth:'basic',max_results:3,include_answer:true})
-});
+const r=await fetch('https://api.tavily.com/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({api_key:TAVILY_KEY,query,search_depth:'basic',max_results:3,include_answer:true})});
 const d=await r.json();
 if(d.answer)return d.answer;
 if(d.results?.length>0)return d.results.map(r=>r.content).join('\n').substring(0,800);
@@ -355,17 +356,8 @@ return null;
 
 async function translateToEnglish(text){
 try{
-const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
-method:'POST',
-headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
-body:JSON.stringify({
-model:'llama-3.3-70b-versatile',
-messages:[{role:'system',content:'Translate to detailed English for image generation. Return ONLY English.'},{role:'user',content:text}],
-max_tokens:150
-})
-});
-const d=await r.json();
-return d.choices[0].message.content.trim();
+const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:'Translate to detailed English for image generation. Return ONLY English.'},{role:'user',content:text}],max_tokens:150})});
+const d=await r.json();return d.choices[0].message.content.trim();
 }catch(e){return text;}
 }
 
@@ -379,10 +371,10 @@ inp.value='';
 const loadId='load'+Date.now();
 chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}">⏳ Image ban rahi hai...</div>`;
 chat.scrollTop=chat.scrollHeight;
-const englishPrompt=await translateToEnglish(txt);
+const eng=await translateToEnglish(txt);
 const seed=Math.floor(Math.random()*999999);
-const imgUrl=`https://image.pollinations.ai/prompt/${encodeURIComponent(englishPrompt)}?seed=${seed}&width=768&height=512&nologo=true&enhance=true&model=flux`;
-document.getElementById(loadId).innerHTML=`✅ Image ready! 🎨<br><img src="${imgUrl}" style="max-width:100%;border-radius:12px;margin-top:8px" onload="document.getElementById('chatArea').scrollTop=99999" onerror="this.parentElement.textContent='❌ Dobara try karo!'">`;
+const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(eng)}?seed=${seed}&width=768&height=512&nologo=true&enhance=true&model=flux`;
+document.getElementById(loadId).innerHTML=`✅ Image ready! 🎨<br><img src="${url}" style="max-width:100%;border-radius:12px;margin-top:8px" onload="document.getElementById('chatArea').scrollTop=99999" onerror="this.parentElement.textContent='❌ Dobara try karo!'">`;
 chat.scrollTop=chat.scrollHeight;
 }
 
@@ -399,13 +391,13 @@ chat.innerHTML+=`<div class="msg user-msg">📎 ${attachedData.name}<br>${txt||'
 chat.innerHTML+=`<div class="msg user-msg">${txt}</div>`;
 }
 inp.value='';
-const savedAttach={...attachedData};
+const saved={...attachedData};
 removeAttachment();
 const loadId='load'+Date.now();
 chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}"><div class="typing"><span></span><span></span><span></span></div></div>`;
 chat.scrollTop=chat.scrollHeight;
 try{
-let userContent=txt||'Batao';
+let content=txt||'Batao';
 let searchResult=null;
 let searchDone=false;
 if(txt&&await needsWebSearch(txt)){
@@ -413,23 +405,10 @@ document.getElementById(loadId).innerHTML='<div class="search-badge">🔍 Web se
 searchResult=await webSearch(txt);
 searchDone=true;
 }
-if(savedAttach.type==='file'){
-userContent=`File: ${savedAttach.name}\n${savedAttach.content.substring(0,800)}\nSawaal: ${txt||'Summary'}`;
-}else if(savedAttach.type==='image'){
-userContent=`[Image share ki] ${txt||'Batao'}`;
-}
-if(searchResult){
-userContent=`Search result: ${searchResult}\nSawaal: ${txt}\nSimple Hindi mein jawab do.`;
-}
-const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
-method:'POST',
-headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
-body:JSON.stringify({
-model:'llama-3.3-70b-versatile',
-messages:[{role:'system',content:prompts[mode]},{role:'user',content:userContent}],
-max_tokens:600
-})
-});
+if(saved.type==='file')content=`File: ${saved.name}\n${saved.content.substring(0,800)}\nSawaal: ${txt||'Summary'}`;
+else if(saved.type==='image')content=`[Image share ki] ${txt||'Batao'}`;
+if(searchResult)content=`Search result: ${searchResult}\nSawaal: ${txt}\nSimple Hindi mein jawab do.`;
+const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:modeData[mode].prompt},{role:'user',content}],max_tokens:600})});
 const d=await r.json();
 if(d.choices&&d.choices[0]){
 const reply=d.choices[0].message.content;
@@ -444,9 +423,7 @@ document.getElementById(loadId).textContent='❌ Network Error!';
 chat.scrollTop=chat.scrollHeight;
 }
 
-if('serviceWorker' in navigator){
-navigator.serviceWorker.register('/sw.js');
-}
+if('serviceWorker'in navigator)navigator.serviceWorker.register('/sw.js');
 </script>
 </body>
 </html>

@@ -6,6 +6,7 @@
 <title>ZeroScale AI</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#6c63ff">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;width:100%;overflow:hidden}
@@ -20,8 +21,12 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 .tb-title h1{font-size:17px;font-weight:900;line-height:1.2}
 .tb-title p{font-size:10px;opacity:.85}
 .tb-badge{background:#FFD700;color:#6c63ff;font-size:8px;font-weight:900;padding:2px 7px;border-radius:10px;margin-top:2px;display:inline-block}
-.tb-right{display:flex;gap:6px}
-.tb-btn{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:11px;font-weight:700;padding:6px 10px;border-radius:20px;cursor:pointer;white-space:nowrap}
+.tb-right{display:flex;gap:5px;align-items:center}
+.tb-btn{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:10px;font-weight:700;padding:6px 8px;border-radius:20px;cursor:pointer;white-space:nowrap;text-decoration:none}
+
+/* Gmail Button */
+.gmail-btn{background:#fff;color:#6c63ff;border:none;font-size:10px;font-weight:700;padding:6px 10px;border-radius:20px;cursor:pointer;display:flex;align-items:center;gap:4px}
+.gmail-connected{background:#e8f5e9;color:#2e7d32;border:1px solid #4CAF50}
 
 /* MODE TABS */
 .mode-tabs{background:#fff;padding:10px 16px;display:flex;gap:8px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
@@ -29,12 +34,13 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 .mode-tab.active-student{border-color:#4CAF50;background:#e8f5e9;color:#2e7d32}
 .mode-tab.active-business{border-color:#6c63ff;background:#ede9ff;color:#6c63ff}
 .mode-tab.active-health{border-color:#e91e8c;background:#fce4ec;color:#c2185b}
+.mode-tab.active-email{border-color:#ea4335;background:#fce8e6;color:#ea4335}
 .mode-info{text-align:center;padding:5px 16px;font-size:11px;font-weight:700;color:#6c63ff;background:linear-gradient(135deg,#ede9ff,#e0f7fa);flex-shrink:0}
 
-/* FEATURE CHIPS */
+/* CHIPS */
 .chips{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;flex-shrink:0;background:#fff;border-bottom:1px solid #f0f0f0}
 .chips::-webkit-scrollbar{display:none}
-.chip{background:#f0f4f8;border:1px solid #e0e0e0;border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;color:#555;white-space:nowrap;cursor:pointer;transition:.2s}
+.chip{background:#f0f4f8;border:1px solid #e0e0e0;border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;color:#555;white-space:nowrap;cursor:pointer}
 .chip:hover{background:#ede9ff;border-color:#6c63ff;color:#6c63ff}
 
 /* CHAT */
@@ -44,6 +50,7 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 .ai-msg{background:#fff;align-self:flex-start;color:#1a1a2e;border-bottom-left-radius:4px;border:1px solid #e8e8e8;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
 .ai-msg img{max-width:100%;border-radius:10px;margin-top:8px;display:block}
 .search-badge{background:linear-gradient(135deg,#e3f2fd,#e8f5e9);color:#1565c0;padding:4px 12px;border-radius:20px;font-size:11px;display:inline-block;margin-bottom:6px;font-weight:600}
+.email-badge{background:#fce8e6;color:#ea4335;padding:4px 12px;border-radius:20px;font-size:11px;display:inline-block;margin-bottom:6px;font-weight:600}
 
 /* WELCOME */
 .welcome{background:linear-gradient(135deg,#6c63ff,#3ecfcf);border-radius:20px;padding:20px;color:#fff;text-align:center}
@@ -53,6 +60,14 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 .w-features{display:grid;grid-template-columns:1fr 1fr;gap:6px;text-align:left}
 .w-feat{background:rgba(255,255,255,0.15);border-radius:10px;padding:7px 10px;font-size:11px;font-weight:600}
 
+/* EMAIL CARD */
+.email-card{background:#fff;border-radius:14px;padding:12px;border:1px solid #e8e8e8;margin-bottom:8px}
+.email-card .from{font-size:12px;font-weight:700;color:#1a1a2e}
+.email-card .subject{font-size:13px;font-weight:600;color:#6c63ff;margin:4px 0}
+.email-card .preview{font-size:12px;color:#666}
+.email-card .time{font-size:10px;color:#999;margin-top:4px}
+.email-card .ai-reply-btn{background:#6c63ff;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-size:11px;font-weight:700;cursor:pointer;margin-top:8px}
+
 /* PREVIEW */
 .preview-bar{display:none;background:#fff;border-top:2px solid #6c63ff;padding:8px 16px;flex-shrink:0;align-items:center;gap:10px}
 .preview-bar.show{display:flex}
@@ -61,13 +76,13 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 .prev-name{font-weight:700;font-size:13px}
 .prev-remove{background:#ff4444;color:#fff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:14px}
 
-/* INPUT BAR */
+/* INPUT */
 .input-bar{background:#fff;padding:8px 16px 10px;flex-shrink:0;box-shadow:0 -3px 15px rgba(0,0,0,0.08)}
 .input-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
 .attach-btn{width:42px;height:42px;background:#f0f4f8;border:2px solid #e0e0e0;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .txt-input{flex:1;padding:11px 16px;border-radius:25px;border:2px solid #e0e0e0;background:#f8f9fa;font-size:14px;color:#1a1a2e;outline:none;min-width:0}
 .txt-input:focus{border-color:#6c63ff;background:#fff}
-.send-btn{width:44px;height:44px;background:linear-gradient(135deg,#6c63ff,#3ecfcf);border:none;border-radius:50%;color:#fff;font-size:20px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(108,99,255,0.4)}
+.send-btn{width:44px;height:44px;background:linear-gradient(135deg,#6c63ff,#3ecfcf);border:none;border-radius:50%;color:#fff;font-size:20px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .action-btns{display:flex;gap:6px;justify-content:center}
 .act-btn{flex:1;padding:8px 10px;border:none;border-radius:20px;cursor:pointer;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:4px;max-width:120px}
 .voice-btn{background:linear-gradient(135deg,#ff6b9d,#ff4081);color:#fff}
@@ -111,27 +126,30 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 </div>
 </div>
 <div class="tb-right">
-<button class="tb-btn" onclick="shareApp()">📤 Share</button>
-<a href="/about.html" class="tb-btn" style="text-decoration:none">ℹ️</a>
-<a href="/privacy.html" class="tb-btn" style="text-decoration:none">🔒</a>
+<button id="gmailBtn" class="gmail-btn" onclick="connectGmail()">
+<img src="https://www.google.com/favicon.ico" width="12"> Gmail
+</button>
+<button class="tb-btn" onclick="shareApp()">📤</button>
+<a href="/about.html" class="tb-btn">ℹ️</a>
+<a href="/privacy.html" class="tb-btn">🔒</a>
 </div>
 </div>
 
 <!-- MODE TABS -->
 <div class="mode-tabs">
-<div class="mode-tab active-business" id="tab-student" onclick="setMode('student',this)">🎓 Student</div>
-<div class="mode-tab active-business" id="tab-business" onclick="setMode('business',this)" style="border-color:#6c63ff;background:#ede9ff;color:#6c63ff">💼 Business</div>
+<div class="mode-tab" id="tab-student" onclick="setMode('student',this)">🎓 Student</div>
+<div class="mode-tab active-business" id="tab-business" onclick="setMode('business',this)">💼 Business</div>
 <div class="mode-tab" id="tab-health" onclick="setMode('health',this)">🏥 Health</div>
+<div class="mode-tab" id="tab-email" onclick="setMode('email',this)">📧 Email</div>
 </div>
 <div class="mode-info" id="modeInfo">💼 Business Mode — GST, Email, Social Media</div>
 
-<!-- FEATURE CHIPS -->
+<!-- CHIPS -->
 <div class="chips" id="chipsRow">
 <div class="chip" onclick="useChip(this)">📊 GST Help</div>
 <div class="chip" onclick="useChip(this)">📧 Email Likho</div>
 <div class="chip" onclick="useChip(this)">📱 Social Media Post</div>
 <div class="chip" onclick="useChip(this)">💰 Business Advice</div>
-<div class="chip" onclick="useChip(this)">📦 Inventory</div>
 </div>
 
 <!-- CHAT -->
@@ -152,7 +170,7 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 <div class="w-feat">🖼️ Image Banao</div>
 <div class="w-feat">🔊 Jawab Suno</div>
 <div class="w-feat">📷 Camera</div>
-<div class="w-feat">📎 File Upload</div>
+<div class="w-feat">📧 Gmail Connect</div>
 </div>
 </div>
 </div>
@@ -174,7 +192,7 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 <button class="att-opt" onclick="openFile()">📎 File upload karo</button>
 </div>
 
-<!-- INPUT BAR -->
+<!-- INPUT -->
 <div class="input-bar">
 <div class="input-row">
 <button class="attach-btn" onclick="toggleAttachMenu()">📎</button>
@@ -196,39 +214,126 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 let mode='business';
 let voiceOutputOn=false;
 let attachedData={type:'',content:'',name:''};
+let gmailToken=null;
+let gmailUser=null;
+
 const GROQ_KEY='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';
 const TAVILY_KEY='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';
+const GOOGLE_CLIENT_ID='748041746639-m5rc8vej4f99g7p1d9q786pd8on8kgun.apps.googleusercontent.com';
 
 const modeData={
 student:{
 info:'🎓 Student Mode — Homework, Exam, Notes',
 chips:['📚 Homework Help','📝 Notes Banao','🧮 Math Solve','📖 Essay Likho','🎯 Exam Tips'],
-prompt:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein feminine Hindi use kar jaise kar sakti hoon, bata sakti hoon. English mein I can help you, I will tell you. Student ko padhai mein help kar.'
+prompt:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein feminine Hindi use kar. English mein I can help you. Student ko padhai mein help kar.'
 },
 business:{
 info:'💼 Business Mode — GST, Email, Social Media',
 chips:['📊 GST Help','📧 Email Likho','📱 Social Media Post','💰 Business Advice','📦 Inventory'],
-prompt:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein feminine Hindi use kar jaise kar sakti hoon, help kar sakti hoon. English mein I can help you, I will assist you. Business mein help kar.'
+prompt:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein feminine Hindi use kar. English mein I can help you. Business mein help kar.'
 },
 health:{
 info:'🏥 Health Mode — Symptoms, Doctor Tips',
 chips:['🤒 Symptoms Check','💊 Medicine Info','🏃 Exercise Tips','🥗 Diet Plan','😴 Sleep Tips'],
-prompt:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein feminine Hindi use kar jaise kar sakti hoon, bata sakti hoon. English mein I can help you, I will guide you. Health mein help kar.'
+prompt:'Tu ZeroScale AI ek female assistant hai jiska naam Zara hai. Hindi mein feminine Hindi use kar. English mein I can help you. Health mein help kar.'
+},
+email:{
+info:'📧 Email Mode — Professional Emails',
+chips:['📨 Invoice Email','🏖️ Leave Application','📦 Delivery Update','🤝 Business Proposal','💰 Payment Request'],
+prompt:'Tu ZeroScale AI ek female email expert hai jiska naam Zara hai. User jo simple Hindi mein likhe use professional English email mein convert kar. Subject, Greeting, Body, Closing zaroor ho. Phir Hindi mein bhi simple version de.'
 }
 };
 
 let recognition=null;
 let isListening=false;
 
+// Gmail Functions
+function connectGmail(){
+if(gmailToken){
+disconnectGmail();
+return;
+}
+const client=google.accounts.oauth2.initTokenClient({
+client_id:GOOGLE_CLIENT_ID,
+scope:'https://www.googleapis.com/auth/gmail.readonly',
+callback:(response)=>{
+if(response.access_token){
+gmailToken=response.access_token;
+getUserInfo();
+}
+}
+});
+client.requestAccessToken();
+}
+
+async function getUserInfo(){
+try{
+const r=await fetch('https://www.googleapis.com/oauth2/v2/userinfo',{
+headers:{Authorization:'Bearer '+gmailToken}
+});
+const d=await r.json();
+gmailUser=d.email;
+const btn=document.getElementById('gmailBtn');
+btn.className='gmail-btn gmail-connected';
+btn.innerHTML=`✅ ${d.email.split('@')[0]} <span style="font-size:9px;opacity:.7">(Disconnect)</span>`;
+const chat=document.getElementById('chatArea');
+chat.innerHTML+=`<div class="msg ai-msg"><div class="email-badge">📧 Gmail Connected!</div><br><b>${d.email}</b> se connect ho gayi hoon! 🎉<br><br>Ab main kar sakti hoon:<br>📬 Inbox check karna<br>📧 Email summary dena<br>✍️ Professional reply draft karna<br><br>Email tab mein jaake try karo!</div>`;
+chat.scrollTop=chat.scrollHeight;
+}catch(e){
+console.log('User info error:',e);
+}
+}
+
+function disconnectGmail(){
+gmailToken=null;
+gmailUser=null;
+const btn=document.getElementById('gmailBtn');
+btn.className='gmail-btn';
+btn.innerHTML=`<img src="https://www.google.com/favicon.ico" width="12"> Gmail`;
+const chat=document.getElementById('chatArea');
+chat.innerHTML+=`<div class="msg ai-msg">✅ Gmail disconnect ho gaya! Aapka data safe hai. 🔒</div>`;
+chat.scrollTop=chat.scrollHeight;
+}
+
+async function getEmails(){
+if(!gmailToken){
+return null;
+}
+try{
+const r=await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages?maxResults=5&q=is:unread',{
+headers:{Authorization:'Bearer '+gmailToken}
+});
+const d=await r.json();
+if(!d.messages)return 'Koi unread email nahi hai!';
+const emails=[];
+for(let msg of d.messages.slice(0,3)){
+const mr=await fetch(`https://gmail.googleapis.com/gmail/v1/users/me/messages/${msg.id}?format=metadata&metadataHeaders=From&metadataHeaders=Subject`,{
+headers:{Authorization:'Bearer '+gmailToken}
+});
+const md=await mr.json();
+const headers=md.payload.headers;
+const from=headers.find(h=>h.name==='From')?.value||'Unknown';
+const subject=headers.find(h=>h.name==='Subject')?.value||'No Subject';
+emails.push(`From: ${from}\nSubject: ${subject}`);
+}
+return emails.join('\n\n');
+}catch(e){
+return null;
+}
+}
+
 function setMode(m,btn){
 mode=m;
-document.querySelectorAll('.mode-tab').forEach(t=>{
-t.className='mode-tab';
-});
+document.querySelectorAll('.mode-tab').forEach(t=>t.className='mode-tab');
 btn.className=`mode-tab active-${m}`;
 document.getElementById('modeInfo').textContent=modeData[m].info;
 const chips=document.getElementById('chipsRow');
 chips.innerHTML=modeData[m].chips.map(c=>`<div class="chip" onclick="useChip(this)">${c}</div>`).join('');
+if(m==='email'&&!gmailToken){
+const chat=document.getElementById('chatArea');
+chat.innerHTML+=`<div class="msg ai-msg"><div class="email-badge">📧 Email Mode</div><br>Gmail connect karo upar se — tab main aapki emails padhkar help kar sakti hoon!<br><br>Bina Gmail ke bhi:<br>✍️ Professional email likh sakti hoon<br>📝 Email template bana sakti hoon</div>`;
+chat.scrollTop=chat.scrollHeight;
+}
 }
 
 function useChip(el){
@@ -335,7 +440,7 @@ recognition.lang='hi-IN';recognition.continuous=false;recognition.interimResults
 recognition.onstart=()=>{isListening=true;document.getElementById('voiceBtn').classList.add('listening');document.getElementById('voiceBtn').textContent='🔴 Sun rahi hoon...';};
 recognition.onresult=e=>{document.getElementById('userInput').value=e.results[0][0].transcript;sendMsg();};
 recognition.onend=()=>{isListening=false;document.getElementById('voiceBtn').classList.remove('listening');document.getElementById('voiceBtn').textContent='🎤 Bolo';};
-recognition.onerror=e=>{isListening=false;document.getElementById('voiceBtn').classList.remove('listening');document.getElementById('voiceBtn').textContent='🎤 Bolo';if(e.error==='not-allowed')alert('Microphone permission do!');};
+recognition.onerror=e=>{isListening=false;document.getElementById('voiceBtn').classList.remove('listening');document.getElementById('voiceBtn').textContent='🎤 Bolo';};
 recognition.start();
 }
 
@@ -396,23 +501,43 @@ removeAttachment();
 const loadId='load'+Date.now();
 chat.innerHTML+=`<div class="msg ai-msg" id="${loadId}"><div class="typing"><span></span><span></span><span></span></div></div>`;
 chat.scrollTop=chat.scrollHeight;
+
 try{
 let content=txt||'Batao';
 let searchResult=null;
 let searchDone=false;
-if(txt&&await needsWebSearch(txt)){
+let emailData=null;
+
+// Gmail check
+if(gmailToken&&(txt.toLowerCase().includes('email')||txt.toLowerCase().includes('inbox')||txt.toLowerCase().includes('mail'))){
+document.getElementById(loadId).innerHTML='<div class="email-badge">📧 Gmail check ho rahi hai...</div>';
+emailData=await getEmails();
+}else if(txt&&await needsWebSearch(txt)){
 document.getElementById(loadId).innerHTML='<div class="search-badge">🔍 Web search ho rahi hai...</div>';
 searchResult=await webSearch(txt);
 searchDone=true;
 }
+
 if(saved.type==='file')content=`File: ${saved.name}\n${saved.content.substring(0,800)}\nSawaal: ${txt||'Summary'}`;
 else if(saved.type==='image')content=`[Image share ki] ${txt||'Batao'}`;
-if(searchResult)content=`Search result: ${searchResult}\nSawaal: ${txt}\nSimple Hindi mein jawab do.`;
-const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:modeData[mode].prompt},{role:'user',content}],max_tokens:600})});
+
+if(emailData)content=`Gmail inbox data:\n${emailData}\n\nUser ka sawaal: ${txt}\nSimple Hindi mein jawab do aur emails ka summary do.`;
+else if(searchResult)content=`Search result: ${searchResult}\nSawaal: ${txt}\nSimple Hindi mein jawab do.`;
+
+const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+method:'POST',
+headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
+body:JSON.stringify({
+model:'llama-3.3-70b-versatile',
+messages:[{role:'system',content:modeData[mode].prompt},{role:'user',content}],
+max_tokens:600
+})
+});
 const d=await r.json();
 if(d.choices&&d.choices[0]){
 const reply=d.choices[0].message.content;
-document.getElementById(loadId).innerHTML=(searchDone?'<div class="search-badge">🔍 Web search se mila</div>':'')+reply;
+const badge=emailData?'<div class="email-badge">📧 Gmail se mila</div>':searchDone?'<div class="search-badge">🔍 Web search se mila</div>':'';
+document.getElementById(loadId).innerHTML=badge+reply;
 speakText(reply);
 }else{
 document.getElementById(loadId).textContent='❌ Dobara try karo!';

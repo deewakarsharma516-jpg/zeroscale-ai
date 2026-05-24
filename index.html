@@ -10,20 +10,17 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;width:100%;overflow:hidden}
 body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0}
-/* TOPBAR */
 .topbar{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .logo-area{display:flex;align-items:center;gap:8px}
-.logo-box{width:40px;height:40px;background:rgba(255,255,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;border:2px solid rgba(255,255,255,0.3);flex-shrink:0}
+.logo-box{width:40px;height:40px;background:rgba(255,255,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;border:2px solid rgba(255,255,255,0.3);flex-shrink:0}
 .logo-txt h1{font-size:15px;font-weight:900;color:#fff}
 .logo-txt p{font-size:9px;color:rgba(255,255,255,0.85)}
 .logo-badge{background:#FFD700;color:#6c63ff;font-size:8px;font-weight:900;padding:1px 6px;border-radius:8px;display:inline-block;margin-top:2px}
 .btn-area{display:flex;gap:4px;align-items:center}
-.hbtn{padding:6px 10px;border-radius:16px;font-size:10px;font-weight:700;cursor:pointer;border:none;white-space:nowrap}
-.gmail-hbtn{background:#fff;color:#333;display:flex;align-items:center;gap:3px}
+.hbtn{padding:6px 10px;border-radius:16px;font-size:10px;font-weight:700;cursor:pointer;border:none;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
+.gmail-hbtn{background:#fff;color:#333}
 .other-hbtn{background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.3)}
-.gmail-connected{background:#e8f5e9;color:#2e7d32}
-
-/* MODES */
+.gmail-connected{background:#e8f5e9!important;color:#2e7d32!important}
 .modes{display:flex;gap:6px;padding:8px 12px;background:#fff;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
 .mtab{flex:1;text-align:center;padding:8px 3px;border-radius:10px;font-size:10px;font-weight:700;cursor:pointer;border:2px solid #e0e0e0;background:#f8f9fa;color:#999}
 .ms{border-color:#4CAF50;background:#e8f5e9;color:#2e7d32}
@@ -31,13 +28,27 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 .mh{border-color:#e91e8c;background:#fce4ec;color:#c2185b}
 .me{border-color:#ea4335;background:#fce8e6;color:#ea4335}
 .minfo{text-align:center;padding:4px;font-size:10px;font-weight:700;color:#6c63ff;background:linear-gradient(135deg,#ede9ff,#e0f7fa);flex-shrink:0}
-
-/* CHIPS */
 .chips{display:flex;gap:5px;padding:6px 12px;overflow-x:auto;flex-shrink:0;background:#fff;border-bottom:1px solid #f0f0f0}
 .chips::-webkit-scrollbar{display:none}
 .chip{background:#f0f4f8;border:1px solid #e0e0e0;border-radius:14px;padding:4px 10px;font-size:10px;font-weight:600;color:#555;white-space:nowrap;cursor:pointer}
+.chip:active{background:#ede9ff;border-color:#6c63ff;color:#6c63ff}
 
-/* CHAT */
+/* HISTORY PANEL */
+.hist-panel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:500;flex-direction:column}
+.hist-panel.show{display:flex}
+.hist-header{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.hist-header h2{color:#fff;font-size:16px;font-weight:900}
+.hist-close{background:rgba(255,255,255,0.2);border:none;color:#fff;padding:6px 12px;border-radius:16px;cursor:pointer;font-size:12px;font-weight:700}
+.hist-list{flex:1;overflow-y:auto;padding:12px}
+.hist-day{font-size:11px;font-weight:700;color:#6c63ff;padding:8px 0 4px;border-bottom:1px solid #ede9ff;margin-bottom:8px}
+.hist-item{background:#f8f9fa;border-radius:12px;padding:10px 14px;margin-bottom:8px;cursor:pointer;border:1px solid #e8e8e8}
+.hist-item:active{background:#ede9ff}
+.hist-item .hi-time{font-size:10px;color:#999;margin-bottom:3px}
+.hist-item .hi-msg{font-size:13px;color:#1a1a2e;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hist-item .hi-reply{font-size:11px;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.hist-empty{text-align:center;color:#999;padding:40px 20px;font-size:14px}
+.hist-clear{background:#fff0f0;color:#ff4444;border:1px solid #ffcccc;border-radius:12px;padding:10px;width:100%;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px}
+
 .chat{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;background:#f5f6fa;-webkit-overflow-scrolling:touch}
 .msg{padding:10px 14px;border-radius:16px;max-width:82%;font-size:13px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
 .umsg{background:linear-gradient(135deg,#6c63ff,#3ecfcf);align-self:flex-end;color:#fff;border-bottom-right-radius:3px}
@@ -45,23 +56,17 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 .amsg img{max-width:100%;border-radius:10px;margin-top:8px;display:block}
 .sbadge{background:#e3f2fd;color:#1565c0;padding:3px 10px;border-radius:14px;font-size:10px;display:inline-block;margin-bottom:5px;font-weight:600}
 .ebadge{background:#fce8e6;color:#ea4335;padding:3px 10px;border-radius:14px;font-size:10px;display:inline-block;margin-bottom:5px;font-weight:600}
-
-/* WELCOME */
 .wcard{background:linear-gradient(135deg,#6c63ff,#3ecfcf);border-radius:16px;padding:16px;color:#fff;text-align:center}
 .wcard h2{font-size:16px;font-weight:900;margin:8px 0 3px}
 .wcard p{font-size:11px;opacity:.9;margin-bottom:12px}
 .wgrid{display:grid;grid-template-columns:1fr 1fr;gap:5px;text-align:left}
 .witem{background:rgba(255,255,255,0.15);border-radius:8px;padding:6px 8px;font-size:11px;font-weight:600}
-
-/* PREVIEW */
 .prevbar{display:none;background:#fff;border-top:2px solid #6c63ff;padding:6px 12px;flex-shrink:0;align-items:center;gap:8px}
 .prevbar.show{display:flex}
 .previmg{width:40px;height:40px;object-fit:cover;border-radius:6px;display:none}
 .previnfo{flex:1;font-size:11px}
 .prevname{font-weight:700;font-size:12px}
 .prevrem{background:#ff4444;color:#fff;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:12px}
-
-/* INPUT */
 .inpbar{background:#fff;padding:8px 12px;flex-shrink:0;box-shadow:0 -3px 15px rgba(0,0,0,0.08)}
 .inprow{display:flex;gap:6px;align-items:center;margin-bottom:6px}
 .attbtn{width:40px;height:40px;background:#f0f4f8;border:2px solid #e0e0e0;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -75,13 +80,10 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 .ibtn{background:linear-gradient(135deg,#4CAF50,#2e7d32);color:#fff}
 .spbtn{background:linear-gradient(135deg,#ff9800,#f57c00);color:#fff}
 .spbtn.on{background:linear-gradient(135deg,#6c63ff,#3ecfcf)}
-
-/* ATTACH MENU */
 .attmenu{display:none;position:fixed;bottom:105px;left:12px;background:#fff;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,0.15);padding:8px;z-index:999;flex-direction:column;gap:4px;border:1px solid #eee}
 .attmenu.show{display:flex}
 .aopt{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;border:none;background:transparent;width:185px;text-align:left}
 .aopt:active{background:#ede9ff;color:#6c63ff}
-
 @keyframes pulse{0%{opacity:1}50%{opacity:.5}100%{opacity:1}}
 .typing{display:inline-flex;gap:4px;padding:4px 0}
 .typing span{width:6px;height:6px;background:#6c63ff;border-radius:50%;animation:bounce 1.2s infinite}
@@ -103,12 +105,12 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 </div>
 </div>
 <div class="btn-area">
-<button style="background:#fff;color:#333;border:none;padding:6px 10px;border-radius:16px;font-size:10px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:3px;flex-shrink:0" id="gmailBtn" onclick="connectGmail()">
+<button class="hbtn gmail-hbtn" id="gmailBtn" onclick="connectGmail()">
 <img src="https://www.google.com/favicon.ico" width="11" alt="G"> Gmail
 </button>
+<button class="hbtn other-hbtn" onclick="showHistory()">🕐 History</button>
 <button class="hbtn other-hbtn" onclick="shareApp()">📤</button>
-<a href="/about.html" class="hbtn other-hbtn" style="text-decoration:none">ℹ️</a>
-<a href="/privacy.html" class="hbtn other-hbtn" style="text-decoration:none">🔒</a>
+<a href="/about.html" class="hbtn other-hbtn">ℹ️</a>
 </div>
 </div>
 
@@ -142,9 +144,18 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 <div class="witem">🖼️ Image Banao</div>
 <div class="witem">🔊 Jawab Suno</div>
 <div class="witem">📷 Camera</div>
-<div class="witem">📧 Gmail Connect</div>
+<div class="witem">🕐 History</div>
 </div>
 </div>
+</div>
+
+<!-- HISTORY PANEL -->
+<div class="hist-panel" id="histPanel">
+<div class="hist-header">
+<h2>🕐 Chat History</h2>
+<button class="hist-close" onclick="hideHistory()">✕ Band Karo</button>
+</div>
+<div class="hist-list" id="histList"></div>
 </div>
 
 <!-- PREVIEW -->
@@ -189,19 +200,84 @@ let att={type:'',content:'',name:''};
 let gTok=null;
 let rec=null;
 let listening=false;
+let chatHistory=[];
 
 const GK='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';
 const TK='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';
 const CID='748041746639-m5rc8vej4f99g7p1d9q786pd8on8kgun.apps.googleusercontent.com';
 
 const modes={
-student:{info:'🎓 Student Mode',chips:['📚 Homework','📝 Notes','🧮 Math','📖 Essay','🎯 Exam Tips'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar. Student help kar.'},
-business:{info:'💼 Business Mode',chips:['📊 GST Help','📧 Email','📱 Social Media','💰 Advice','📦 Inventory'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar. Business help kar.'},
-health:{info:'🏥 Health Mode',chips:['🤒 Symptoms','💊 Medicine','🏃 Exercise','🥗 Diet','😴 Sleep'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar. Health help kar.'},
-email:{info:'📧 Email Mode',chips:['📨 Invoice','🏖️ Leave','📦 Delivery','🤝 Proposal','💰 Payment'],p:'Tu female email expert Zara hai. Simple Hindi ko professional English email mein convert kar. Subject, Greeting, Body, Closing dale.'}
+student:{info:'🎓 Student Mode — Homework, Exam, Notes',chips:['📚 Homework','📝 Notes','🧮 Math','📖 Essay','🎯 Exam Tips'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar. English mein I can help you. Student help kar.'},
+business:{info:'💼 Business Mode — GST, Email, Social Media',chips:['📊 GST Help','📧 Email','📱 Social Media','💰 Advice','📦 Inventory'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar. English mein I can help you. Business help kar.'},
+health:{info:'🏥 Health Mode — Symptoms, Doctor Tips',chips:['🤒 Symptoms','💊 Medicine','🏃 Exercise','🥗 Diet','😴 Sleep'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar. English mein I can help you. Health help kar.'},
+email:{info:'📧 Email Mode — Professional Emails',chips:['📨 Invoice','🏖️ Leave','📦 Delivery','🤝 Proposal','💰 Payment'],p:'Tu female email expert Zara hai. Simple Hindi ko professional English email mein convert kar. Subject, Greeting, Body, Closing dale.'}
 };
 
-// Gmail token from URL
+// History Functions
+function saveToHistory(userMsg,aiReply){
+const history=JSON.parse(localStorage.getItem('zs_history')||'[]');
+history.unshift({
+date:new Date().toLocaleDateString('hi-IN'),
+time:new Date().toLocaleTimeString('hi-IN',{hour:'2-digit',minute:'2-digit'}),
+userMsg:userMsg.substring(0,100),
+aiReply:aiReply.substring(0,150),
+timestamp:Date.now()
+});
+if(history.length>200)history.splice(200);
+localStorage.setItem('zs_history',JSON.stringify(history));
+}
+
+function showHistory(){
+const panel=document.getElementById('histPanel');
+panel.classList.add('show');
+loadHistoryUI();
+}
+
+function hideHistory(){
+document.getElementById('histPanel').classList.remove('show');
+}
+
+function loadHistoryUI(){
+const list=document.getElementById('histList');
+const history=JSON.parse(localStorage.getItem('zs_history')||'[]');
+if(history.length===0){
+list.innerHTML='<div class="hist-empty">🕐 Abhi koi history nahi hai!<br><br>Zara se baat karo — sab yaad rakhegi! 😊</div>';
+return;
+}
+const grouped={};
+history.forEach(h=>{
+if(!grouped[h.date])grouped[h.date]=[];
+grouped[h.date].push(h);
+});
+let html='';
+Object.keys(grouped).forEach(date=>{
+html+=`<div class="hist-day">📅 ${date}</div>`;
+grouped[date].forEach(h=>{
+html+=`<div class="hist-item" onclick="loadFromHistory('${encodeURIComponent(h.userMsg)}')">
+<div class="hi-time">🕐 ${h.time}</div>
+<div class="hi-msg">👤 ${h.userMsg}</div>
+<div class="hi-reply">🤖 ${h.aiReply}</div>
+</div>`;
+});
+});
+html+=`<button class="hist-clear" onclick="clearHistory()">🗑️ Poori History Delete Karo</button>`;
+list.innerHTML=html;
+}
+
+function loadFromHistory(msg){
+hideHistory();
+document.getElementById('inp').value=decodeURIComponent(msg);
+document.getElementById('inp').focus();
+}
+
+function clearHistory(){
+if(confirm('Poori history delete karein?')){
+localStorage.removeItem('zs_history');
+loadHistoryUI();
+}
+}
+
+// Gmail Functions
 (function(){
 const h=location.hash;
 if(h&&h.includes('access_token')){
@@ -225,7 +301,7 @@ const d=await r.json();
 const b=document.getElementById('gmailBtn');
 b.className='hbtn gmail-hbtn gmail-connected';
 b.innerHTML='✅ '+d.email.split('@')[0];
-addMsg('ai','<div class="ebadge">📧 Gmail Connected!</div><br><b>'+d.email+'</b> connect ho gaya! 🎉<br><br>Ab inbox check kar sakti hoon, email draft kar sakti hoon!');
+addMsg('ai','<div class="ebadge">📧 Gmail Connected!</div><br><b>'+d.email+'</b> connect ho gaya! 🎉');
 }catch(e){console.log(e);}
 }
 
@@ -234,7 +310,7 @@ gTok=null;
 const b=document.getElementById('gmailBtn');
 b.className='hbtn gmail-hbtn';
 b.innerHTML='<img src="https://www.google.com/favicon.ico" width="11" alt="G"> Gmail';
-addMsg('ai','✅ Gmail disconnect ho gaya! Data safe hai. 🔒');
+addMsg('ai','✅ Gmail disconnect ho gaya! 🔒');
 }
 
 async function getEmails(){
@@ -266,24 +342,27 @@ return d;
 
 function setMode(m,btn){
 mode=m;
-document.querySelectorAll('.mtab').forEach(t=>{t.className='mtab';});
+chatHistory=[];
+document.querySelectorAll('.mtab').forEach(t=>t.className='mtab');
 btn.className='mtab m'+m.charAt(0);
 document.getElementById('minfo').textContent=modes[m].info;
 document.getElementById('chips').innerHTML=modes[m].chips.map(c=>`<div class="chip" onclick="useChip(this)">${c}</div>`).join('');
 if(m==='email'&&!gTok){
-addMsg('ai','<div class="ebadge">📧 Email Mode</div><br>Gmail connect karo upar se ya kuch bhi likho — professional email bana deti hoon! 😊');
+addMsg('ai','<div class="ebadge">📧 Email Mode</div><br>Gmail connect karo ya kuch bhi likho — professional email bana deti hoon! 😊');
 }
 }
 
 function useChip(el){document.getElementById('inp').value=el.textContent.trim();document.getElementById('inp').focus();}
 
 function shareApp(){
-if(navigator.share){navigator.share({title:'ZeroScale AI',text:'India ka Smart AI! FREE use karo!',url:'https://zeroscale.co.in'});}
+if(navigator.share){navigator.share({title:'ZeroScale AI',text:'🤖 India ka Smart AI! FREE use karo!',url:'https://zeroscale.co.in'});}
 else{navigator.clipboard.writeText('https://zeroscale.co.in');alert('✅ Link copy ho gaya!');}
 }
 
 function toggleAtt(){document.getElementById('attmenu').classList.toggle('show');}
-document.addEventListener('click',e=>{if(!e.target.closest('.attbtn')&&!e.target.closest('.attmenu'))document.getElementById('attmenu').classList.remove('show');});
+document.addEventListener('click',e=>{
+if(!e.target.closest('.attbtn')&&!e.target.closest('.attmenu'))document.getElementById('attmenu').classList.remove('show');
+});
 function openCam(){document.getElementById('attmenu').classList.remove('show');document.getElementById('camInp').click();}
 function openGal(){document.getElementById('attmenu').classList.remove('show');document.getElementById('galInp').click();}
 function openFil(){document.getElementById('attmenu').classList.remove('show');document.getElementById('filInp').click();}
@@ -370,7 +449,7 @@ rec.start();
 }
 
 async function needsSearch(q){
-return ['kaun','kya hai','kahan','kab','kitna','price','news','aaj','latest','company','address','contact','near','faridabad','delhi','mumbai','2024','2025'].some(k=>q.toLowerCase().includes(k));
+return['kaun','kya hai','kahan','kab','kitna','price','news','aaj','latest','company','address','contact','near','faridabad','delhi','mumbai','2024','2025'].some(k=>q.toLowerCase().includes(k));
 }
 
 async function webSearch(q){
@@ -393,7 +472,6 @@ const d=await r.json();return d.choices[0].message.content.trim();
 async function genImg(){
 const txt=document.getElementById('inp').value.trim();
 if(!txt){alert('Pehle image ka description likho!');return;}
-const c=document.getElementById('chat');
 addMsg('user','🖼️ '+txt);
 document.getElementById('inp').value='';
 const el=addMsg('ai','⏳ Image ban rahi hai...');
@@ -407,8 +485,6 @@ async function send(){
 const inp=document.getElementById('inp');
 const txt=inp.value.trim();
 if(!txt&&!att.content)return;
-const chat=document.getElementById('chat');
-
 if(att.type==='image'){
 addMsg('user',`<img src="${att.content}" style="max-width:200px;border-radius:10px;display:block;margin-bottom:6px">${txt||'Is image ke baare mein batao'}`);
 }else if(att.type==='file'){
@@ -416,48 +492,47 @@ addMsg('user','📎 '+att.name+'<br>'+(txt||'Summary do'));
 }else{
 addMsg('user',txt);
 }
-
 inp.value='';
 const saved={...att};
 removeAtt();
 const el=addMsg('ai','<div class="typing"><span></span><span></span><span></span></div>');
-
 try{
 let content=txt||'Batao';
 let badge='';
 const isEmail=txt&&(txt.toLowerCase().includes('email')||txt.toLowerCase().includes('inbox')||txt.toLowerCase().includes('mail'));
-
 if(gTok&&isEmail){
 el.innerHTML='<div class="ebadge">📧 Gmail check ho rahi hai...</div>';
 const em=await getEmails();
-if(em)content=`Gmail inbox:\n${em}\nSawaal: ${txt}\nHindi mein jawab do.`;
-badge='<div class="ebadge">📧 Gmail se mila</div>';
+if(em){content=`Gmail inbox:\n${em}\nSawaal: ${txt}\nHindi mein jawab do.`;badge='<div class="ebadge">📧 Gmail se mila</div>';}
 }else if(txt&&await needsSearch(txt)){
 el.innerHTML='<div class="sbadge">🔍 Web search ho rahi hai...</div>';
 const sr=await webSearch(txt);
 if(sr){content=`Search: ${sr}\nSawaal: ${txt}\nHindi mein jawab do.`;badge='<div class="sbadge">🔍 Web search se mila</div>';}
 }
-
 if(saved.type==='file')content=`File: ${saved.name}\n${saved.content.substring(0,800)}\nSawaal: ${txt||'Summary'}`;
 else if(saved.type==='image')content=`[Image share ki] ${txt||'Batao'}`;
-
+chatHistory.push({role:'user',content});
+if(chatHistory.length>30)chatHistory=chatHistory.slice(-30);
 const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
 method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer '+GK},
-body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:modes[mode].p},{role:'user',content}],max_tokens:600})
+body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:modes[mode].p},...chatHistory],max_tokens:600})
 });
 const d=await r.json();
 if(d.choices?.[0]){
 const rep=d.choices[0].message.content;
 el.innerHTML=badge+rep;
 speak(rep);
+chatHistory.push({role:'assistant',content:rep});
+if(chatHistory.length>30)chatHistory=chatHistory.slice(-30);
+saveToHistory(txt||'Image/File',rep.replace(/<[^>]*>/g,''));
 }else{
 el.textContent='❌ Dobara try karo!';
 }
 }catch(e){
 el.textContent='❌ Network Error!';
 }
-chat.scrollTop=chat.scrollHeight;
+document.getElementById('chat').scrollTop=99999;
 }
 
 if('serviceWorker'in navigator)navigator.serviceWorker.register('/sw.js');

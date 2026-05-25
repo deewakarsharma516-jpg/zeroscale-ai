@@ -32,8 +32,6 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 .chips::-webkit-scrollbar{display:none}
 .chip{background:#f0f4f8;border:1px solid #e0e0e0;border-radius:14px;padding:4px 10px;font-size:10px;font-weight:600;color:#555;white-space:nowrap;cursor:pointer}
 .chip:active{background:#ede9ff;border-color:#6c63ff;color:#6c63ff}
-
-/* HISTORY PANEL */
 .hist-panel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:500;flex-direction:column}
 .hist-panel.show{display:flex}
 .hist-header{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
@@ -42,13 +40,11 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 .hist-list{flex:1;overflow-y:auto;padding:12px}
 .hist-day{font-size:11px;font-weight:700;color:#6c63ff;padding:8px 0 4px;border-bottom:1px solid #ede9ff;margin-bottom:8px}
 .hist-item{background:#f8f9fa;border-radius:12px;padding:10px 14px;margin-bottom:8px;cursor:pointer;border:1px solid #e8e8e8}
-.hist-item:active{background:#ede9ff}
 .hist-item .hi-time{font-size:10px;color:#999;margin-bottom:3px}
 .hist-item .hi-msg{font-size:13px;color:#1a1a2e;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hist-item .hi-reply{font-size:11px;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
 .hist-empty{text-align:center;color:#999;padding:40px 20px;font-size:14px}
 .hist-clear{background:#fff0f0;color:#ff4444;border:1px solid #ffcccc;border-radius:12px;padding:10px;width:100%;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px}
-
 .chat{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;background:#f5f6fa;-webkit-overflow-scrolling:touch}
 .msg{padding:10px 14px;border-radius:16px;max-width:82%;font-size:13px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
 .umsg{background:linear-gradient(135deg,#6c63ff,#3ecfcf);align-self:flex-end;color:#fff;border-bottom-right-radius:3px}
@@ -94,7 +90,6 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
 <div class="logo-area">
 <div class="logo-box">⚡</div>
@@ -114,7 +109,6 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 </div>
 </div>
 
-<!-- MODES -->
 <div class="modes">
 <div class="mtab" onclick="setMode('student',this)">🎓 Student</div>
 <div class="mtab mb" onclick="setMode('business',this)">💼 Business</div>
@@ -123,7 +117,6 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 </div>
 <div class="minfo" id="minfo">💼 Business Mode — GST, Email, Social Media</div>
 
-<!-- CHIPS -->
 <div class="chips" id="chips">
 <div class="chip" onclick="useChip(this)">📊 GST Help</div>
 <div class="chip" onclick="useChip(this)">📧 Email Likho</div>
@@ -132,7 +125,6 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 <div class="chip" onclick="useChip(this)">📦 Inventory</div>
 </div>
 
-<!-- CHAT -->
 <div class="chat" id="chat">
 <div class="amsg wcard">
 <div style="font-size:40px">⚡</div>
@@ -149,7 +141,6 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 </div>
 </div>
 
-<!-- HISTORY PANEL -->
 <div class="hist-panel" id="histPanel">
 <div class="hist-header">
 <h2>🕐 Chat History</h2>
@@ -158,7 +149,6 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 <div class="hist-list" id="histList"></div>
 </div>
 
-<!-- PREVIEW -->
 <div class="prevbar" id="prevbar">
 <img class="previmg" id="previmg" src="" alt="">
 <div class="previnfo">
@@ -168,14 +158,12 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:
 <button class="prevrem" onclick="removeAtt()">✕</button>
 </div>
 
-<!-- ATTACH MENU -->
 <div class="attmenu" id="attmenu">
 <button class="aopt" onclick="openCam()">📷 Camera se photo lo</button>
 <button class="aopt" onclick="openGal()">🖼️ Gallery se photo lo</button>
 <button class="aopt" onclick="openFil()">📎 File upload karo</button>
 </div>
 
-<!-- INPUT -->
 <div class="inpbar">
 <div class="inprow">
 <button class="attbtn" onclick="toggleAtt()">📎</button>
@@ -202,82 +190,44 @@ let rec=null;
 let listening=false;
 let chatHistory=[];
 
-const GK='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';
+const GK='APNI_GROQ_KEY_YAHAN_DAALO';
 const TK='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';
 const CID='748041746639-m5rc8vej4f99g7p1d9q786pd8on8kgun.apps.googleusercontent.com';
 
 const modes={
-student:{info:'🎓 Student Mode — Homework, Exam, Notes',chips:['📚 Homework','📝 Notes','🧮 Math','📖 Essay','🎯 Exam Tips'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar. English mein I can help you. Student help kar.'},
-business:{info:'💼 Business Mode — GST, Email, Social Media',chips:['📊 GST Help','📧 Email','📱 Social Media','💰 Advice','📦 Inventory'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar. English mein I can help you. Business help kar.'},
-health:{info:'🏥 Health Mode — Symptoms, Doctor Tips',chips:['🤒 Symptoms','💊 Medicine','🏃 Exercise','🥗 Diet','😴 Sleep'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar. English mein I can help you. Health help kar.'},
-email:{info:'📧 Email Mode — Professional Emails',chips:['📨 Invoice','🏖️ Leave','📦 Delivery','🤝 Proposal','💰 Payment'],p:'Tu female email expert Zara hai. Simple Hindi ko professional English email mein convert kar. Subject, Greeting, Body, Closing dale.'}
+student:{info:'🎓 Student Mode',chips:['📚 Homework','📝 Notes','🧮 Math','📖 Essay','🎯 Exam Tips'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar. Student help kar.'},
+business:{info:'💼 Business Mode',chips:['📊 GST Help','📧 Email','📱 Social Media','💰 Advice','📦 Inventory'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar. Business help kar.'},
+health:{info:'🏥 Health Mode',chips:['🤒 Symptoms','💊 Medicine','🏃 Exercise','🥗 Diet','😴 Sleep'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar. Health help kar.'},
+email:{info:'📧 Email Mode',chips:['📨 Invoice','🏖️ Leave','📦 Delivery','🤝 Proposal','💰 Payment'],p:'Tu female email expert Zara hai. Simple Hindi ko professional English email mein convert kar.'}
 };
 
-// History Functions
 function saveToHistory(userMsg,aiReply){
-const history=JSON.parse(localStorage.getItem('zs_history')||'[]');
-history.unshift({
-date:new Date().toLocaleDateString('hi-IN'),
-time:new Date().toLocaleTimeString('hi-IN',{hour:'2-digit',minute:'2-digit'}),
-userMsg:userMsg.substring(0,100),
-aiReply:aiReply.substring(0,150),
-timestamp:Date.now()
-});
-if(history.length>200)history.splice(200);
-localStorage.setItem('zs_history',JSON.stringify(history));
+const h=JSON.parse(localStorage.getItem('zs_history')||'[]');
+h.unshift({date:new Date().toLocaleDateString('hi-IN'),time:new Date().toLocaleTimeString('hi-IN',{hour:'2-digit',minute:'2-digit'}),userMsg:userMsg.substring(0,100),aiReply:aiReply.substring(0,150),timestamp:Date.now()});
+if(h.length>200)h.splice(200);
+localStorage.setItem('zs_history',JSON.stringify(h));
 }
 
 function showHistory(){
-const panel=document.getElementById('histPanel');
-panel.classList.add('show');
-loadHistoryUI();
-}
-
-function hideHistory(){
-document.getElementById('histPanel').classList.remove('show');
-}
-
-function loadHistoryUI(){
+document.getElementById('histPanel').classList.add('show');
+const h=JSON.parse(localStorage.getItem('zs_history')||'[]');
 const list=document.getElementById('histList');
-const history=JSON.parse(localStorage.getItem('zs_history')||'[]');
-if(history.length===0){
-list.innerHTML='<div class="hist-empty">🕐 Abhi koi history nahi hai!<br><br>Zara se baat karo — sab yaad rakhegi! 😊</div>';
-return;
-}
-const grouped={};
-history.forEach(h=>{
-if(!grouped[h.date])grouped[h.date]=[];
-grouped[h.date].push(h);
-});
+if(!h.length){list.innerHTML='<div class="hist-empty">🕐 Abhi koi history nahi!<br><br>Zara se baat karo — sab yaad rakhegi! 😊</div>';return;}
+const g={};
+h.forEach(x=>{if(!g[x.date])g[x.date]=[];g[x.date].push(x);});
 let html='';
-Object.keys(grouped).forEach(date=>{
-html+=`<div class="hist-day">📅 ${date}</div>`;
-grouped[date].forEach(h=>{
-html+=`<div class="hist-item" onclick="loadFromHistory('${encodeURIComponent(h.userMsg)}')">
-<div class="hi-time">🕐 ${h.time}</div>
-<div class="hi-msg">👤 ${h.userMsg}</div>
-<div class="hi-reply">🤖 ${h.aiReply}</div>
-</div>`;
+Object.keys(g).forEach(d=>{
+html+=`<div class="hist-day">📅 ${d}</div>`;
+g[d].forEach(x=>{html+=`<div class="hist-item" onclick="loadHist('${encodeURIComponent(x.userMsg)}')"><div class="hi-time">🕐 ${x.time}</div><div class="hi-msg">👤 ${x.userMsg}</div><div class="hi-reply">🤖 ${x.aiReply}</div></div>`;});
 });
-});
-html+=`<button class="hist-clear" onclick="clearHistory()">🗑️ Poori History Delete Karo</button>`;
+html+=`<button class="hist-clear" onclick="clearHist()">🗑️ Poori History Delete Karo</button>`;
 list.innerHTML=html;
 }
 
-function loadFromHistory(msg){
-hideHistory();
-document.getElementById('inp').value=decodeURIComponent(msg);
-document.getElementById('inp').focus();
-}
+function hideHistory(){document.getElementById('histPanel').classList.remove('show');}
+function loadHist(msg){hideHistory();document.getElementById('inp').value=decodeURIComponent(msg);document.getElementById('inp').focus();}
+function clearHist(){if(confirm('Poori history delete karein?')){localStorage.removeItem('zs_history');showHistory();}}
 
-function clearHistory(){
-if(confirm('Poori history delete karein?')){
-localStorage.removeItem('zs_history');
-loadHistoryUI();
-}
-}
-
-// Gmail Functions
 (function(){
 const h=location.hash;
 if(h&&h.includes('access_token')){
@@ -341,28 +291,18 @@ return d;
 }
 
 function setMode(m,btn){
-mode=m;
-chatHistory=[];
+mode=m;chatHistory=[];
 document.querySelectorAll('.mtab').forEach(t=>t.className='mtab');
 btn.className='mtab m'+m.charAt(0);
 document.getElementById('minfo').textContent=modes[m].info;
 document.getElementById('chips').innerHTML=modes[m].chips.map(c=>`<div class="chip" onclick="useChip(this)">${c}</div>`).join('');
-if(m==='email'&&!gTok){
-addMsg('ai','<div class="ebadge">📧 Email Mode</div><br>Gmail connect karo ya kuch bhi likho — professional email bana deti hoon! 😊');
-}
+if(m==='email'&&!gTok)addMsg('ai','<div class="ebadge">📧 Email Mode</div><br>Gmail connect karo ya kuch bhi likho — professional email bana deti hoon! 😊');
 }
 
 function useChip(el){document.getElementById('inp').value=el.textContent.trim();document.getElementById('inp').focus();}
-
-function shareApp(){
-if(navigator.share){navigator.share({title:'ZeroScale AI',text:'🤖 India ka Smart AI! FREE use karo!',url:'https://zeroscale.co.in'});}
-else{navigator.clipboard.writeText('https://zeroscale.co.in');alert('✅ Link copy ho gaya!');}
-}
-
+function shareApp(){if(navigator.share){navigator.share({title:'ZeroScale AI',text:'India ka Smart AI! FREE use karo!',url:'https://zeroscale.co.in'});}else{navigator.clipboard.writeText('https://zeroscale.co.in');alert('✅ Link copy ho gaya!');}}
 function toggleAtt(){document.getElementById('attmenu').classList.toggle('show');}
-document.addEventListener('click',e=>{
-if(!e.target.closest('.attbtn')&&!e.target.closest('.attmenu'))document.getElementById('attmenu').classList.remove('show');
-});
+document.addEventListener('click',e=>{if(!e.target.closest('.attbtn')&&!e.target.closest('.attmenu'))document.getElementById('attmenu').classList.remove('show');});
 function openCam(){document.getElementById('attmenu').classList.remove('show');document.getElementById('camInp').click();}
 function openGal(){document.getElementById('attmenu').classList.remove('show');document.getElementById('galInp').click();}
 function openFil(){document.getElementById('attmenu').classList.remove('show');document.getElementById('filInp').click();}
@@ -370,45 +310,20 @@ function openFil(){document.getElementById('attmenu').classList.remove('show');d
 function handleImg(inp,src){
 const f=inp.files[0];if(!f)return;
 const r=new FileReader();
-r.onload=e=>{
-att={type:'image',content:e.target.result,name:f.name};
-document.getElementById('previmg').src=e.target.result;
-document.getElementById('previmg').style.display='block';
-document.getElementById('prevname').textContent=f.name;
-document.getElementById('prevtype').textContent=src==='cam'?'📷 Camera':'🖼️ Gallery';
-document.getElementById('prevbar').classList.add('show');
-document.getElementById('inp').placeholder='Is photo ke baare mein poochho...';
-};
+r.onload=e=>{att={type:'image',content:e.target.result,name:f.name};document.getElementById('previmg').src=e.target.result;document.getElementById('previmg').style.display='block';document.getElementById('prevname').textContent=f.name;document.getElementById('prevtype').textContent=src==='cam'?'📷 Camera':'🖼️ Gallery';document.getElementById('prevbar').classList.add('show');document.getElementById('inp').placeholder='Is photo ke baare mein poochho...';};
 r.readAsDataURL(f);inp.value='';
 }
 
 function handleFil(inp){
 const f=inp.files[0];if(!f)return;
 const r=new FileReader();
-r.onload=e=>{
-att={type:'file',content:e.target.result,name:f.name};
-document.getElementById('previmg').style.display='none';
-document.getElementById('prevname').textContent=f.name;
-document.getElementById('prevtype').textContent='📎 File';
-document.getElementById('prevbar').classList.add('show');
-document.getElementById('inp').placeholder='Is file ke baare mein poochho...';
-};
+r.onload=e=>{att={type:'file',content:e.target.result,name:f.name};document.getElementById('previmg').style.display='none';document.getElementById('prevname').textContent=f.name;document.getElementById('prevtype').textContent='📎 File';document.getElementById('prevbar').classList.add('show');document.getElementById('inp').placeholder='Is file ke baare mein poochho...';};
 r.readAsText(f);inp.value='';
 }
 
-function removeAtt(){
-att={type:'',content:'',name:''};
-document.getElementById('prevbar').classList.remove('show');
-document.getElementById('inp').placeholder='Zara se kuch bhi poochho...';
-}
+function removeAtt(){att={type:'',content:'',name:''};document.getElementById('prevbar').classList.remove('show');document.getElementById('inp').placeholder='Zara se kuch bhi poochho...';}
 
-function toggleSpeak(){
-spkOn=!spkOn;
-const b=document.getElementById('spbtn');
-b.classList.toggle('on',spkOn);
-b.textContent=spkOn?'🔇 Band':'🔊 Sunao';
-if(!spkOn)speechSynthesis.cancel();
-}
+function toggleSpeak(){spkOn=!spkOn;const b=document.getElementById('spbtn');b.classList.toggle('on',spkOn);b.textContent=spkOn?'🔇 Band':'🔊 Sunao';if(!spkOn)speechSynthesis.cancel();}
 
 function speak(text){
 if(!spkOn)return;
@@ -439,8 +354,7 @@ function toggleVoice(){
 if(!('webkitSpeechRecognition'in window)&&!('SpeechRecognition'in window)){alert('Chrome use karo!');return;}
 if(listening){rec.stop();return;}
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-rec=new SR();
-rec.lang='hi-IN';rec.continuous=false;rec.interimResults=false;
+rec=new SR();rec.lang='hi-IN';rec.continuous=false;rec.interimResults=false;
 rec.onstart=()=>{listening=true;document.getElementById('vbtn').classList.add('listening');document.getElementById('vbtn').textContent='🔴 Sun rahi hoon...';};
 rec.onresult=e=>{document.getElementById('inp').value=e.results[0][0].transcript;send();};
 rec.onend=()=>{listening=false;document.getElementById('vbtn').classList.remove('listening');document.getElementById('vbtn').textContent='🎤 Bolo';};
@@ -448,9 +362,7 @@ rec.onerror=()=>{listening=false;document.getElementById('vbtn').classList.remov
 rec.start();
 }
 
-async function needsSearch(q){
-return['kaun','kya hai','kahan','kab','kitna','price','news','aaj','latest','company','address','contact','near','faridabad','delhi','mumbai','2024','2025'].some(k=>q.toLowerCase().includes(k));
-}
+async function needsSearch(q){return['kaun','kya hai','kahan','kab','kitna','price','news','aaj','latest','company','address','contact','near','faridabad','delhi','mumbai','2024','2025'].some(k=>q.toLowerCase().includes(k));}
 
 async function webSearch(q){
 try{
@@ -485,13 +397,9 @@ async function send(){
 const inp=document.getElementById('inp');
 const txt=inp.value.trim();
 if(!txt&&!att.content)return;
-if(att.type==='image'){
-addMsg('user',`<img src="${att.content}" style="max-width:200px;border-radius:10px;display:block;margin-bottom:6px">${txt||'Is image ke baare mein batao'}`);
-}else if(att.type==='file'){
-addMsg('user','📎 '+att.name+'<br>'+(txt||'Summary do'));
-}else{
-addMsg('user',txt);
-}
+if(att.type==='image'){addMsg('user',`<img src="${att.content}" style="max-width:200px;border-radius:10px;display:block;margin-bottom:6px">${txt||'Is image ke baare mein batao'}`);}
+else if(att.type==='file'){addMsg('user','📎 '+att.name+'<br>'+(txt||'Summary do'));}
+else{addMsg('user',txt);}
 inp.value='';
 const saved={...att};
 removeAtt();

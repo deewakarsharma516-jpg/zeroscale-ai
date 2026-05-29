@@ -389,37 +389,26 @@ showToast(spkOn?'🔊 Voice On':'🔇 Voice Off');
 function speak(text){
 if(!spkOn)return;
 speechSynthesis.cancel();
-if(typeof responsiveVoice!=='undefined'){
+if(typeof responsiveVoice==='undefined')return;
 responsiveVoice.cancel();
 const clean=text.replace(/[*#_\-<>]/g,' ').trim();
-responsiveVoice.speak(clean,'Hindi Female',{
+const sentences=clean.split(/[।.!?]+/).filter(s=>s.trim().length>0);
+let i=0;
+function speakNext(){
+if(!spkOn||i>=sentences.length)return;
+const s=sentences[i].trim();
+if(!s){i++;speakNext();return;}
+const isHindi=/[\u0900-\u097F]/.test(s);
+const voice=isHindi?'Hindi Female':'Indian English Female';
+responsiveVoice.speak(s,voice,{
 rate:0.9,
 pitch:1,
 volume:1,
-onstart:function(){},
-onend:function(){}
+onend:function(){i++;setTimeout(speakNext,300);}
 });
-}else{
-const clean=text.replace(/[*#_\-]/g,' ').replace(/\n/g,' ').trim();
-const words=clean.split(' ').filter(w=>w);
-const chunks=[];let chunk=[];let len=0;
-for(let w of words){chunk.push(w);len+=w.length+1;if(len>=120){chunks.push(chunk.join(' '));chunk=[];len=0;}}
-if(chunk.length)chunks.push(chunk.join(' '));
-let i=0;
-function next(){
-if(!spkOn||i>=chunks.length)return;
-const u=new SpeechSynthesisUtterance(chunks[i]);
-const vs=speechSynthesis.getVoices();
-const hi=vs.find(v=>v.lang?.includes('hi'));
-const ind=vs.find(v=>v.lang?.includes('IN'));
-if(hi)u.voice=hi;else if(ind)u.voice=ind;
-u.lang='hi-IN';u.rate=0.85;u.pitch=1.8;u.volume=1;
-u.onend=()=>{i++;setTimeout(next,50);}
-u.onerror=()=>{i++;setTimeout(next,50);}
-speechSynthesis.speak(u);i++;
+i++;
 }
-setTimeout(next,200);
-}
+speakNext();
 }
 
 function toggleVoice(){

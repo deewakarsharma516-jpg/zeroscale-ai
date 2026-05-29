@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>ZeroScale AI - India ka AI</title>
 <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#6c63ff">
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=yXjaOwKL"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;width:100%;overflow:hidden}
@@ -379,13 +379,27 @@ spkOn=!spkOn;
 const b=document.getElementById('spbtn');
 b.classList.toggle('on',spkOn);
 b.textContent=spkOn?'🔇 Band':'🔊 Sunao';
-if(!spkOn)speechSynthesis.cancel();
+if(!spkOn){
+speechSynthesis.cancel();
+if(typeof responsiveVoice!=='undefined')responsiveVoice.cancel();
+}
 showToast(spkOn?'🔊 Voice On':'🔇 Voice Off');
 }
 
 function speak(text){
 if(!spkOn)return;
 speechSynthesis.cancel();
+if(typeof responsiveVoice!=='undefined'){
+responsiveVoice.cancel();
+const clean=text.replace(/[*#_\-<>]/g,' ').trim();
+responsiveVoice.speak(clean,'Hindi Female',{
+rate:0.9,
+pitch:1,
+volume:1,
+onstart:function(){},
+onend:function(){}
+});
+}else{
 const clean=text.replace(/[*#_\-]/g,' ').replace(/\n/g,' ').trim();
 const words=clean.split(' ').filter(w=>w);
 const chunks=[];let chunk=[];let len=0;
@@ -396,16 +410,16 @@ function next(){
 if(!spkOn||i>=chunks.length)return;
 const u=new SpeechSynthesisUtterance(chunks[i]);
 const vs=speechSynthesis.getVoices();
-const fh=vs.find(v=>v.lang?.includes('hi')&&v.name.toLowerCase().includes('female'));
 const hi=vs.find(v=>v.lang?.includes('hi'));
 const ind=vs.find(v=>v.lang?.includes('IN'));
-if(fh)u.voice=fh;else if(hi)u.voice=hi;else if(ind)u.voice=ind;
+if(hi)u.voice=hi;else if(ind)u.voice=ind;
 u.lang='hi-IN';u.rate=0.85;u.pitch=1.8;u.volume=1;
 u.onend=()=>{i++;setTimeout(next,50);}
 u.onerror=()=>{i++;setTimeout(next,50);}
 speechSynthesis.speak(u);i++;
 }
 setTimeout(next,200);
+}
 }
 
 function toggleVoice(){

@@ -388,9 +388,9 @@ showToast(spkOn?'🔊 Voice On':'🔇 Voice Off');
 
 function speak(text){
 if(!spkOn)return;
-speechSynthesis.cancel();
 if(typeof responsiveVoice==='undefined')return;
 responsiveVoice.cancel();
+speechSynthesis.cancel();
 const clean=text.replace(/[*#_\-<>]/g,' ').trim();
 const sentences=clean.split(/[।.!?]+/).filter(s=>s.trim().length>0);
 let i=0;
@@ -404,9 +404,11 @@ responsiveVoice.speak(s,voice,{
 rate:0.9,
 pitch:1,
 volume:1,
-onend:function(){i++;setTimeout(speakNext,300);}
-});
+onend:function(){
 i++;
+setTimeout(speakNext,300);
+}
+});
 }
 speakNext();
 }

@@ -380,8 +380,12 @@ const b=document.getElementById('spbtn');
 b.classList.toggle('on',spkOn);
 b.textContent=spkOn?'🔇 Band':'🔊 Sunao';
 if(!spkOn){
-speechSynthesis.cancel();
 if(typeof responsiveVoice!=='undefined')responsiveVoice.cancel();
+speechSynthesis.cancel();
+}else{
+if(typeof responsiveVoice!=='undefined'){
+responsiveVoice.speak('Namaste main Zara hoon','Hindi Female',{rate:0.9,pitch:1,volume:1});
+}
 }
 showToast(spkOn?'🔊 Voice On':'🔇 Voice Off');
 }

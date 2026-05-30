@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="hi-IN">
-<head>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>ZeroScale AI - India ka AI</title>
@@ -9,7 +9,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;width:100%;overflow:hidden}
-body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;transition:.3s}
+body{font-family:'Noto Sans Devanagari','Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;transition:.3s}
 body.dark{background:#1a1a2e;color:#f5f6fa}
 body.dark .modes{background:#2d2d44}
 body.dark .mtab{background:#3d3d5c;color:#aaa;border-color:#4d4d6c}
@@ -358,11 +358,29 @@ function openCam(){document.getElementById('attmenu').classList.remove('show');d
 function openGal(){document.getElementById('attmenu').classList.remove('show');document.getElementById('galInp').click();}
 function openFil(){document.getElementById('attmenu').classList.remove('show');document.getElementById('filInp').click();}
 
-function handleImg(inp,src){
+function handleFil(inp){
 const f=inp.files[0];if(!f)return;
+const ext=f.name.split('.').pop().toLowerCase();
+if(ext==='docx'||ext==='doc'){
+att={type:'file',content:'[Word document: '+f.name+']',name:f.name};
+document.getElementById('previmg').style.display='none';
+document.getElementById('prevname').textContent=f.name;
+document.getElementById('prevtype').textContent='📝 Word File';
+document.getElementById('prevbar').classList.add('show');
+document.getElementById('inp').placeholder='Is Word file ke baare mein poochho...';
+addMsg('ai','⚠️ Word file directly nahi padh sakti! Please file ko .txt mein save karke upload karo ya content copy paste karo!');
+return;
+}
 const r=new FileReader();
-r.onload=e=>{att={type:'image',content:e.target.result,name:f.name};document.getElementById('previmg').src=e.target.result;document.getElementById('previmg').style.display='block';document.getElementById('prevname').textContent=f.name;document.getElementById('prevtype').textContent=src==='cam'?'📷 Camera':'🖼️ Gallery';document.getElementById('prevbar').classList.add('show');document.getElementById('inp').placeholder='Is photo ke baare mein poochho...';};
-r.readAsDataURL(f);inp.value='';
+r.onload=e=>{
+att={type:'file',content:e.target.result,name:f.name};
+document.getElementById('previmg').style.display='none';
+document.getElementById('prevname').textContent=f.name;
+document.getElementById('prevtype').textContent='📎 File';
+document.getElementById('prevbar').classList.add('show');
+document.getElementById('inp').placeholder='Is file ke baare mein poochho...';
+};
+r.readAsText(f);inp.value='';
 }
 
 function handleFil(inp){

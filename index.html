@@ -831,29 +831,69 @@ const sr=await webSearch(txt);
 if(sr){content=`Search: ${sr}\nSawaal: ${txt}\nHindi mein jawab do.`;badge='<div class="sbadge">🔍 Web search se mila</div>';}
 }
 if(saved.type==='file')content=`File: ${saved.name}\n${saved.content.substring(0,2000)}\nSawaal: ${txt||'Summary do aur main points batao'}`;
-else if(saved.type==='image')content=`[Image share ki] ${txt||'Is image ke baare mein detail mein batao'}`;
-chatHistory.push({role:'user',content});
-if(chatHistory.length>30)chatHistory=chatHistory.slice(-30);
-const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+else if(saved.type==='image'){
+el.innerHTML='<div class="sbadge">🖼️ Image dekh rahi hoon...</div>';
+try{
+const vr=await fetch('https://api.groq.com/openai/v1/chat/completions',{
 method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer '+GK},
-body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:modes[mode].p},...chatHistory],max_tokens:600})
+body:JSON.stringify({
+model:'meta-llama/llama-4-scout-17b-16e-instruct',
+messages:[{
+role:'user',
+content:[
+{type:'text',text:`${txt||'Is image ke baare mein batao'}. 
+Pehle Hindi mein detail mein batao image ke baare mein.
+Phir English mein ek professional image generation prompt likho jo PROFESSIONAL version banaye.
+Format:
+IMAGE_DESCRIPTION: [Hindi mein description]
+PROFESSIONAL_PROMPT: [English prompt for professional version]`},
+{type:'image_url',image_url:{url:saved.content}}
+]
+}],
+max_tokens:600
+})
 });
-const d=await r.json();
-if(d.choices?.[0]){
-const rep=d.choices[0].message.content;
-el.innerHTML=badge+rep;
-speak(rep);
-chatHistory.push({role:'assistant',content:rep});
-if(chatHistory.length>30)chatHistory=chatHistory.slice(-30);
-saveToHistory(txt||'File/Image',rep.replace(/<[^>]*>/g,''));
+const vd=await vr.json();
+if(vd.choices?.[0]){
+const rep=vd.choices[0].message.content;
+
+// Description aur prompt alag karo
+const descMatch=rep.match(/IMAGE_DESCRIPTION:(.*?)(?=PROFESSIONAL_PROMPT:|$)/s);
+const promptMatch=rep.match(/PROFESSIONAL_PROMPT:(.*?)$/s);
+
+const description=descMatch?descMatch[1].trim():rep;
+const proPrompt=promptMatch?promptMatch[1].trim():'professional photo, high quality, studio lighting';
+
+// Description dikhao
+el.innerHTML=`<div class="sbadge">🖼️ Image Analysis</div><br>${description}<br><br><div class="sbadge">⏳ Professional Image Ban Rahi Hai...</div>`;
+speak(description);
+
+// Professional image banao
+const seed=Math.floor(Math.random()*999999);
+const imgUrl=`https://image.pollinations.ai/prompt/${encodeURIComponent(proPrompt+', professional, high quality, studio lighting, 4k')}?seed=${seed}&width=768&height=512&nologo=true&enhance=true&model=flux`;
+
+const imgEl=document.createElement('img');
+imgEl.style='max-width:100%;border-radius:12px;margin-top:8px;display:block';
+imgEl.onload=function(){
+el.innerHTML=`<div class="sbadge">🖼️ Image Analysis</div><br>${description}<br><br><div class="sbadge">✅ Professional Version Ready!</div>`;
+el.appendChild(imgEl);
+document.getElementById('chat').scrollTop=99999;
+};
+imgEl.onerror=function(){
+el.innerHTML=`<div class="sbadge">🖼️ Image Analysis</div><br>${description}<br><br>❌ Professional image nahi ban saki!`;
+};
+imgEl.src=imgUrl;
+
+saveToHistory(txt||'Image',description.replace(/<[^>]*>/g,''));
 }else{
-el.textContent='❌ Dobara try karo!';
+el.textContent='❌ Image nahi dekh saki!';
 }
 }catch(e){
-el.textContent='❌ Network Error!';
+el.textContent='❌ Error aaya!';
 }
 document.getElementById('chat').scrollTop=99999;
+return;
 }
 
 if('serviceWorker'in navigator)navigator.serviceWorker.register('/sw.js');

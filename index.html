@@ -8,8 +8,9 @@
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=yXjaOwKL"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+@font-face{font-family:'NotoHindi';src:local('Noto Sans Devanagari'),local('Sanskrit Text'),local('Mangal'),local('Devanagari MT');}
 html,body{height:100%;width:100%;overflow:hidden}
-body{font-family:'Noto Sans Devanagari','Segoe UI',sans-serif;background:#f5f6fa;color:#1a1a2e;display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;transition:.3s}
+body{font-family:'Noto Sans Devanagari','Mangal','Sanskrit Text','Segoe UI',Arial,sans-serif;background:#f5f6fa;color:#1a1a2e;display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;transition:.3s}
 body.dark{background:#1a1a2e;color:#f5f6fa}
 body.dark .modes{background:#2d2d44}
 body.dark .mtab{background:#3d3d5c;color:#aaa;border-color:#4d4d6c}
@@ -64,7 +65,7 @@ body.dark .prevbar{background:#2d2d44}
 .hist-empty{text-align:center;color:#999;padding:40px 20px;font-size:14px}
 .hist-clear{background:#fff0f0;color:#ff4444;border:1px solid #ffcccc;border-radius:12px;padding:10px;width:100%;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px}
 .chat{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;background:#f5f6fa;-webkit-overflow-scrolling:touch;transition:.3s}
-.msg{padding:10px 14px;border-radius:16px;max-width:82%;font-size:13px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.msg{padding:10px 14px;font-family:'Noto Sans Devanagari','Mangal',Arial,sans-serif;border-radius:16px;max-width:82%;font-size:13px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
 .umsg{background:linear-gradient(135deg,#6c63ff,#3ecfcf);align-self:flex-end;color:#fff;border-bottom-right-radius:3px}
 .amsg{background:#fff;align-self:flex-start;color:#1a1a2e;border-bottom-left-radius:3px;border:1px solid #e8e8e8;transition:.3s}
 .amsg img{max-width:100%;border-radius:10px;margin-top:8px;display:block}

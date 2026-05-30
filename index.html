@@ -4,12 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>ZeroScale AI — India ka Smart AI Assistant</title>
-<meta name="description" content="India ka pehla FREE AI Assistant — Hindi aur English mein baat karo, images banao, web search karo, Gmail connect karo!">
+<meta name="description" content="India ka pehla FREE AI Assistant — Hindi aur English mein baat karo!">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#6c63ff">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="ZeroScale AI">
-<script src="https://accounts.google.com/gsi/client"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -20,7 +18,7 @@ html{scroll-behavior:smooth}
 body{font-family:'Noto Sans Devanagari','Segoe UI',Arial,sans-serif;background:#f5f6fa;color:#1a1a2e;transition:.3s}
 body.dark{background:#1a1a2e;color:#f5f6fa}
 
-/* ===== WEBSITE SECTIONS ===== */
+/* WEBSITE */
 .site-header{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.2)}
 .site-logo{display:flex;align-items:center;gap:10px}
 .site-logo-box{width:42px;height:42px;background:rgba(255,255,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;border:2px solid rgba(255,255,255,0.3)}
@@ -28,62 +26,48 @@ body.dark{background:#1a1a2e;color:#f5f6fa}
 .site-logo-txt p{font-size:10px;color:rgba(255,255,255,0.85)}
 .site-nav{display:flex;gap:8px;align-items:center}
 .nav-btn{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
-.nav-btn:hover{background:rgba(255,255,255,0.3)}
 .nav-btn.primary{background:#FFD700;color:#6c63ff;border:none}
-
-/* HERO */
 .hero{background:linear-gradient(135deg,#6c63ff 0%,#4a90d9 50%,#3ecfcf 100%);padding:60px 20px;text-align:center;color:#fff}
-.hero h2{font-size:32px;font-weight:900;margin-bottom:12px;line-height:1.3}
-.hero p{font-size:16px;opacity:.9;margin-bottom:30px;max-width:600px;margin-left:auto;margin-right:auto}
+.hero h2{font-size:28px;font-weight:900;margin-bottom:12px;line-height:1.3}
+.hero p{font-size:15px;opacity:.9;margin-bottom:25px;max-width:600px;margin-left:auto;margin-right:auto}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.hero-btn{padding:14px 28px;border-radius:30px;font-size:15px;font-weight:700;cursor:pointer;border:none;text-decoration:none;display:inline-block}
+.hero-btn{padding:12px 24px;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;border:none;text-decoration:none;display:inline-block}
 .hero-btn.primary{background:#FFD700;color:#6c63ff}
 .hero-btn.secondary{background:rgba(255,255,255,0.2);color:#fff;border:2px solid rgba(255,255,255,0.5)}
-.hero-badges{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
-.badge{background:rgba(255,255,255,0.15);color:#fff;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600}
-
-/* FEATURES */
-.features-section{padding:50px 20px;background:#fff;text-align:center}
+.hero-badges{display:flex;gap:8px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,0.15);color:#fff;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600}
+.features-section{padding:40px 20px;background:#fff;text-align:center}
 body.dark .features-section{background:#2d2d44}
-.section-title{font-size:24px;font-weight:900;color:#6c63ff;margin-bottom:8px}
-.section-sub{font-size:14px;color:#888;margin-bottom:30px}
-body.dark .section-sub{color:#aaa}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;max-width:800px;margin:0 auto}
-.feature-card{background:#f5f6fa;border-radius:16px;padding:20px 15px;text-align:center;border:2px solid transparent;transition:.3s;cursor:pointer}
+.section-title{font-size:22px;font-weight:900;color:#6c63ff;margin-bottom:6px}
+.section-sub{font-size:13px;color:#888;margin-bottom:25px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;max-width:800px;margin:0 auto}
+.feature-card{background:#f5f6fa;border-radius:14px;padding:18px 12px;text-align:center;border:2px solid transparent;transition:.3s;cursor:pointer}
 body.dark .feature-card{background:#3d3d5c}
 .feature-card:hover{border-color:#6c63ff;transform:translateY(-3px)}
-.feature-card .icon{font-size:32px;margin-bottom:10px}
-.feature-card h3{font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:5px}
+.feature-card .icon{font-size:28px;margin-bottom:8px}
+.feature-card h3{font-size:12px;font-weight:700;color:#1a1a2e;margin-bottom:4px}
 body.dark .feature-card h3{color:#f5f6fa}
-.feature-card p{font-size:11px;color:#888}
-
-/* STATS */
-.stats-section{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:40px 20px;text-align:center;color:#fff}
-.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:600px;margin:0 auto}
-.stat-item h3{font-size:28px;font-weight:900}
-.stat-item p{font-size:13px;opacity:.85}
-
-/* HOW IT WORKS */
-.how-section{padding:50px 20px;background:#f5f6fa;text-align:center}
+.feature-card p{font-size:10px;color:#888}
+.stats-section{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:35px 20px;text-align:center;color:#fff}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;max-width:500px;margin:0 auto}
+.stat-item h3{font-size:26px;font-weight:900}
+.stat-item p{font-size:12px;opacity:.85}
+.how-section{padding:40px 20px;background:#f5f6fa;text-align:center}
 body.dark .how-section{background:#1a1a2e}
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:700px;margin:20px auto 0}
-.step-card{background:#fff;border-radius:16px;padding:20px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.06)}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;max-width:600px;margin:15px auto 0}
+.step-card{background:#fff;border-radius:14px;padding:18px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
 body.dark .step-card{background:#2d2d44}
-.step-num{width:40px;height:40px;background:linear-gradient(135deg,#6c63ff,#3ecfcf);border-radius:50%;color:#fff;font-weight:900;font-size:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
-.step-card h3{font-size:14px;font-weight:700;margin-bottom:6px;color:#1a1a2e}
+.step-num{width:38px;height:38px;background:linear-gradient(135deg,#6c63ff,#3ecfcf);border-radius:50%;color:#fff;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.step-card h3{font-size:13px;font-weight:700;margin-bottom:5px;color:#1a1a2e}
 body.dark .step-card h3{color:#f5f6fa}
-.step-card p{font-size:12px;color:#888}
+.step-card p{font-size:11px;color:#888}
+.cta-section{background:linear-gradient(135deg,#1a1a2e,#2d2d44);padding:40px 20px;text-align:center;color:#fff}
+.cta-section h2{font-size:22px;font-weight:900;margin-bottom:10px}
+.cta-section p{font-size:13px;opacity:.8;margin-bottom:20px}
 
-/* CTA */
-.cta-section{background:linear-gradient(135deg,#1a1a2e,#2d2d44);padding:50px 20px;text-align:center;color:#fff}
-.cta-section h2{font-size:26px;font-weight:900;margin-bottom:12px}
-.cta-section p{font-size:14px;opacity:.8;margin-bottom:25px}
-
-/* ===== CHAT APP ===== */
-.app-section{background:#f5f6fa}
-body.dark .app-section{background:#1a1a2e}
-.app-header-label{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:10px 20px;text-align:center;color:#fff;font-size:13px;font-weight:700}
-.app-wrapper{display:flex;flex-direction:column;height:100vh;height:100dvh;position:relative}
+/* APP */
+.app-header-label{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:8px 20px;text-align:center;color:#fff;font-size:13px;font-weight:700}
+.app-wrapper{display:flex;flex-direction:column;height:100vh;height:100dvh}
 .topbar{background:linear-gradient(135deg,#6c63ff,#3ecfcf);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .logo-area{display:flex;align-items:center;gap:8px}
 .logo-box{width:40px;height:40px;background:rgba(255,255,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;border:2px solid rgba(255,255,255,0.3);flex-shrink:0}
@@ -95,27 +79,26 @@ body.dark .app-section{background:#1a1a2e}
 .gmail-hbtn{background:#fff;color:#333}
 .other-hbtn{background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.3)}
 .gmail-connected{background:#e8f5e9!important;color:#2e7d32!important}
-.modes{display:flex;gap:6px;padding:8px 12px;background:#fff;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:.3s}
+.modes{display:flex;gap:6px;padding:8px 12px;background:#fff;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
 body.dark .modes{background:#2d2d44}
-.mtab{flex:1;text-align:center;padding:8px 3px;border-radius:10px;font-size:10px;font-weight:700;cursor:pointer;border:2px solid #e0e0e0;background:#f8f9fa;color:#999;transition:.3s}
+.mtab{flex:1;text-align:center;padding:8px 3px;border-radius:10px;font-size:10px;font-weight:700;cursor:pointer;border:2px solid #e0e0e0;background:#f8f9fa;color:#999}
 body.dark .mtab{background:#3d3d5c;color:#aaa;border-color:#4d4d6c}
 .ms{border-color:#4CAF50;background:#e8f5e9;color:#2e7d32}
 .mb{border-color:#6c63ff;background:#ede9ff;color:#6c63ff}
 .mh{border-color:#e91e8c;background:#fce4ec;color:#c2185b}
 .me{border-color:#ea4335;background:#fce8e6;color:#ea4335}
-.minfo{text-align:center;padding:4px;font-size:10px;font-weight:700;color:#6c63ff;background:linear-gradient(135deg,#ede9ff,#e0f7fa);flex-shrink:0;transition:.3s}
+.minfo{text-align:center;padding:4px;font-size:10px;font-weight:700;color:#6c63ff;background:linear-gradient(135deg,#ede9ff,#e0f7fa);flex-shrink:0}
 body.dark .minfo{background:linear-gradient(135deg,#2d2d44,#1a1a2e);color:#a78fff}
-.chips{display:flex;gap:5px;padding:6px 12px;overflow-x:auto;flex-shrink:0;background:#fff;border-bottom:1px solid #f0f0f0;transition:.3s}
+.chips{display:flex;gap:5px;padding:6px 12px;overflow-x:auto;flex-shrink:0;background:#fff;border-bottom:1px solid #f0f0f0}
 body.dark .chips{background:#2d2d44;border-color:#3d3d5c}
 .chips::-webkit-scrollbar{display:none}
 .chip{background:#f0f4f8;border:1px solid #e0e0e0;border-radius:14px;padding:4px 10px;font-size:10px;font-weight:600;color:#555;white-space:nowrap;cursor:pointer}
 body.dark .chip{background:#3d3d5c;color:#ccc;border-color:#4d4d6c}
-.chip:active{background:#ede9ff;border-color:#6c63ff;color:#6c63ff}
-.chat{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;background:#f5f6fa;-webkit-overflow-scrolling:touch;transition:.3s}
+.chat{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;background:#f5f6fa;-webkit-overflow-scrolling:touch}
 body.dark .chat{background:#1a1a2e}
-.msg{padding:10px 14px;border-radius:16px;max-width:82%;font-size:13px;line-height:1.6;white-space:pre-wrap;word-break:break-word;font-family:'Noto Sans Devanagari','Segoe UI',Arial,sans-serif}
+.msg{padding:10px 14px;border-radius:16px;max-width:82%;font-size:13px;line-height:1.7;white-space:pre-wrap;word-break:break-word;font-family:'Noto Sans Devanagari','Segoe UI',Arial,sans-serif}
 .umsg{background:linear-gradient(135deg,#6c63ff,#3ecfcf);align-self:flex-end;color:#fff;border-bottom-right-radius:3px}
-.amsg{background:#fff;align-self:flex-start;color:#1a1a2e;border-bottom-left-radius:3px;border:1px solid #e8e8e8;transition:.3s}
+.amsg{background:#fff;align-self:flex-start;color:#1a1a2e;border-bottom-left-radius:3px;border:1px solid #e8e8e8}
 body.dark .amsg{background:#2d2d44;color:#f5f6fa;border-color:#3d3d5c}
 .amsg img{max-width:100%;border-radius:10px;margin-top:8px;display:block}
 .sbadge{background:#e3f2fd;color:#1565c0;padding:3px 10px;border-radius:14px;font-size:10px;display:inline-block;margin-bottom:5px;font-weight:600}
@@ -139,17 +122,16 @@ body.dark .hist-item{background:#2d2d44;border-color:#3d3d5c}
 .hist-item .hi-msg{font-size:13px;color:#1a1a2e;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 body.dark .hist-item .hi-msg{color:#f5f6fa}
 .hist-item .hi-reply{font-size:11px;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
-body.dark .hist-item .hi-reply{color:#aaa}
 .hist-empty{text-align:center;color:#999;padding:40px 20px;font-size:14px}
 .hist-clear{background:#fff0f0;color:#ff4444;border:1px solid #ffcccc;border-radius:12px;padding:10px;width:100%;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px}
-.prevbar{display:none;background:#fff;border-top:2px solid #6c63ff;padding:6px 12px;flex-shrink:0;align-items:center;gap:8px;transition:.3s}
+.prevbar{display:none;background:#fff;border-top:2px solid #6c63ff;padding:6px 12px;flex-shrink:0;align-items:center;gap:8px}
 body.dark .prevbar{background:#2d2d44}
 .prevbar.show{display:flex}
 .previmg{width:40px;height:40px;object-fit:cover;border-radius:6px;display:none}
 .previnfo{flex:1;font-size:11px}
 .prevname{font-weight:700;font-size:12px}
 .prevrem{background:#ff4444;color:#fff;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:12px}
-.inpbar{background:#fff;padding:8px 12px;flex-shrink:0;box-shadow:0 -3px 15px rgba(0,0,0,0.08);transition:.3s}
+.inpbar{background:#fff;padding:8px 12px;flex-shrink:0;box-shadow:0 -3px 15px rgba(0,0,0,0.08)}
 body.dark .inpbar{background:#2d2d44}
 .inprow{display:flex;gap:6px;align-items:center;margin-bottom:6px}
 .attbtn{width:40px;height:40px;background:#f0f4f8;border:2px solid #e0e0e0;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -173,14 +155,10 @@ body.dark .aopt{color:#f5f6fa}
 .aopt:active{background:#ede9ff;color:#6c63ff}
 .toast{position:fixed;bottom:120px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:8px 20px;border-radius:20px;font-size:12px;z-index:9999;display:none;white-space:nowrap}
 .toast.show{display:block;animation:fadeInOut 2s forwards}
-
-/* FOOTER */
-.footer{background:#1a1a2e;color:#fff;padding:30px 20px;text-align:center}
-.footer-links{display:flex;gap:15px;justify-content:center;margin-bottom:15px;flex-wrap:wrap}
+.footer{background:#1a1a2e;color:#fff;padding:25px 20px;text-align:center}
+.footer-links{display:flex;gap:15px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
 .footer-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px}
-.footer-links a:hover{color:#fff}
 .footer p{font-size:12px;color:rgba(255,255,255,0.5)}
-
 @keyframes pulse{0%{opacity:1}50%{opacity:.5}100%{opacity:1}}
 @keyframes fadeInOut{0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0}}
 .typing{display:inline-flex;gap:4px;padding:4px 0}
@@ -192,7 +170,7 @@ body.dark .aopt{color:#f5f6fa}
 </head>
 <body>
 
-<!-- ===== WEBSITE HEADER ===== -->
+<!-- WEBSITE HEADER -->
 <header class="site-header">
 <div class="site-logo">
 <div class="site-logo-box">⚡</div>
@@ -208,10 +186,10 @@ body.dark .aopt{color:#f5f6fa}
 </nav>
 </header>
 
-<!-- ===== HERO SECTION ===== -->
+<!-- HERO -->
 <section class="hero">
-<h2>India ka Pehla FREE<br>AI Assistant! 🇮🇳</h2>
-<p>Hindi aur English mein baat karo, images banao, web search karo, Gmail connect karo — sab bilkul FREE!</p>
+<h2>India ka Pehla FREE AI Assistant! 🇮🇳</h2>
+<p>Hindi aur English mein baat karo, images banao, web search karo, files upload karo — sab bilkul FREE!</p>
 <div class="hero-btns">
 <a href="#chat-app" class="hero-btn primary">⚡ Abhi Try Karo</a>
 <a href="/about.html" class="hero-btn secondary">ℹ️ Hamare Baare Mein</a>
@@ -220,132 +198,62 @@ body.dark .aopt{color:#f5f6fa}
 <span class="badge">✅ 100% FREE</span>
 <span class="badge">🔒 Secure</span>
 <span class="badge">🇮🇳 Made in India</span>
-<span class="badge">⚡ Powered by AI</span>
+<span class="badge">⚡ AI Powered</span>
 </div>
 </section>
 
-<!-- ===== FEATURES SECTION ===== -->
+<!-- FEATURES -->
 <section class="features-section">
 <h2 class="section-title">Kya Kya Kar Sakta Hai?</h2>
-<p class="section-sub">ZeroScale AI ke saath karo yeh sab — bilkul free!</p>
+<p class="section-sub">12+ features — sab bilkul free!</p>
 <div class="features-grid">
-<div class="feature-card" onclick="document.getElementById('chat-app').scrollIntoView()">
-<div class="icon">🔍</div>
-<h3>Web Search</h3>
-<p>Real time internet se jaankari</p>
-</div>
-<div class="feature-card" onclick="document.getElementById('chat-app').scrollIntoView()">
-<div class="icon">🎤</div>
-<h3>Voice Input</h3>
-<p>Hindi mein bolkar poochho</p>
-</div>
-<div class="feature-card" onclick="document.getElementById('chat-app').scrollIntoView()">
-<div class="icon">🖼️</div>
-<h3>Image Banao</h3>
-<p>AI se koi bhi image banwao</p>
-</div>
-<div class="feature-card" onclick="document.getElementById('chat-app').scrollIntoView()">
-<div class="icon">🔊</div>
-<h3>Voice Output</h3>
-<p>Professional female awaaz</p>
-</div>
-<div class="feature-card" onclick="document.getElementById('chat-app').scrollIntoView()">
-<div class="icon">📷</div>
-<h3>Camera</h3>
-<p>Photo khicho aur poochho</p>
-</div>
-<div class="feature-card" onclick="document.getElementById('chat-app').scrollIntoView()">
-<div class="icon">🖼️</div>
-<h3>Gallery</h3>
-<p>Gallery se photo upload karo</p>
-</div>
-<div class="feature-card" onclick="document.getElementById('chat-app').scrollIntoView()">
-<div class="icon">📎</div>
-<h3>File Upload</h3>
-<p>PDF, Word, Excel sab!</p>
-</div>
-<div class="feature-card" onclick="document.getElementById('chat-app').scrollIntoView()">
-<div class="icon">📧</div>
-<h3>Gmail Connect</h3>
-<p>Email AI se likhwao</p>
-</div>
-<div class="feature-card" onclick="document.getElementById('chat-app').scrollIntoView()">
-<div class="icon">🌙</div>
-<h3>Dark Mode</h3>
-<p>Raat mein aankhon ke liye</p>
-</div>
-<div class="feature-card" onclick="document.getElementById('chat-app').scrollIntoView()">
-<div class="icon">🕐</div>
-<h3>History</h3>
-<p>Purani baatein yaad rahengi</p>
-</div>
-<div class="feature-card" onclick="document.getElementById('chat-app').scrollIntoView()">
-<div class="icon">📤</div>
-<h3>Share</h3>
-<p>Dosto ke saath share karo</p>
-</div>
-<div class="feature-card" onclick="document.getElementById('chat-app').scrollIntoView()">
-<div class="icon">🔒</div>
-<h3>Secure</h3>
-<p>Data bilkul safe hai</p>
-</div>
+<div class="feature-card" onclick="scrollToChat()"><div class="icon">🔍</div><h3>Web Search</h3><p>Real time jaankari</p></div>
+<div class="feature-card" onclick="scrollToChat()"><div class="icon">🎤</div><h3>Voice Input</h3><p>Hindi mein bolkar poochho</p></div>
+<div class="feature-card" onclick="scrollToChat()"><div class="icon">🖼️</div><h3>Image Banao</h3><p>AI se image banwao</p></div>
+<div class="feature-card" onclick="scrollToChat()"><div class="icon">🔊</div><h3>Voice Output</h3><p>Professional female awaaz</p></div>
+<div class="feature-card" onclick="scrollToChat()"><div class="icon">📷</div><h3>Camera</h3><p>Photo khicho aur poochho</p></div>
+<div class="feature-card" onclick="scrollToChat()"><div class="icon">🖼️</div><h3>Gallery</h3><p>Gallery se photo upload</p></div>
+<div class="feature-card" onclick="scrollToChat()"><div class="icon">📎</div><h3>File Upload</h3><p>PDF, Word, Excel sab!</p></div>
+<div class="feature-card" onclick="scrollToChat()"><div class="icon">📧</div><h3>Gmail Connect</h3><p>Email AI se likhwao</p></div>
+<div class="feature-card" onclick="scrollToChat()"><div class="icon">🌙</div><h3>Dark Mode</h3><p>Raat mein aankhon ke liye</p></div>
+<div class="feature-card" onclick="scrollToChat()"><div class="icon">🕐</div><h3>History</h3><p>Purani baatein yaad rahengi</p></div>
+<div class="feature-card" onclick="scrollToChat()"><div class="icon">🤖</div><h3>Image Vision</h3><p>Photo dekhkar batayega</p></div>
+<div class="feature-card" onclick="scrollToChat()"><div class="icon">🔒</div><h3>Secure</h3><p>Data bilkul safe hai</p></div>
 </div>
 </section>
 
-<!-- ===== STATS ===== -->
+<!-- STATS -->
 <section class="stats-section">
 <div class="stats-grid">
-<div class="stat-item">
-<h3>100%</h3>
-<p>Bilkul FREE</p>
-</div>
-<div class="stat-item">
-<h3>2</h3>
-<p>Languages</p>
-</div>
-<div class="stat-item">
-<h3>12+</h3>
-<p>Features</p>
-</div>
+<div class="stat-item"><h3>100%</h3><p>Bilkul FREE</p></div>
+<div class="stat-item"><h3>2+</h3><p>Languages</p></div>
+<div class="stat-item"><h3>12+</h3><p>Features</p></div>
 </div>
 </section>
 
-<!-- ===== HOW IT WORKS ===== -->
+<!-- HOW IT WORKS -->
 <section class="how-section">
 <h2 class="section-title">Kaise Use Karein?</h2>
-<p class="section-sub">3 aasaan steps mein shuru karo!</p>
+<p class="section-sub">3 aasaan steps!</p>
 <div class="steps-grid">
-<div class="step-card">
-<div class="step-num">1</div>
-<h3>Neeche Jaao</h3>
-<p>Chat section mein jaao ya "Try Now" dabao</p>
-</div>
-<div class="step-card">
-<div class="step-num">2</div>
-<h3>Poochho</h3>
-<p>Hindi ya English mein kuch bhi poochho</p>
-</div>
-<div class="step-card">
-<div class="step-num">3</div>
-<h3>Jawab Pao</h3>
-<p>AI turant jawab dega!</p>
-</div>
+<div class="step-card"><div class="step-num">1</div><h3>Neeche Jaao</h3><p>Chat section mein jaao</p></div>
+<div class="step-card"><div class="step-num">2</div><h3>Poochho</h3><p>Hindi ya English mein</p></div>
+<div class="step-card"><div class="step-num">3</div><h3>Jawab Pao</h3><p>AI turant jawab dega!</p></div>
 </div>
 </section>
 
-<!-- ===== CTA ===== -->
+<!-- CTA -->
 <section class="cta-section">
 <h2>Abhi Try Karo — Bilkul FREE! 🚀</h2>
-<p>Koi account nahi — koi payment nahi — seedha use karo!</p>
+<p>Koi account nahi — koi payment nahi!</p>
 <a href="#chat-app" class="hero-btn primary">⚡ Zara Se Baat Karo</a>
 </section>
 
-<!-- ===== CHAT APP ===== -->
+<!-- CHAT APP -->
 <div id="chat-app">
 <div class="app-header-label">⚡ ZeroScale AI — Zara Se Baat Karo!</div>
 <div class="app-wrapper">
 
-<!-- TOPBAR -->
 <div class="topbar">
 <div class="logo-area">
 <div class="logo-box">⚡</div>
@@ -366,7 +274,6 @@ body.dark .aopt{color:#f5f6fa}
 </div>
 </div>
 
-<!-- MODES -->
 <div class="modes">
 <div class="mtab" onclick="setMode('student',this)">🎓 Student</div>
 <div class="mtab mb" onclick="setMode('business',this)">💼 Business</div>
@@ -375,7 +282,6 @@ body.dark .aopt{color:#f5f6fa}
 </div>
 <div class="minfo" id="minfo">💼 Business Mode — GST, Email, Social Media</div>
 
-<!-- CHIPS -->
 <div class="chips" id="chips">
 <div class="chip" onclick="useChip(this)">📊 GST Help</div>
 <div class="chip" onclick="useChip(this)">📧 Email Likho</div>
@@ -384,7 +290,6 @@ body.dark .aopt{color:#f5f6fa}
 <div class="chip" onclick="useChip(this)">📦 Inventory</div>
 </div>
 
-<!-- CHAT -->
 <div class="chat" id="chat">
 <div class="amsg wcard">
 <div style="font-size:40px">⚡</div>
@@ -398,12 +303,11 @@ body.dark .aopt{color:#f5f6fa}
 <div class="witem">📷 Camera/Gallery</div>
 <div class="witem">📎 PDF/Word/Excel</div>
 <div class="witem">📧 Gmail Connect</div>
-<div class="witem">🌙 Dark Mode</div>
+<div class="witem">🤖 Image Vision</div>
 </div>
 </div>
 </div>
 
-<!-- HISTORY PANEL -->
 <div class="hist-panel" id="histPanel">
 <div class="hist-header">
 <h2>🕐 Chat History</h2>
@@ -412,7 +316,6 @@ body.dark .aopt{color:#f5f6fa}
 <div class="hist-list" id="histList"></div>
 </div>
 
-<!-- PREVIEW -->
 <div class="prevbar" id="prevbar">
 <img class="previmg" id="previmg" src="" alt="">
 <div class="previnfo">
@@ -422,14 +325,12 @@ body.dark .aopt{color:#f5f6fa}
 <button class="prevrem" onclick="removeAtt()">✕</button>
 </div>
 
-<!-- ATTACH MENU -->
 <div class="attmenu" id="attmenu">
 <button class="aopt" onclick="openCam()">📷 Camera se photo lo</button>
 <button class="aopt" onclick="openGal()">🖼️ Gallery se photo lo</button>
 <button class="aopt" onclick="openFil()">📎 File upload karo</button>
 </div>
 
-<!-- INPUT -->
 <div class="inpbar">
 <div class="inprow">
 <button class="attbtn" onclick="toggleAtt()">📎</button>
@@ -443,10 +344,9 @@ body.dark .aopt{color:#f5f6fa}
 </div>
 </div>
 
-</div><!-- end app-wrapper -->
-</div><!-- end chat-app -->
+</div>
+</div>
 
-<!-- FOOTER -->
 <footer class="footer">
 <div class="footer-links">
 <a href="/about.html">About Us</a>
@@ -457,7 +357,6 @@ body.dark .aopt{color:#f5f6fa}
 <p style="margin-top:5px;font-size:11px">Made with ❤️ in India</p>
 </footer>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <input type="file" id="camInp" accept="image/*" capture="environment" style="display:none" onchange="handleImg(this,'cam')">
@@ -474,18 +373,19 @@ let listening=false;
 let chatHistory=[];
 let darkMode=false;
 
-const GK='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';
-const TK='https://mcp.tavily.com/mcp/?tavilyApiKey=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';
+const GK='APNI_GROQ_KEY_YAHAN';
+const TK='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';
 const CID='748041746639-m5rc8vej4f99g7p1d9q786pd8on8kgun.apps.googleusercontent.com';
 
 const modes={
 student:{info:'🎓 Student Mode — Homework, Exam, Notes',chips:['📚 Homework','📝 Notes','🧮 Math','📖 Essay','🎯 Exam Tips'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar jaise kar sakti hoon, bata sakti hoon. English mein I can help you. Student ko padhai mein help kar.'},
 business:{info:'💼 Business Mode — GST, Email, Social Media',chips:['📊 GST Help','📧 Email','📱 Social Media','💰 Advice','📦 Inventory'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar jaise kar sakti hoon, help kar sakti hoon. English mein I can help you. Business mein help kar.'},
-health:{info:'🏥 Health Mode — Symptoms, Doctor Tips',chips:['🤒 Symptoms','💊 Medicine','🏃 Exercise','🥗 Diet','😴 Sleep'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar jaise kar sakti hoon, bata sakti hoon. English mein I can help you. Health mein help kar. Doctor se milne ki salah de.'},
+health:{info:'🏥 Health Mode — Symptoms, Doctor Tips',chips:['🤒 Symptoms','💊 Medicine','🏃 Exercise','🥗 Diet','😴 Sleep'],p:'Tu female AI assistant Zara hai. Hindi mein feminine language use kar jaise kar sakti hoon, bata sakti hoon. English mein I can help you. Health mein help kar.'},
 email:{info:'📧 Email Mode — Professional Emails',chips:['📨 Invoice','🏖️ Leave','📦 Delivery','🤝 Proposal','💰 Payment'],p:'Tu female email expert Zara hai. Simple Hindi ko professional English email mein convert kar. Subject, Greeting, Body, Closing dale. Phir Hindi mein bhi de.'}
 };
 
-// Dark Mode
+function scrollToChat(){document.getElementById('chat-app').scrollIntoView({behavior:'smooth'});}
+
 if(localStorage.getItem('darkMode')==='true'){
 darkMode=true;
 document.body.classList.add('dark');
@@ -510,7 +410,6 @@ t.classList.add('show');
 setTimeout(()=>t.classList.remove('show'),2000);
 }
 
-// History
 function saveToHistory(userMsg,aiReply){
 const h=JSON.parse(localStorage.getItem('zs_history')||'[]');
 h.unshift({date:new Date().toLocaleDateString('hi-IN'),time:new Date().toLocaleTimeString('hi-IN',{hour:'2-digit',minute:'2-digit'}),userMsg:userMsg.substring(0,100),aiReply:aiReply.substring(0,150),timestamp:Date.now()});
@@ -522,7 +421,7 @@ function showHistory(){
 document.getElementById('histPanel').classList.add('show');
 const h=JSON.parse(localStorage.getItem('zs_history')||'[]');
 const list=document.getElementById('histList');
-if(!h.length){list.innerHTML='<div class="hist-empty">🕐 Abhi koi history nahi!<br><br>Zara se baat karo — sab yaad rakhegi! 😊</div>';return;}
+if(!h.length){list.innerHTML='<div class="hist-empty">🕐 Abhi koi history nahi!<br><br>Zara se baat karo! 😊</div>';return;}
 const g={};
 h.forEach(x=>{if(!g[x.date])g[x.date]=[];g[x.date].push(x);});
 let html='';
@@ -538,7 +437,6 @@ function hideHistory(){document.getElementById('histPanel').classList.remove('sh
 function loadHist(msg){hideHistory();document.getElementById('inp').value=decodeURIComponent(msg);document.getElementById('inp').focus();}
 function clearHist(){if(confirm('Poori history delete karein?')){localStorage.removeItem('zs_history');showHistory();}}
 
-// Gmail
 (function(){
 const h=location.hash;
 if(h&&h.includes('access_token')){
@@ -562,7 +460,7 @@ const d=await r.json();
 const b=document.getElementById('gmailBtn');
 b.className='hbtn gmail-hbtn gmail-connected';
 b.innerHTML='✅ '+d.email.split('@')[0];
-addMsg('ai','<div class="ebadge">📧 Gmail Connected!</div><br><b>'+d.email+'</b> connect ho gaya! 🎉<br><br>Ab inbox check kar sakti hoon, email draft kar sakti hoon!');
+addMsg('ai','<div class="ebadge">📧 Gmail Connected!</div><br><b>'+d.email+'</b> connect ho gaya! 🎉');
 }catch(e){console.log(e);}
 }
 
@@ -571,7 +469,7 @@ gTok=null;
 const b=document.getElementById('gmailBtn');
 b.className='hbtn gmail-hbtn';
 b.innerHTML='<img src="https://www.google.com/favicon.ico" width="11" alt="G"> Gmail';
-addMsg('ai','✅ Gmail disconnect ho gaya! Data safe hai. 🔒');
+addMsg('ai','✅ Gmail disconnect ho gaya! 🔒');
 }
 
 async function getEmails(){
@@ -613,12 +511,14 @@ if(m==='email'&&!gTok)addMsg('ai','<div class="ebadge">📧 Email Mode</div><br>
 function useChip(el){document.getElementById('inp').value=el.textContent.trim();document.getElementById('inp').focus();}
 
 function shareApp(){
-if(navigator.share){navigator.share({title:'ZeroScale AI',text:'🤖 India ka Smart AI Assistant! FREE mein use karo! 🇮🇳',url:'https://zeroscale.co.in'});}
+if(navigator.share){navigator.share({title:'ZeroScale AI',text:'🤖 India ka Smart AI! FREE use karo!',url:'https://zeroscale.co.in'});}
 else{navigator.clipboard.writeText('https://zeroscale.co.in');showToast('✅ Link copy ho gaya!');}
 }
 
 function toggleAtt(){document.getElementById('attmenu').classList.toggle('show');}
-document.addEventListener('click',e=>{if(!e.target.closest('.attbtn')&&!e.target.closest('.attmenu'))document.getElementById('attmenu').classList.remove('show');});
+document.addEventListener('click',function(e){
+if(!e.target.closest('.attbtn')&&!e.target.closest('.attmenu'))document.getElementById('attmenu').classList.remove('show');
+});
 function openCam(){document.getElementById('attmenu').classList.remove('show');document.getElementById('camInp').click();}
 function openGal(){document.getElementById('attmenu').classList.remove('show');document.getElementById('galInp').click();}
 function openFil(){document.getElementById('attmenu').classList.remove('show');document.getElementById('filInp').click();}
@@ -626,7 +526,7 @@ function openFil(){document.getElementById('attmenu').classList.remove('show');d
 function handleImg(inp,src){
 const f=inp.files[0];if(!f)return;
 const r=new FileReader();
-r.onload=e=>{
+r.onload=function(e){
 att={type:'image',content:e.target.result,name:f.name};
 document.getElementById('previmg').src=e.target.result;
 document.getElementById('previmg').style.display='block';
@@ -642,7 +542,6 @@ function handleFil(inp){
 const f=inp.files[0];if(!f)return;
 const ext=f.name.split('.').pop().toLowerCase();
 showToast('📂 File padh rahi hoon...');
-
 if(ext==='pdf'){
 const reader=new FileReader();
 reader.onload=async function(e){
@@ -653,7 +552,7 @@ let text='';
 for(let i=1;i<=Math.min(pdf.numPages,10);i++){
 const page=await pdf.getPage(i);
 const content=await page.getTextContent();
-text+=content.items.map(item=>item.str).join(' ')+'\n';
+text+=content.items.map(function(item){return item.str;}).join(' ')+'\n';
 }
 if(text.trim().length<50){addMsg('ai','⚠️ Scanned PDF hai! Text copy karke paste karo!');return;}
 att={type:'file',content:text.substring(0,3000),name:f.name};
@@ -666,7 +565,6 @@ addMsg('ai','✅ PDF padh li! Kya jaanna chahte hain? 😊');
 }catch(e){addMsg('ai','❌ PDF nahi padh saki!');}
 };
 reader.readAsArrayBuffer(f);
-
 }else if(ext==='docx'||ext==='doc'){
 const reader=new FileReader();
 reader.onload=async function(e){
@@ -679,17 +577,16 @@ document.getElementById('prevtype').textContent='📝 Word File';
 document.getElementById('prevbar').classList.add('show');
 document.getElementById('inp').placeholder='Is Word file ke baare mein poochho...';
 addMsg('ai','✅ Word file padh li! Kya jaanna chahte hain? 😊');
-}catch(e){addMsg('ai','❌ Word file nahi padh saki! .txt mein save karke try karo.');}
+}catch(e){addMsg('ai','❌ Word file nahi padh saki!');}
 };
 reader.readAsArrayBuffer(f);
-
 }else if(ext==='xlsx'||ext==='xls'){
 const reader=new FileReader();
 reader.onload=function(e){
 try{
 const wb=XLSX.read(e.target.result,{type:'array'});
 let text='';
-wb.SheetNames.forEach(sheet=>{text+=`Sheet: ${sheet}\n`+XLSX.utils.sheet_to_csv(wb.Sheets[sheet])+'\n';});
+wb.SheetNames.forEach(function(sheet){text+='Sheet: '+sheet+'\n'+XLSX.utils.sheet_to_csv(wb.Sheets[sheet])+'\n';});
 att={type:'file',content:text.substring(0,3000),name:f.name};
 document.getElementById('previmg').style.display='none';
 document.getElementById('prevname').textContent=f.name;
@@ -700,21 +597,20 @@ addMsg('ai','✅ Excel file padh li! Kya jaanna chahte hain? 😊');
 }catch(e){addMsg('ai','❌ Excel nahi padh saki!');}
 };
 reader.readAsArrayBuffer(f);
-
 }else if(ext==='csv'||ext==='txt'){
 const reader=new FileReader();
 reader.onload=function(e){
 att={type:'file',content:e.target.result.substring(0,3000),name:f.name};
 document.getElementById('previmg').style.display='none';
 document.getElementById('prevname').textContent=f.name;
-document.getElementById('prevtype').textContent=ext==='csv'?'📊 CSV':'📄 Text File';
+document.getElementById('prevtype').textContent=ext==='csv'?'📊 CSV':'📄 Text';
 document.getElementById('prevbar').classList.add('show');
 document.getElementById('inp').placeholder='Is file ke baare mein poochho...';
 addMsg('ai','✅ File padh li! Kya jaanna chahte hain? 😊');
 };
 reader.readAsText(f);
 }else{
-addMsg('ai','⚠️ Yeh format support nahi! PDF, Word, Excel, CSV ya TXT upload karo!');
+addMsg('ai','⚠️ PDF, Word, Excel, CSV ya TXT upload karo!');
 }
 inp.value='';
 }
@@ -734,7 +630,9 @@ if(!spkOn){
 if(typeof responsiveVoice!=='undefined')responsiveVoice.cancel();
 speechSynthesis.cancel();
 }else{
-if(typeof responsiveVoice!=='undefined')responsiveVoice.speak('Namaste main Zara hoon!','Hindi Female',{rate:0.9,pitch:1,volume:1});
+if(typeof responsiveVoice!=='undefined'){
+responsiveVoice.speak('Namaste main Zara hoon!','Hindi Female',{rate:0.9,pitch:1,volume:1});
+}
 }
 showToast(spkOn?'🔊 Voice On':'🔇 Voice Off');
 }
@@ -743,9 +641,8 @@ function speak(text){
 if(!spkOn)return;
 if(typeof responsiveVoice==='undefined')return;
 responsiveVoice.cancel();
-speechSynthesis.cancel();
 const clean=text.replace(/[*#_\-<>]/g,' ').trim();
-const sentences=clean.split(/[।.!?]+/).filter(s=>s.trim().length>0);
+const sentences=clean.split(/[।.!?]+/).filter(function(s){return s.trim().length>0;});
 let i=0;
 function speakNext(){
 if(!spkOn||i>=sentences.length)return;
@@ -766,15 +663,15 @@ if(!('webkitSpeechRecognition'in window)&&!('SpeechRecognition'in window)){alert
 if(listening){rec.stop();return;}
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 rec=new SR();rec.lang='hi-IN';rec.continuous=false;rec.interimResults=false;
-rec.onstart=()=>{listening=true;document.getElementById('vbtn').classList.add('listening');document.getElementById('vbtn').textContent='🔴 Sun rahi hoon...';};
-rec.onresult=e=>{document.getElementById('inp').value=e.results[0][0].transcript;send();};
-rec.onend=()=>{listening=false;document.getElementById('vbtn').classList.remove('listening');document.getElementById('vbtn').textContent='🎤 Bolo';};
-rec.onerror=()=>{listening=false;document.getElementById('vbtn').classList.remove('listening');document.getElementById('vbtn').textContent='🎤 Bolo';};
+rec.onstart=function(){listening=true;document.getElementById('vbtn').classList.add('listening');document.getElementById('vbtn').textContent='🔴 Sun rahi hoon...';};
+rec.onresult=function(e){document.getElementById('inp').value=e.results[0][0].transcript;send();};
+rec.onend=function(){listening=false;document.getElementById('vbtn').classList.remove('listening');document.getElementById('vbtn').textContent='🎤 Bolo';};
+rec.onerror=function(){listening=false;document.getElementById('vbtn').classList.remove('listening');document.getElementById('vbtn').textContent='🎤 Bolo';};
 rec.start();
 }
 
 async function needsSearch(q){
-return['kaun','kya hai','kahan','kab','kitna','price','news','aaj','latest','company','address','contact','near','faridabad','delhi','mumbai','2024','2025','2026'].some(k=>q.toLowerCase().includes(k));
+return['kaun','kya hai','kahan','kab','kitna','price','news','aaj','latest','company','address','contact','near','faridabad','delhi','mumbai','2024','2025','2026'].some(function(k){return q.toLowerCase().includes(k);});
 }
 
 async function webSearch(q){
@@ -782,7 +679,7 @@ try{
 const r=await fetch('https://api.tavily.com/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({api_key:TK,query:q,search_depth:'basic',max_results:3,include_answer:true})});
 const d=await r.json();
 if(d.answer)return d.answer;
-if(d.results?.length)return d.results.map(x=>x.content).join('\n').substring(0,800);
+if(d.results&&d.results.length)return d.results.map(function(x){return x.content;}).join('\n').substring(0,800);
 return null;
 }catch(e){return null;}
 }
@@ -790,7 +687,8 @@ return null;
 async function translate(text){
 try{
 const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+GK},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:'Translate to English for image generation. Return ONLY English.'},{role:'user',content:text}],max_tokens:150})});
-const d=await r.json();return d.choices[0].message.content.trim();
+const d=await r.json();
+return d.choices[0].message.content.trim();
 }catch(e){return text;}
 }
 
@@ -802,98 +700,114 @@ document.getElementById('inp').value='';
 const el=addMsg('ai','⏳ Image ban rahi hai...');
 const eng=await translate(txt);
 const seed=Math.floor(Math.random()*999999);
-const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(eng)}?seed=${seed}&width=768&height=512&nologo=true&enhance=true&model=flux`;
-el.innerHTML=`✅ Image ready! 🎨<br><img src="${url}" style="max-width:100%;border-radius:12px;margin-top:8px" onload="document.getElementById('chat').scrollTop=99999" onerror="this.parentElement.textContent='❌ Dobara try karo!'">`;
+const url='https://image.pollinations.ai/prompt/'+encodeURIComponent(eng)+'?seed='+seed+'&width=768&height=512&nologo=true&enhance=true&model=flux';
+el.innerHTML='✅ Image ready! 🎨<br><img src="'+url+'" style="max-width:100%;border-radius:12px;margin-top:8px" onload="document.getElementById(\'chat\').scrollTop=99999" onerror="this.parentElement.textContent=\'❌ Dobara try karo!\'">';
 }
 
 async function send(){
 const inp=document.getElementById('inp');
 const txt=inp.value.trim();
 if(!txt&&!att.content)return;
-if(att.type==='image'){addMsg('user',`<img src="${att.content}" style="max-width:200px;border-radius:10px;display:block;margin-bottom:6px">${txt||'Is image ke baare mein batao'}`);}
-else if(att.type==='file'){addMsg('user','📎 '+att.name+'<br>'+(txt||'Summary do'));}
-else{addMsg('user',txt);}
+
+if(att.type==='image'){
+addMsg('user','<img src="'+att.content+'" style="max-width:200px;border-radius:10px;display:block;margin-bottom:6px">'+(txt||'Is image ke baare mein batao'));
+}else if(att.type==='file'){
+addMsg('user','📎 '+att.name+'<br>'+(txt||'Summary do'));
+}else{
+addMsg('user',txt);
+}
+
 inp.value='';
-const saved={...att};
+const saved={type:att.type,content:att.content,name:att.name};
 removeAtt();
 const el=addMsg('ai','<div class="typing"><span></span><span></span><span></span></div>');
+
 try{
-let content=txt||'Batao';
-let badge='';
-const isEmail=txt&&(txt.toLowerCase().includes('email')||txt.toLowerCase().includes('inbox')||txt.toLowerCase().includes('mail'));
-if(gTok&&isEmail){
-el.innerHTML='<div class="ebadge">📧 Gmail check ho rahi hai...</div>';
-const em=await getEmails();
-if(em){content=`Gmail inbox:\n${em}\nSawaal: ${txt}\nHindi mein jawab do.`;badge='<div class="ebadge">📧 Gmail se mila</div>';}
-}else if(txt&&await needsSearch(txt)){
-el.innerHTML='<div class="sbadge">🔍 Web search ho rahi hai...</div>';
-const sr=await webSearch(txt);
-if(sr){content=`Search: ${sr}\nSawaal: ${txt}\nHindi mein jawab do.`;badge='<div class="sbadge">🔍 Web search se mila</div>';}
-}
-if(saved.type==='file')content=`File: ${saved.name}\n${saved.content.substring(0,2000)}\nSawaal: ${txt||'Summary do aur main points batao'}`;
-else if(saved.type==='image'){
+// Image Vision
+if(saved.type==='image'){
 el.innerHTML='<div class="sbadge">🖼️ Image dekh rahi hoon...</div>';
-try{
 const vr=await fetch('https://api.groq.com/openai/v1/chat/completions',{
 method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer '+GK},
 body:JSON.stringify({
 model:'meta-llama/llama-4-scout-17b-16e-instruct',
-messages:[{
-role:'user',
-content:[
-{type:'text',text:`${txt||'Is image ke baare mein batao'}. 
-Pehle Hindi mein detail mein batao image ke baare mein.
-Phir English mein ek professional image generation prompt likho jo PROFESSIONAL version banaye.
-Format:
-IMAGE_DESCRIPTION: [Hindi mein description]
-PROFESSIONAL_PROMPT: [English prompt for professional version]`},
+messages:[{role:'user',content:[
+{type:'text',text:(txt||'Is image ke baare mein detail mein batao')+'. Hindi mein jawab do. Phir ek English professional image prompt likho jo PROFESSIONAL_PROMPT: se shuru ho.'},
 {type:'image_url',image_url:{url:saved.content}}
-]
-}],
+]}],
 max_tokens:600
 })
 });
 const vd=await vr.json();
-if(vd.choices?.[0]){
+if(vd.choices&&vd.choices[0]){
 const rep=vd.choices[0].message.content;
-
-// Description aur prompt alag karo
-const descMatch=rep.match(/IMAGE_DESCRIPTION:(.*?)(?=PROFESSIONAL_PROMPT:|$)/s);
 const promptMatch=rep.match(/PROFESSIONAL_PROMPT:(.*?)$/s);
+const proPrompt=promptMatch?promptMatch[1].trim():'professional photo high quality studio lighting';
+const description=rep.replace(/PROFESSIONAL_PROMPT:.*$/s,'').trim();
 
-const description=descMatch?descMatch[1].trim():rep;
-const proPrompt=promptMatch?promptMatch[1].trim():'professional photo, high quality, studio lighting';
-
-// Description dikhao
-el.innerHTML=`<div class="sbadge">🖼️ Image Analysis</div><br>${description}<br><br><div class="sbadge">⏳ Professional Image Ban Rahi Hai...</div>`;
+el.innerHTML='<div class="sbadge">🖼️ Image Analysis</div><br>'+description+'<br><br><div class="sbadge">⏳ Professional Image Ban Rahi Hai...</div>';
 speak(description);
 
-// Professional image banao
 const seed=Math.floor(Math.random()*999999);
-const imgUrl=`https://image.pollinations.ai/prompt/${encodeURIComponent(proPrompt+', professional, high quality, studio lighting, 4k')}?seed=${seed}&width=768&height=512&nologo=true&enhance=true&model=flux`;
-
+const imgUrl='https://image.pollinations.ai/prompt/'+encodeURIComponent(proPrompt+', professional, high quality, 4k')+'?seed='+seed+'&width=768&height=512&nologo=true&enhance=true&model=flux';
 const imgEl=document.createElement('img');
-imgEl.style='max-width:100%;border-radius:12px;margin-top:8px;display:block';
+imgEl.style.cssText='max-width:100%;border-radius:12px;margin-top:8px;display:block';
 imgEl.onload=function(){
-el.innerHTML=`<div class="sbadge">🖼️ Image Analysis</div><br>${description}<br><br><div class="sbadge">✅ Professional Version Ready!</div>`;
+el.innerHTML='<div class="sbadge">🖼️ Image Analysis</div><br>'+description+'<br><br><div class="sbadge">✅ Professional Version!</div>';
 el.appendChild(imgEl);
 document.getElementById('chat').scrollTop=99999;
 };
-imgEl.onerror=function(){
-el.innerHTML=`<div class="sbadge">🖼️ Image Analysis</div><br>${description}<br><br>❌ Professional image nahi ban saki!`;
-};
+imgEl.onerror=function(){el.innerHTML='<div class="sbadge">🖼️ Image Analysis</div><br>'+description;};
 imgEl.src=imgUrl;
-
-saveToHistory(txt||'Image',description.replace(/<[^>]*>/g,''));
+saveToHistory(txt||'Image',description.substring(0,150));
 }else{
 el.textContent='❌ Image nahi dekh saki!';
 }
-}catch(e){
-el.textContent='❌ Error aaya!';
-}
 document.getElementById('chat').scrollTop=99999;
 return;
+}
+
+let content=txt||'Batao';
+let badge='';
+
+const isEmail=txt&&(txt.toLowerCase().includes('email')||txt.toLowerCase().includes('inbox')||txt.toLowerCase().includes('mail'));
+if(gTok&&isEmail){
+el.innerHTML='<div class="ebadge">📧 Gmail check ho rahi hai...</div>';
+const em=await getEmails();
+if(em){content='Gmail inbox:\n'+em+'\nSawaal: '+txt+'\nHindi mein jawab do.';badge='<div class="ebadge">📧 Gmail se mila</div>';}
+}else if(txt&&await needsSearch(txt)){
+el.innerHTML='<div class="sbadge">🔍 Web search ho rahi hai...</div>';
+const sr=await webSearch(txt);
+if(sr){content='Search: '+sr+'\nSawaal: '+txt+'\nHindi mein jawab do.';badge='<div class="sbadge">🔍 Web search se mila</div>';}
+}
+
+if(saved.type==='file'){
+content='File: '+saved.name+'\n'+saved.content.substring(0,2000)+'\nSawaal: '+(txt||'Summary do aur main points batao');
+}
+
+chatHistory.push({role:'user',content:content});
+if(chatHistory.length>30)chatHistory=chatHistory.slice(-30);
+
+const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+method:'POST',
+headers:{'Content-Type':'application/json','Authorization':'Bearer '+GK},
+body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:modes[mode].p},...chatHistory],max_tokens:600})
+});
+const d=await r.json();
+if(d.choices&&d.choices[0]){
+const rep=d.choices[0].message.content;
+el.innerHTML=badge+rep;
+speak(rep);
+chatHistory.push({role:'assistant',content:rep});
+if(chatHistory.length>30)chatHistory=chatHistory.slice(-30);
+saveToHistory(txt||'File',rep.replace(/<[^>]*>/g,''));
+}else{
+el.textContent='❌ Dobara try karo!';
+}
+}catch(e){
+el.textContent='❌ Network Error: '+e.message;
+}
+document.getElementById('chat').scrollTop=99999;
 }
 
 if('serviceWorker'in navigator)navigator.serviceWorker.register('/sw.js');
